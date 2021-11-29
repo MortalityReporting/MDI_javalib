@@ -21,6 +21,11 @@ import edu.gatech.chai.VRDR.model.DecedentAge;
 @ResourceDef(name = "Composition", profile = "https://fhir.org/fhir/us/mdi/StructureDefinition/Composition-mdi-to-edrs")
 public class CompositionMDIToEDRS extends Composition{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5634970999252166772L;
+
 	public CompositionMDIToEDRS(String title, CompositionStatus status, Date date, Decedent decedent,Practitioner author) {
 		Reference authorRef = new Reference(author);
 		commonInit(title,status,date,decedent,authorRef);
