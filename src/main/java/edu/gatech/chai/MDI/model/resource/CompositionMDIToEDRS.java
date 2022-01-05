@@ -3,9 +3,11 @@ package edu.gatech.chai.MDI.model.resource;
 import java.util.Date;
 
 import org.hl7.fhir.r4.model.CodeType;
+import org.hl7.fhir.r4.model.CodeableConcept;
 import org.hl7.fhir.r4.model.Composition;
 import org.hl7.fhir.r4.model.DateTimeType;
 import org.hl7.fhir.r4.model.Device;
+import org.hl7.fhir.r4.model.Identifier;
 import org.hl7.fhir.r4.model.Organization;
 import org.hl7.fhir.r4.model.Patient;
 import org.hl7.fhir.r4.model.Practitioner;
@@ -15,8 +17,6 @@ import org.hl7.fhir.r4.model.RelatedPerson;
 
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.chai.MDI.model.resource.util.CompositionMDIToEDRSUtil;
-import edu.gatech.chai.VRDR.model.Decedent;
-import edu.gatech.chai.VRDR.model.DecedentAge;
 
 @ResourceDef(name = "Composition", profile = "https://fhir.org/fhir/us/mdi/StructureDefinition/Composition-mdi-to-edrs")
 public class CompositionMDIToEDRS extends Composition{
@@ -24,118 +24,128 @@ public class CompositionMDIToEDRS extends Composition{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 5634970999252166772L;
+	private static final long serialVersionUID = 5634970999252166773L;
 
-	public CompositionMDIToEDRS(String title, CompositionStatus status, Date date, Decedent decedent,Practitioner author) {
-		Reference authorRef = new Reference(author);
-		commonInit(title,status,date,decedent,authorRef);
+	public CompositionMDIToEDRS(Identifier identifier, CompositionStatus status, Date date, Patient subject,Practitioner author) {
+		super();
+		Reference authorRef = new Reference(author.getId());
+		commonInit(identifier,status,date,subject,authorRef);
 	}
 	
-	public CompositionMDIToEDRS(String title, CompositionStatus status, Date date, Decedent decedent,PractitionerRole author) {
-		Reference authorRef = new Reference(author);
-		commonInit(title,status,date,decedent,authorRef);
+	public CompositionMDIToEDRS(Identifier identifier, CompositionStatus status, Date date, Patient subject,PractitionerRole author) {
+		super();
+		Reference authorRef = new Reference(author.getId());
+		commonInit(identifier,status,date,subject,authorRef);
 	}
 	
-	public CompositionMDIToEDRS(String title, CompositionStatus status, Date date, Decedent decedent,Device author) {
-		Reference authorRef = new Reference(author);
-		commonInit(title,status,date,decedent,authorRef);
+	public CompositionMDIToEDRS(Identifier identifier, CompositionStatus status, Date date, Patient subject,Device author) {
+		super();
+		Reference authorRef = new Reference(author.getId());
+		commonInit(identifier,status,date,subject,authorRef);
 	}
 	
-	public CompositionMDIToEDRS(String title, CompositionStatus status, Date date, Decedent decedent,Patient author) {
-		Reference authorRef = new Reference(author);
-		commonInit(title,status,date,decedent,authorRef);
+	public CompositionMDIToEDRS(Identifier identifier, CompositionStatus status, Date date, Patient subject,Patient author) {
+		super();
+		Reference authorRef = new Reference(author.getId());
+		commonInit(identifier,status,date,subject,authorRef);
 	}
 	
-	public CompositionMDIToEDRS(String title, CompositionStatus status, Date date, Decedent decedent,RelatedPerson author) {
-		Reference authorRef = new Reference(author);
-		commonInit(title,status,date,decedent,authorRef);
+	public CompositionMDIToEDRS(Identifier identifier, CompositionStatus status, Date date, Patient subject,RelatedPerson author) {
+		super();
+		Reference authorRef = new Reference(author.getId());
+		commonInit(identifier,status,date,subject,authorRef);
 	}
 	
-	public CompositionMDIToEDRS(String title, CompositionStatus status, Date date, Decedent decedent,Organization author) {
-		Reference authorRef = new Reference(author);
-		commonInit(title,status,date,decedent,authorRef);
+	public CompositionMDIToEDRS(Identifier identifier, CompositionStatus status, Date date, Patient subject,Organization author) {
+		super();
+		Reference authorRef = new Reference(author.getId());
+		commonInit(identifier,status,date,subject,authorRef);
 	}
 	
 	
-	public void commonInit(String title, CompositionStatus status, Date date, Decedent decedent,Reference authorRef) {
-		this.setTitle(title);
+	public void commonInit(Identifier identifier, CompositionStatus status, Date date, Patient subject,Reference authorRef) {
+		this.setIdentifier(identifier);
 		this.setStatus(status);
 		this.setType(CompositionMDIToEDRSUtil.type);
 		if(date == null) {
 			date = new Date();
 		}
 		this.setDate(date);
-		Reference decedentRef = new Reference(decedent);
-		this.setSubject(decedentRef);
+		Reference subjectRef = new Reference(subject.getId());
+		this.setSubject(subjectRef);
 		this.addAuthor(authorRef);
-		this.createDemographicsSection();
-		this.createCircumstancesSection();
-		this.createJurisdictionSection();
-		this.createCauseMannerSection();
-		this.createLocationsSection();
-		this.createDateTimeSection();
-		this.createMedicalHistorySection();
-		this.createExamAutopsySection();
 	}
 	
 	public SectionComponent createDemographicsSection() {
+		return createSection(CompositionMDIToEDRSUtil.demographicsSectionCode);
+	}
+	
+	public SectionComponent createCircumstancesSection() {
+		return createSection(CompositionMDIToEDRSUtil.circumstancesSectionCode);
+	}
+	
+	public SectionComponent createJurisdictionSection() {
+		return createSection(CompositionMDIToEDRSUtil.jurisdictionSectionCode);
+	}
+	
+	public SectionComponent createCauseMannerSection() {
+		return createSection(CompositionMDIToEDRSUtil.causeMannerSectionCode);
+	}
+	
+	public SectionComponent createMedicalHistorySection() {
+		return createSection(CompositionMDIToEDRSUtil.medicalHistorySectionCode);
+	}
+	
+	public SectionComponent createExamAutopsySection() {
+		return createSection(CompositionMDIToEDRSUtil.examAutopsySectionCode);
+	}
+	
+	public SectionComponent createNarrativeSection() {
+		return createSection(CompositionMDIToEDRSUtil.narrativeSectionCode);
+	}
+	
+	protected SectionComponent createSection(CodeableConcept codeableConcept) {
 		SectionComponent secComp = new SectionComponent();
-		secComp.setCode(CompositionMDIToEDRSUtil.demographicsSectionCode);
+		secComp.setCode(codeableConcept);
 		this.addSection(secComp);
 		return secComp;
 	}
 	
-	public SectionComponent createCircumstancesSection() {
-		SectionComponent secComp = new SectionComponent();
-		return secComp;
-	}
-	
-	public SectionComponent createJurisdictionSection() {
-		SectionComponent secComp = new SectionComponent();
-		return secComp;
-	}
-	
-	public SectionComponent createCauseMannerSection() {
-		SectionComponent secComp = new SectionComponent();
-		return secComp;
-	}
-	
-	public SectionComponent createLocationsSection() {
-		SectionComponent secComp = new SectionComponent();
-		return secComp;
-	}
-	
-	public SectionComponent createDateTimeSection() {
-		SectionComponent secComp = new SectionComponent();
-		return secComp;
-	}
-	
-	public SectionComponent createMedicalHistorySection() {
-		SectionComponent secComp = new SectionComponent();
-		return secComp;
-	}
-	
-	public SectionComponent createExamAutopsySection() {
-		SectionComponent secComp = new SectionComponent();
-		return secComp;
-	}
-	
 	public SectionComponent getDemographicsSection() {
+		return getSection(CompositionMDIToEDRSUtil.demographicsSectionCode);
+	}
+	
+	public SectionComponent getCircumstancesSection() {
+		return getSection(CompositionMDIToEDRSUtil.circumstancesSectionCode);
+	}
+	
+	public SectionComponent getJurisdictionSection() {
+		return getSection(CompositionMDIToEDRSUtil.jurisdictionSectionCode);
+	}
+	
+	public SectionComponent getCauseMannerSection() {
+		return getSection(CompositionMDIToEDRSUtil.causeMannerSectionCode);
+	}
+	
+	public SectionComponent getMedicalHistorySection() {
+		return getSection(CompositionMDIToEDRSUtil.medicalHistorySectionCode);
+	}
+	
+	public SectionComponent getExamAutopsySection() {
+		return getSection(CompositionMDIToEDRSUtil.examAutopsySectionCode);
+	}
+	
+	public SectionComponent getNarrativeSection() {
+		return getSection(CompositionMDIToEDRSUtil.narrativeSectionCode);
+	}
+	
+	protected SectionComponent getSection(CodeableConcept codeableConcept) {
 		for(SectionComponent secComp:this.section) {
-			if(secComp.getCode().equals(CompositionMDIToEDRSUtil.demographicsSectionCode)) {
+			if(secComp.getCode().equals(codeableConcept)) {
 				return secComp;
 			}
 		}
 		return null;
 	}
 	
-	public SectionComponent addDecedentAge(DecedentAge decedentAge) {
-		SectionComponent secComp = getDemographicsSection();
-		if(secComp == null) {
-			secComp = createDemographicsSection();
-		}
-		Reference decedentAgeRef = new Reference(decedentAge);
-		secComp.addEntry(decedentAgeRef);
-		return secComp;
-	}
 }
