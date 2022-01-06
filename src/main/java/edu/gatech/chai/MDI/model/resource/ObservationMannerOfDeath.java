@@ -11,7 +11,7 @@ import edu.gatech.chai.VRDR.model.util.CommonUtil;
 import edu.gatech.chai.VRDR.model.util.DecedentDispositionMethodUtil;
 import edu.gatech.chai.VRDR.model.util.MannerOfDeathUtil;
 
-@ResourceDef(name = "Observation", profile = "http://hl7.org/fhir/us/mdi/StructureDefinition/Observation-tobacco-use-contributed-to-death")
+@ResourceDef(name = "Observation", profile = "http://hl7.org/fhir/us/mdi/StructureDefinition/Observation-manner-of-death")
 public class ObservationMannerOfDeath extends Observation {
 
 	public ObservationMannerOfDeath() {

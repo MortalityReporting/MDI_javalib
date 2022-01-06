@@ -24,11 +24,6 @@
     </dependency>
     <dependency>
         <groupId>ca.uhn.hapi.fhir</groupId>
-        <artifactId>hapi-fhir-client</artifactId>
-        <version>${fhir.version}</version>
-    </dependency>
-    <dependency>
-        <groupId>ca.uhn.hapi.fhir</groupId>
         <artifactId>hapi-fhir-structures-r4</artifactId>
         <version>${fhir.version}</version>
     </dependency>
@@ -45,7 +40,7 @@
     <dependency>
     	<groupId>edu.gatech</groupId>
     	<artifactId>VRDR</artifactId>
-    	<version>v1.2.2-R4-STU1.2</version>
+    	<version>v1.2.3-R4-STU1.2</version>
     </dependency>
   </dependencies>
 </project>

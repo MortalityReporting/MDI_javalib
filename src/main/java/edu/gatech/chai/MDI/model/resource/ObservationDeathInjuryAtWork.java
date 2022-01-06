@@ -23,7 +23,7 @@ public class ObservationDeathInjuryAtWork extends Observation {
 
 	public ObservationDeathInjuryAtWork(Patient subject, CodeableConcept value) {
 		this();
-		Reference ref = new Reference(subject);
+		Reference ref = new Reference(subject.getId());
 		setSubject(ref);
 		setValue(value);
 	}
@@ -31,7 +31,7 @@ public class ObservationDeathInjuryAtWork extends Observation {
 	public ObservationDeathInjuryAtWork(Patient subject, String value) {
 		this();
 		CodeableConcept valueCode = CommonUtil.findConceptFromCollectionUsingSimpleString(value, CommonUtil.yesNoNASet);
-		Reference ref = new Reference(subject);
+		Reference ref = new Reference(subject.getId());
 		setSubject(ref);
 		setValue(valueCode);
 	}

@@ -7,7 +7,7 @@ import org.hl7.fhir.r4.model.Reference;
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.chai.MDI.model.resource.util.DocumentReferenceMDICaseNotesSummaryUtil;
 
-@ResourceDef(name = "DocumentReference", profile = "http://hl7.org/fhir/us/mdi/StructureDefinition/DocumentReference-mdi-case-history")
+@ResourceDef(name = "DocumentReference", profile = "http://hl7.org/fhir/us/mdi/StructureDefinition/DocumentReference-mdi-case-notes-summary")
 public class DocumentReferenceMDICaseNotesSummary extends DocumentReference{
 	public DocumentReferenceMDICaseNotesSummary(Patient subject) {
 		this.setType(DocumentReferenceMDICaseNotesSummaryUtil.type);
