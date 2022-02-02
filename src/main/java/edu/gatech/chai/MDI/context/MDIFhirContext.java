@@ -10,6 +10,7 @@ import edu.gatech.chai.MDI.model.resource.DocumentReferenceMDICaseHistory;
 import edu.gatech.chai.MDI.model.resource.DocumentReferenceMDICaseNotesSummary;
 import edu.gatech.chai.MDI.model.resource.ListCauseOfDeathPathway;
 import edu.gatech.chai.MDI.model.resource.MessageHeaderToxicologyToMDI;
+import edu.gatech.chai.MDI.model.resource.ODHUsualWork;
 import edu.gatech.chai.MDI.model.resource.ObservationDeathDate;
 import edu.gatech.chai.MDI.model.resource.ObservationDeathInjuryAtWork;
 import edu.gatech.chai.MDI.model.resource.ObservationDecedentPregnancy;
@@ -86,6 +87,8 @@ public class MDIFhirContext {
 				ObservationHowDeathInjuryOccurred.class);
 		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/mdi/StructureDefinition/Observation-tobacco-use-contributed-to-death",
 				ObservationTobaccoUseContributedToDeath.class);
+		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/mdi/StructureDefinition/Observation-tobacco-use-contributed-to-death",
+				ODHUsualWork.class);
 		ctx.setDefaultTypeForProfile("https://fhir.org/fhir/us/mdi/StructureDefinition/Specimen-toxicology-lab",
 				SpecimenToxicologyLab.class);
 		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab",

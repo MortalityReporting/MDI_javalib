@@ -11,11 +11,20 @@ import org.hl7.fhir.r4.model.Reference;
 
 @ResourceDef(name = "List", profile = "http://hl7.org/fhir/us/mdi/StructureDefinition/List-cause-of-death-pathway")
 public class ListCauseOfDeathPathway extends ListResource{
+	public ListCauseOfDeathPathway() {
+		super();
+		CommonUtil.initResource(this);
+		setStatus(CauseOfDeathPathwayUtil.status);
+		setMode(CauseOfDeathPathwayUtil.mode);
+	}
+	
 	public ListCauseOfDeathPathway(Patient subject, Practitioner source) {
 		super();
 		CommonUtil.initResource(this);
 		setStatus(CauseOfDeathPathwayUtil.status);
 		setMode(CauseOfDeathPathwayUtil.mode);
+		setPatient(subject);
+		setSource(source);
 	}
 	
 	public void setPatient(Patient patient) {

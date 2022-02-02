@@ -12,7 +12,9 @@ import edu.gatech.chai.MDI.model.resource.util.ObservationDeathInjuryAtWorkUtil;
 import edu.gatech.chai.MDI.model.resource.util.ObservationDecedentPregnancyUtil;
 import edu.gatech.chai.VRDR.model.util.CommonUtil;
 import edu.gatech.chai.VRDR.model.util.DeathDateUtil;
+import edu.gatech.chai.VRDR.model.util.DecedentPregnancyUtil;
 import edu.gatech.chai.VRDR.model.util.InjuryIncidentUtil;
+import edu.gatech.chai.VRDR.model.util.TobaccoUseContributedToDeathUtil;
 
 @ResourceDef(name = "Observation", profile = "http://hl7.org/fhir/us/mdi/StructureDefinition/Observation-decedent-pregnancy")
 public class ObservationDecedentPregnancy extends Observation {
@@ -35,5 +37,12 @@ public class ObservationDecedentPregnancy extends Observation {
 		Reference ref = new Reference(subject.getId());
 		setSubject(ref);
 		setValue(valueCode);
+	}
+	
+	public void setValue(String code) {
+		CodeableConcept concept = CommonUtil.findConceptFromCollectionUsingSimpleString(code, DecedentPregnancyUtil.valueSet);
+		if(concept != null) {
+			setValue(concept);
+		}
 	}
 }
