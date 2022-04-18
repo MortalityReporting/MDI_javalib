@@ -12,6 +12,7 @@ import org.hl7.fhir.r4.model.StringType;
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.chai.MDI.model.resource.util.ObservationDeathInjuryAtWorkUtil;
 import edu.gatech.chai.MDI.model.resource.util.ObservationDecedentPregnancyUtil;
+import edu.gatech.chai.MDI.model.resource.util.ObservationHowDeathInjuryOccurredUtil;
 import edu.gatech.chai.VRDR.model.util.CommonUtil;
 import edu.gatech.chai.VRDR.model.util.DeathDateUtil;
 import edu.gatech.chai.VRDR.model.util.InjuryIncidentUtil;
@@ -21,7 +22,7 @@ public class ObservationHowDeathInjuryOccurred extends Observation {
 
 	public ObservationHowDeathInjuryOccurred() {
 		super();
-		setCode(ObservationDeathInjuryAtWorkUtil.code);
+		setCode(ObservationHowDeathInjuryOccurredUtil.code);
 	}
 
 	public ObservationHowDeathInjuryOccurred(Patient subject, String value) {
