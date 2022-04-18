@@ -10,7 +10,7 @@ import edu.gatech.chai.VRDR.model.util.CommonUtil;
 
 public class ObservationDecedentPregnancyUtil {
 	public static final CodeableConcept code = new CodeableConcept().addCoding(
-			new Coding(CommonUtil.loincSystemUrl," 69442-2","Timing of recent pregnancy in relation to death"));
+			new Coding(CommonUtil.loincSystemUrl,"69442-2","Timing of recent pregnancy in relation to death"));
 	public static final CodeableConcept VALUE_NOCODE = new CodeableConcept().addCoding(new Coding().setCode("PHC1260").setSystem(CommonUtil.snomedSystemUrl).setDisplay("Not pregnant within past year"));
 	public static final CodeableConcept VALUE_YESCODE = new CodeableConcept().addCoding(new Coding().setCode("PHC1261").setSystem(CommonUtil.snomedSystemUrl).setDisplay("Pregnant at the time of death"));
 	public static final CodeableConcept VALUE_42DAYSCODE = new CodeableConcept().addCoding(new Coding().setCode("PHC1262").setSystem(CommonUtil.snomedSystemUrl).setDisplay("Not pregnant, but pregnant within 42 days of death"));

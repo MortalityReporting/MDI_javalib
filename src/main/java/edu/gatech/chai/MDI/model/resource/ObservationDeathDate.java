@@ -7,6 +7,7 @@ import org.hl7.fhir.r4.model.Extension;
 import org.hl7.fhir.r4.model.IntegerType;
 import org.hl7.fhir.r4.model.Location;
 import org.hl7.fhir.r4.model.Observation;
+import org.hl7.fhir.r4.model.Patient;
 import org.hl7.fhir.r4.model.Reference;
 import org.hl7.fhir.r4.model.Type;
 
@@ -25,15 +26,16 @@ public class ObservationDeathDate extends Observation {
 		setStatus(DeathDateUtil.status);
 	}
 
-	public ObservationDeathDate(Date effectiveDateTime,Date datePronouncedDead) {
+	public ObservationDeathDate(Patient patient, Date effectiveDateTime,Date datePronouncedDead) {
 		this();
+		setSubject(new Reference(patient));
 		setEffective(new DateTimeType(effectiveDateTime));
 		addDatePronouncedDead(new DateTimeType(datePronouncedDead));
 	}
 
 	public void addObservationLocationExtension(Location location) {
 		Extension extension = new Extension(ObservationDeathDateUtil.patientLocationExtensionURL);
-		Reference reference = new Reference(location.getId());
+		Reference reference = new Reference(location);
 		extension.setValue(reference);
 		this.addExtension(extension);
 	}

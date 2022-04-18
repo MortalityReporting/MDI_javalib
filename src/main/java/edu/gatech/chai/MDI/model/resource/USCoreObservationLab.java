@@ -16,7 +16,7 @@ public class USCoreObservationLab extends Observation{
 	public USCoreObservationLab(CodeableConcept resultCode, Patient subject) {
 		addCategory(USCoreObservationLabUtil.category);
 		setCode(resultCode);
-		setSubject(new Reference(subject.getId()));
+		setSubject(new Reference(subject));
 	}
 	public Observation setDataAbsentReason(String code) {
 		CodeType codeType = CommonUtil.findCodeFromCollectionUsingSimpleString(code, CommonUtil.dataAbsentReasonCodeSet);

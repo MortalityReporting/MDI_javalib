@@ -20,7 +20,7 @@ import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.chai.MDI.model.resource.util.CompositionMDIToEDRSUtil;
 import edu.gatech.chai.MDI.model.resource.util.MDICommonUtil;
 
-@ResourceDef(name = "Composition", profile = "https://fhir.org/fhir/us/mdi/StructureDefinition/Composition-mdi-to-edrs")
+@ResourceDef(name = "Composition", profile = "http://hl7.org/fhir/us/mdi/StructureDefinition/Composition-mdi-to-edrs")
 public class CompositionMDIToEDRS extends Composition{
 	
 	/**
@@ -34,37 +34,37 @@ public class CompositionMDIToEDRS extends Composition{
 	
 	public CompositionMDIToEDRS(Identifier identifier, CompositionStatus status, Date date, Patient subject,Practitioner author) {
 		super();
-		Reference authorRef = new Reference(author.getId());
+		Reference authorRef = new Reference(author);
 		commonInit(identifier,status,date,subject,authorRef);
 	}
 	
 	public CompositionMDIToEDRS(Identifier identifier, CompositionStatus status, Date date, Patient subject,PractitionerRole author) {
 		super();
-		Reference authorRef = new Reference(author.getId());
+		Reference authorRef = new Reference(author);
 		commonInit(identifier,status,date,subject,authorRef);
 	}
 	
 	public CompositionMDIToEDRS(Identifier identifier, CompositionStatus status, Date date, Patient subject,Device author) {
 		super();
-		Reference authorRef = new Reference(author.getId());
+		Reference authorRef = new Reference(author);
 		commonInit(identifier,status,date,subject,authorRef);
 	}
 	
 	public CompositionMDIToEDRS(Identifier identifier, CompositionStatus status, Date date, Patient subject,Patient author) {
 		super();
-		Reference authorRef = new Reference(author.getId());
+		Reference authorRef = new Reference(author);
 		commonInit(identifier,status,date,subject,authorRef);
 	}
 	
 	public CompositionMDIToEDRS(Identifier identifier, CompositionStatus status, Date date, Patient subject,RelatedPerson author) {
 		super();
-		Reference authorRef = new Reference(author.getId());
+		Reference authorRef = new Reference(author);
 		commonInit(identifier,status,date,subject,authorRef);
 	}
 	
 	public CompositionMDIToEDRS(Identifier identifier, CompositionStatus status, Date date, Patient subject,Organization author) {
 		super();
-		Reference authorRef = new Reference(author.getId());
+		Reference authorRef = new Reference(author);
 		commonInit(identifier,status,date,subject,authorRef);
 	}
 	
@@ -77,7 +77,7 @@ public class CompositionMDIToEDRS extends Composition{
 			date = new Date();
 		}
 		this.setDate(date);
-		Reference subjectRef = new Reference(subject.getId());
+		Reference subjectRef = new Reference(subject);
 		this.setSubject(subjectRef);
 		this.addAuthor(authorRef);
 	}

@@ -26,7 +26,7 @@ public class ObservationDecedentPregnancy extends Observation {
 
 	public ObservationDecedentPregnancy(Patient subject, CodeableConcept value) {
 		this();
-		Reference ref = new Reference(subject.getId());
+		Reference ref = new Reference(subject);
 		setSubject(ref);
 		setValue(value);
 	}
@@ -34,7 +34,7 @@ public class ObservationDecedentPregnancy extends Observation {
 	public ObservationDecedentPregnancy(Patient subject, String value) {
 		this();
 		CodeableConcept valueCode = CommonUtil.findConceptFromCollectionUsingSimpleString(value, ObservationDecedentPregnancyUtil.valueSet);
-		Reference ref = new Reference(subject.getId());
+		Reference ref = new Reference(subject);
 		setSubject(ref);
 		setValue(valueCode);
 	}

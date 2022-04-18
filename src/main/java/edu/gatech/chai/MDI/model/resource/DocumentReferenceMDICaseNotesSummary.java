@@ -15,7 +15,7 @@ public class DocumentReferenceMDICaseNotesSummary extends DocumentReference{
 	}
 	
 	public void setPatient(Patient patient) {
-		Reference reference = new Reference(patient.getId());
+		Reference reference = new Reference(patient);
 		this.subject = reference;
 	}
 	

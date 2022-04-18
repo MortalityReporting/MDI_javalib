@@ -2,6 +2,8 @@ package edu.gatech.chai.MDI.model.resource;
 
 import org.hl7.fhir.r4.model.CodeableConcept;
 import org.hl7.fhir.r4.model.Observation;
+import org.hl7.fhir.r4.model.Patient;
+import org.hl7.fhir.r4.model.Reference;
 
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.chai.VRDR.model.util.CommonUtil;
@@ -15,13 +17,15 @@ public class ObservationTobaccoUseContributedToDeath extends Observation {
 		setCode(TobaccoUseContributedToDeathUtil.code);
 	}
 	
-	public ObservationTobaccoUseContributedToDeath(CodeableConcept code) {
+	public ObservationTobaccoUseContributedToDeath(Patient patient, CodeableConcept code) {
 		this();
+		setSubject(new Reference(patient));
 		setValue(code);
 	}
 	
-	public ObservationTobaccoUseContributedToDeath(String code) {
+	public ObservationTobaccoUseContributedToDeath(Patient patient, String code) {
 		this();
+		setSubject(new Reference(patient));
 		setValue(code);
 	}
 	

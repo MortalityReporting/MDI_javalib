@@ -11,6 +11,11 @@ import org.hl7.fhir.r4.model.Reference;
 
 @ResourceDef(name = "List", profile = "http://hl7.org/fhir/us/mdi/StructureDefinition/List-cause-of-death-pathway")
 public class ListCauseOfDeathPathway extends ListResource{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7385398617988694866L;
+
 	public ListCauseOfDeathPathway() {
 		super();
 		CommonUtil.initResource(this);
@@ -28,12 +33,8 @@ public class ListCauseOfDeathPathway extends ListResource{
 	}
 	
 	public void setPatient(Patient patient) {
-		Reference reference = new Reference(patient.getId());
+		Reference reference = new Reference(patient);
 		this.subject = reference;
-	}
-	
-	public void setSubject(Patient patient) {
-		setPatient(patient);
 	}
 	
 	public Reference getPatient() {
@@ -41,7 +42,7 @@ public class ListCauseOfDeathPathway extends ListResource{
 	}
 	
 	public void setSource(Practitioner practitioner) {
-		Reference reference = new Reference(practitioner.getId());
+		Reference reference = new Reference(practitioner);
 		this.source = reference;
 	}
 	

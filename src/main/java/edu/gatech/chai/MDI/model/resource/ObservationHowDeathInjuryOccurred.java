@@ -26,16 +26,16 @@ public class ObservationHowDeathInjuryOccurred extends Observation {
 
 	public ObservationHowDeathInjuryOccurred(Patient subject, String value) {
 		this();
-		Reference ref = new Reference(subject.getId());
+		Reference ref = new Reference(subject);
 		setSubject(ref);
 		setValue(new StringType(value));
 	}
 	
 	public ObservationHowDeathInjuryOccurred(Patient subject, Practitioner performer, String value) {
 		this();
-		Reference ref = new Reference(subject.getId());
+		Reference ref = new Reference(subject);
 		setSubject(ref);
-		ref = new Reference(subject.getId());
+		ref = new Reference(subject);
 		addPerformer(ref);
 		setValue(new StringType(value));
 	}

@@ -8,6 +8,7 @@ import org.hl7.fhir.r4.model.Patient;
 import org.hl7.fhir.r4.model.Reference;
 
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
+import edu.gatech.chai.MDI.model.resource.util.MDICommonUtil;
 import edu.gatech.chai.MDI.model.resource.util.ObservationDeathInjuryAtWorkUtil;
 import edu.gatech.chai.VRDR.model.util.CommonUtil;
 import edu.gatech.chai.VRDR.model.util.DeathDateUtil;
@@ -23,15 +24,15 @@ public class ObservationDeathInjuryAtWork extends Observation {
 
 	public ObservationDeathInjuryAtWork(Patient subject, CodeableConcept value) {
 		this();
-		Reference ref = new Reference(subject.getId());
+		Reference ref = new Reference(subject);
 		setSubject(ref);
 		setValue(value);
 	}
 	
 	public ObservationDeathInjuryAtWork(Patient subject, String value) {
 		this();
-		CodeableConcept valueCode = CommonUtil.findConceptFromCollectionUsingSimpleString(value, CommonUtil.yesNoNASet);
-		Reference ref = new Reference(subject.getId());
+		CodeableConcept valueCode = CommonUtil.findConceptFromCollectionUsingSimpleString(value, MDICommonUtil.yesNoNASet);
+		Reference ref = new Reference(subject);
 		setSubject(ref);
 		setValue(valueCode);
 	}

@@ -8,7 +8,7 @@ import org.hl7.fhir.r4.model.Coding;
 
 import edu.gatech.chai.VRDR.model.util.CommonUtil;
 
-public class ObservationHowDeathInjruyOccurredUtil {
+public class ObservationConditionContributingToDeathUtil {
 	public static final CodeableConcept code = new CodeableConcept().addCoding(
-			new Coding(CommonUtil.loincSystemUrl," 11374-6","Injury incident description Narrative"));
+			new Coding(CommonUtil.loincSystemUrl,"69441-4", "Other significant causes or conditions of death"));
 }

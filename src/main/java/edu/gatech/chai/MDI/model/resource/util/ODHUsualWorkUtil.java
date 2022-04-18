@@ -13,5 +13,5 @@ public class ODHUsualWorkUtil {
 	public static final CodeableConcept usualIndustryComponentCode = new CodeableConcept().addCoding(
 			new Coding(CommonUtil.loincSystemUrl,"21844-6","History of Usual industry"));
 	public static final CodeableConcept occupationDurationComponentCode = new CodeableConcept().addCoding(
-			new Coding(CommonUtil.loincSystemUrl,"21844-6","History of Usual industry"));
+			new Coding(CommonUtil.loincSystemUrl,"74163-7","Usual occupation duration"));
 }

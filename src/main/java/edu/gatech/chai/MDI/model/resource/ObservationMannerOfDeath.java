@@ -24,15 +24,15 @@ public class ObservationMannerOfDeath extends Observation {
 	public ObservationMannerOfDeath(CodeableConcept manner, Patient subject, Practitioner performer) {
 		this();
 		setValue(manner);
-		setSubject(new Reference(subject.getId()));
-		this.addPerformer(new Reference(performer.getId()));
+		setSubject(new Reference(subject));
+		this.addPerformer(new Reference(performer));
 	}
 	
 	public ObservationMannerOfDeath(String manner, Patient subject, Practitioner performer) {
 		this();
 		setValue(manner);
-		setSubject(new Reference(subject.getId()));
-		this.addPerformer(new Reference(performer.getId()));
+		setSubject(new Reference(subject));
+		this.addPerformer(new Reference(performer));
 	}
 	
 	public void setValue(String code) {
