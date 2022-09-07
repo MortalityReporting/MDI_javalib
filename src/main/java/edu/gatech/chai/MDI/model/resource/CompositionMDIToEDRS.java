@@ -19,6 +19,7 @@ import org.hl7.fhir.r4.model.RelatedPerson;
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.chai.MDI.model.resource.util.CompositionMDIToEDRSUtil;
 import edu.gatech.chai.MDI.model.resource.util.MDICommonUtil;
+import edu.gatech.chai.VRDR.model.util.CommonUtil;
 
 @ResourceDef(name = "Composition", profile = "http://hl7.org/fhir/us/mdi/StructureDefinition/Composition-mdi-to-edrs")
 public class CompositionMDIToEDRS extends Composition{
@@ -30,39 +31,10 @@ public class CompositionMDIToEDRS extends Composition{
 
 	public CompositionMDIToEDRS() {
 		super();
+		this.setType(CompositionMDIToEDRSUtil.type);
 	}
 	
 	public CompositionMDIToEDRS(Identifier identifier, CompositionStatus status, Date date, Patient subject,Practitioner author) {
-		super();
-		Reference authorRef = new Reference(author);
-		commonInit(identifier,status,date,subject,authorRef);
-	}
-	
-	public CompositionMDIToEDRS(Identifier identifier, CompositionStatus status, Date date, Patient subject,PractitionerRole author) {
-		super();
-		Reference authorRef = new Reference(author);
-		commonInit(identifier,status,date,subject,authorRef);
-	}
-	
-	public CompositionMDIToEDRS(Identifier identifier, CompositionStatus status, Date date, Patient subject,Device author) {
-		super();
-		Reference authorRef = new Reference(author);
-		commonInit(identifier,status,date,subject,authorRef);
-	}
-	
-	public CompositionMDIToEDRS(Identifier identifier, CompositionStatus status, Date date, Patient subject,Patient author) {
-		super();
-		Reference authorRef = new Reference(author);
-		commonInit(identifier,status,date,subject,authorRef);
-	}
-	
-	public CompositionMDIToEDRS(Identifier identifier, CompositionStatus status, Date date, Patient subject,RelatedPerson author) {
-		super();
-		Reference authorRef = new Reference(author);
-		commonInit(identifier,status,date,subject,authorRef);
-	}
-	
-	public CompositionMDIToEDRS(Identifier identifier, CompositionStatus status, Date date, Patient subject,Organization author) {
 		super();
 		Reference authorRef = new Reference(author);
 		commonInit(identifier,status,date,subject,authorRef);
@@ -72,7 +44,6 @@ public class CompositionMDIToEDRS extends Composition{
 	public void commonInit(Identifier identifier, CompositionStatus status, Date date, Patient subject,Reference authorRef) {
 		this.setIdentifier(identifier);
 		this.setStatus(status);
-		this.setType(CompositionMDIToEDRSUtil.type);
 		if(date == null) {
 			date = new Date();
 		}
@@ -80,6 +51,22 @@ public class CompositionMDIToEDRS extends Composition{
 		Reference subjectRef = new Reference(subject);
 		this.setSubject(subjectRef);
 		this.addAuthor(authorRef);
+		//Generic Title
+		this.setTitle("MDI-To-EDRS Record:"+identifier.getValue());
+	}
+
+	public CompositionAttesterComponent addAttester(Reference attestorRef){
+		CompositionAttesterComponent cac = new CompositionAttesterComponent();
+		cac.setParty(attestorRef);
+		return cac;
+	}
+
+	public CompositionAttesterComponent addAttester(String dataAbsentReason){
+		CompositionAttesterComponent cac = new CompositionAttesterComponent();
+		CodeType dataAbsentReasonCode = CommonUtil.findCodeFromCollectionUsingSimpleString(dataAbsentReason, CommonUtil.dataAbsentReasonCodeSet);
+		//TODO: Add data absent reason block correctly here.
+		//cac.set
+		return cac;
 	}
 	
 	public SectionComponent createDemographicsSection() {

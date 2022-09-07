@@ -15,6 +15,7 @@ import org.hl7.fhir.r4.model.Bundle.BundleEntryComponent;
 import org.hl7.fhir.r4.model.CodeType;
 import org.hl7.fhir.r4.model.CodeableConcept;
 import org.hl7.fhir.r4.model.Coding;
+import org.hl7.fhir.r4.model.Composition.CompositionStatus;
 import org.hl7.fhir.r4.model.Composition.SectionComponent;
 import org.hl7.fhir.r4.model.Condition;
 import org.hl7.fhir.r4.model.DateTimeType;
@@ -58,10 +59,14 @@ public class BuildMDIToEdrsDocument {
     	CompositionMDIToEDRS mainComposition = new CompositionMDIToEDRS();
 		mainComposition.addMDICaseIdExtension("12345");
 		mainComposition.addEDRSCaseIdExtension("67890");
+		mainComposition.setStatus(CompositionStatus.FINAL);
+		mainComposition.setTitle("Example MDI-To-EDRS Record. TEST ONLY");
     	initResourceForTesting(mainComposition);
     	contents.add(mainComposition);
     	//MDIToEDRSDocument contains the top-level item that represents the entire bundle
     	BundleDocumentMDIToEDRS bundleDocument = new BundleDocumentMDIToEDRS();
+		//Documents must have a date. This must be when the bundle was assembled
+		bundleDocument.setTimestamp(new Date());
     	bundleDocument.setIdentifier(new Identifier().setValue("123").setSystem("urn:test"));
     	initResourceForTesting(bundleDocument);
     	//Patient
@@ -74,7 +79,7 @@ public class BuildMDIToEdrsDocument {
     	raceExtension.addExtension("ombCategory", new Coding("urn:oid:2.16.840.1.113883.6.238","2028-9","Asian"));
     	raceExtension.addExtension("detailed", new Coding("urn:oid:2.16.840.1.113883.6.238","2034-7","Chinese"));
     	raceExtension.addExtension("text", new StringType("Chinese"));
-    	Extension ethnicityExtension = new Extension("http://hl7.org/fhir/us/core/StructureDefinition/us-core-race");
+    	Extension ethnicityExtension = new Extension("http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity");
     	ethnicityExtension.addExtension("ombCategory", new Coding("urn:oid:2.16.840.1.113883.6.238","2186-5","Non Hispanic or Latino"));
     	ethnicityExtension.addExtension("text", new StringType("Not Hispanic Or Latino"));
     	
@@ -89,17 +94,19 @@ public class BuildMDIToEdrsDocument {
     	Reference decedentReference = new Reference("Patient/"+decedent.getId());
     	contents.add(decedent);
     	//Practitioner
-    	//Note: The Practitioner used in MDI is a USCore Practitioner
-    	Practitioner examiner = new Practitioner();
-    	initResourceForTesting(examiner);
-    	examiner.getMeta().addProfile("http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner");
-    	examiner.addIdentifier(new Identifier().setSystem("urn:example-system.case-number-system").setValue("1234567893"));
-    	examiner.addName(new HumanName().setFamily("Pratt").addGiven("Practitioner").setUse(NameUse.OFFICIAL));
-    	Reference practitionerReference = new Reference("Practitioner/"+examiner.getId());
-    	contents.add(examiner);
-    	
+    	//Note: The Practitioner used in MDI is a USCore Practitioner. He is the main author of the document as well
+    	Practitioner practitioner = new Practitioner();
+    	initResourceForTesting(practitioner);
+    	practitioner.getMeta().addProfile("http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner");
+    	practitioner.addIdentifier(new Identifier().setSystem("urn:example-system.case-number-system").setValue("1234567893"));
+    	practitioner.addName(new HumanName().setFamily("Pratt").addGiven("Practitioner").setUse(NameUse.OFFICIAL));
+    	Reference practitionerReference = new Reference("Practitioner/"+practitioner.getId());
+    	contents.add(practitioner);
+
+		//The practitioner is also the author of the whole document, and is the attestor and is set in the Composition
     	mainComposition.setSubject(decedentReference);
     	mainComposition.addAuthor(practitionerReference);
+		mainComposition.addAttester(practitionerReference);
     	//Every subsequent resource must be added to a contents section
     	//Demographics Section
     	SectionComponent demographicsSection = mainComposition.getDemographicsSection();
@@ -155,16 +162,16 @@ public class BuildMDIToEdrsDocument {
     	SectionComponent causeMannerSection = mainComposition.getCauseMannerSection();
     	// CauseOfDeathCondition
 		// Note: the '1' is lineNumber 1, AKA cause of death A
-    	ObservationCauseOfDeathPart1 causeOfDeath = new ObservationCauseOfDeathPart1(decedent, examiner, "Heart Disease",1,"0 minutes");
+    	ObservationCauseOfDeathPart1 causeOfDeath = new ObservationCauseOfDeathPart1(decedent, practitioner, "Heart Disease",1,"0 minutes");
     	initResourceForTesting(causeOfDeath);
     	contents.add(causeOfDeath);
     	// ConditionContributingToDeath
-    	ObservationContributingCauseOfDeathPart2 conditionContrib = new ObservationContributingCauseOfDeathPart2(decedent, examiner, "Diabetes");
+    	ObservationContributingCauseOfDeathPart2 conditionContrib = new ObservationContributingCauseOfDeathPart2(decedent, practitioner, "Diabetes");
     	initResourceForTesting(conditionContrib);
     	causeMannerSection.addEntry(new Reference(conditionContrib));
     	contents.add(conditionContrib);
     	// MannerOfDeath
-    	ObservationMannerOfDeath manner = new ObservationMannerOfDeath("Natural", decedent, examiner);
+    	ObservationMannerOfDeath manner = new ObservationMannerOfDeath("Natural", decedent, practitioner);
     	initResourceForTesting(manner);
     	causeMannerSection.addEntry(new Reference(manner));
     	contents.add(manner);
