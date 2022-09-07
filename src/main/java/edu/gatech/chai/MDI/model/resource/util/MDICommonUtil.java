@@ -10,6 +10,7 @@ import edu.gatech.chai.VRDR.model.util.CommonUtil;
 
 public class MDICommonUtil {
 	public static final String mdiCodesSystemURL = "http://hl7.org/fhir/us/mdi/CodeSystem/CodeSystem-mdi-codes";
+	public static final String mdiLocalComponentCodesURL = "http://hl7.org/fhir/us/mdi/CodeSystem/CodeSystem-local-component-codes";
 	public static final HashSet<CodeableConcept> yesNoNASet = new HashSet<>(Arrays.asList(
 			new CodeableConcept().addCoding(new Coding("http://terminology.hl7.org/CodeSystem/v2-0136", "Y", "Yes")),
 			new CodeableConcept().addCoding(new Coding("http://terminology.hl7.org/CodeSystem/v2-0136", "N", "No")),

@@ -39,15 +39,14 @@ import org.hl7.fhir.r4.model.UriType;
 
 import edu.gatech.chai.MDI.model.resource.BundleDocumentMDIToEDRS;
 import edu.gatech.chai.MDI.model.resource.CompositionMDIToEDRS;
-import edu.gatech.chai.MDI.model.resource.ListCauseOfDeathPathway;
-import edu.gatech.chai.MDI.model.resource.ODHUsualWork;
-import edu.gatech.chai.MDI.model.resource.ObservationCauseOfDeathCondition;
-import edu.gatech.chai.MDI.model.resource.ObservationConditionContributingToDeath;
+import edu.gatech.chai.MDI.model.resource.ObservationAutopsyPerformedIndicator;
+import edu.gatech.chai.MDI.model.resource.ObservationCauseOfDeathPart1;
+import edu.gatech.chai.MDI.model.resource.ObservationContributingCauseOfDeathPart2;
 import edu.gatech.chai.MDI.model.resource.ObservationDeathDate;
-import edu.gatech.chai.MDI.model.resource.ObservationDeathInjuryAtWork;
 import edu.gatech.chai.MDI.model.resource.ObservationDecedentPregnancy;
 import edu.gatech.chai.MDI.model.resource.ObservationMannerOfDeath;
 import edu.gatech.chai.MDI.model.resource.ObservationTobaccoUseContributedToDeath;
+import edu.gatech.chai.MDI.model.resource.ProcedureDeathCertification;
 import edu.gatech.chai.VRDR.model.TobaccoUseContributedToDeath;
 import edu.gatech.chai.VRDR.model.util.CommonUtil;
 
@@ -57,6 +56,8 @@ public class BuildMDIToEdrsDocument {
 		List<Resource> contents = new ArrayList<Resource>();
 		//DeathCertificate is the main fhir resource that contains sectional references to everything else
     	CompositionMDIToEDRS mainComposition = new CompositionMDIToEDRS();
+		mainComposition.addMDICaseIdExtension("12345");
+		mainComposition.addEDRSCaseIdExtension("67890");
     	initResourceForTesting(mainComposition);
     	contents.add(mainComposition);
     	//MDIToEDRSDocument contains the top-level item that represents the entire bundle
@@ -76,12 +77,9 @@ public class BuildMDIToEdrsDocument {
     	Extension ethnicityExtension = new Extension("http://hl7.org/fhir/us/core/StructureDefinition/us-core-race");
     	ethnicityExtension.addExtension("ombCategory", new Coding("urn:oid:2.16.840.1.113883.6.238","2186-5","Non Hispanic or Latino"));
     	ethnicityExtension.addExtension("text", new StringType("Not Hispanic Or Latino"));
-    	Extension birthSexExtension = new Extension("http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex");
-    	birthSexExtension.setValue(new CodeType("M"));
     	
     	decedent.addExtension(raceExtension);
     	decedent.addExtension(ethnicityExtension);
-    	decedent.addExtension(birthSexExtension);
     	
     	Address decedentsHome = new Address().addLine("1808 Stroop Hill Road").setCity("Atlanta")
 		.setState("GA").setPostalCode("30303").setCountry("USA").setUse(AddressUse.HOME);
@@ -95,31 +93,16 @@ public class BuildMDIToEdrsDocument {
     	Practitioner examiner = new Practitioner();
     	initResourceForTesting(examiner);
     	examiner.getMeta().addProfile("http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner");
-    	examiner.addIdentifier(new Identifier().setSystem("http://hl7.org/fhir/sid/us-npi").setValue("1234567893"));
+    	examiner.addIdentifier(new Identifier().setSystem("urn:example-system.case-number-system").setValue("1234567893"));
     	examiner.addName(new HumanName().setFamily("Pratt").addGiven("Practitioner").setUse(NameUse.OFFICIAL));
-    	Reference examinerReference = new Reference("Practitioner/"+examiner.getId());
+    	Reference practitionerReference = new Reference("Practitioner/"+examiner.getId());
     	contents.add(examiner);
     	
     	mainComposition.setSubject(decedentReference);
-    	mainComposition.addAuthor(examinerReference);
+    	mainComposition.addAuthor(practitionerReference);
     	//Every subsequent resource must be added to a contents section
     	//Demographics Section
     	SectionComponent demographicsSection = mainComposition.getDemographicsSection();
-    	//  Odh Usual Work
-    	try {
-    		ODHUsualWork usualWork = new ODHUsualWork();
-        	initResourceForTesting(usualWork);
-        	usualWork.setValue(new CodeableConcept().addCoding(new Coding("2.16.840.1.114222.4.5.314","7140","Aircraft mechanics and service technicians")));
-        	usualWork.addUsualIndustry(new CodeableConcept().addCoding(new Coding("https://terminology.hl7.org/2.0.0/CodeSystem-PHIndustryCDCCensus2010","8270","Nursing care facilities")));
-        	usualWork.addOccupationDuration(10);
-        	usualWork.setSubject(decedentReference);
-			usualWork.setEffective(new Period().setStart(formatter.parse("02-10-2010")).setEnd(formatter.parse("03-10-2022")));
-			demographicsSection.addEntry(new Reference(usualWork));
-	    	contents.add(usualWork);
-		} catch (ParseException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
     	
     	//Circumstances Section
     	SectionComponent circumstancesSection = mainComposition.getCircumstancesSection();
@@ -127,15 +110,10 @@ public class BuildMDIToEdrsDocument {
     	Location deathLocation = new Location();
     	initResourceForTesting(deathLocation);
     	deathLocation.getMeta().addProfile("http://hl7.org/fhir/us/core/StructureDefinition/us-core-location");
-    	deathLocation.setName("Eagle Street Pub");
-    	deathLocation.setAddress(new Address().addLine("4666 Eagle Street").setCity("Stlouis").setState("IL").setPostalCode("63101"));
+    	deathLocation.setName("Side street between corner of Main Street and Eagle Lane.");
+    	deathLocation.setAddress(new Address().setText("Side street between corner of Main Street and Eagle Lane."));
     	circumstancesSection.addEntry(new Reference(deathLocation));
     	contents.add(deathLocation);
-    	// Work Injury
-    	ObservationDeathInjuryAtWork deathInjuryAtWork = new ObservationDeathInjuryAtWork(decedent, "Yes");
-    	initResourceForTesting(deathInjuryAtWork);
-    	circumstancesSection.addEntry(new Reference(deathInjuryAtWork));
-    	contents.add(deathInjuryAtWork);
     	// TobaccoUseContributedToDeath
     	ObservationTobaccoUseContributedToDeath tobacco = new ObservationTobaccoUseContributedToDeath(decedent, "No");
     	initResourceForTesting(tobacco);
@@ -146,6 +124,14 @@ public class BuildMDIToEdrsDocument {
     	initResourceForTesting(pregnancy);
     	circumstancesSection.addEntry(new Reference(pregnancy));
     	contents.add(pregnancy);
+		//Injury Location
+		Location injuryLocation = new Location();
+    	initResourceForTesting(injuryLocation);
+    	injuryLocation.getMeta().addProfile("http://hl7.org/fhir/us/core/StructureDefinition/us-core-location");
+    	injuryLocation.setName("Eagle Street Pub");
+    	injuryLocation.setAddress(new Address().setText("Eagle Street Pub"));
+    	circumstancesSection.addEntry(new Reference(injuryLocation));
+    	contents.add(injuryLocation);
     	//Jurisdiction Section
     	SectionComponent jurisdictionSection = mainComposition.getJurisdictionSection();
     	// DeathDate
@@ -159,31 +145,30 @@ public class BuildMDIToEdrsDocument {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	//CauseManner Section
+		// Death Certification
+		// For this example, the author of the document has also certified, but in many cases, 
+		ProcedureDeathCertification deathCertification = new ProcedureDeathCertification(practitionerReference, "Medical Examiner/Coroner");
+		initResourceForTesting(deathCertification);
+		jurisdictionSection.addEntry(new Reference(deathCertification));
+		contents.add(deathCertification);
+		//CauseManner Section
     	SectionComponent causeMannerSection = mainComposition.getCauseMannerSection();
-    	//  CauseOfDeathPathway
-    	ListCauseOfDeathPathway pathway = new ListCauseOfDeathPathway(decedent, examiner);
-    	initResourceForTesting(pathway);
-    	causeMannerSection.addEntry(new Reference(pathway));
-    	contents.add(pathway);
-    	//    CauseOfDeathCondition
-    	ObservationCauseOfDeathCondition causeOfDeath = new ObservationCauseOfDeathCondition(decedent, examiner);
+    	// CauseOfDeathCondition
+		// Note: the '1' is lineNumber 1, AKA cause of death A
+    	ObservationCauseOfDeathPart1 causeOfDeath = new ObservationCauseOfDeathPart1(decedent, examiner, "Heart Disease",1,"0 minutes");
     	initResourceForTesting(causeOfDeath);
-    	causeOfDeath.setValue(new StringType("Heart Disease"));
-    	causeOfDeath.setInterval(0, "min");
-    	pathway.addEntry(new ListEntryComponent().setItem(new Reference(causeOfDeath)));
     	contents.add(causeOfDeath);
-    	//  ConditionContributingToDeath
-    	ObservationConditionContributingToDeath conditionContrib = new ObservationConditionContributingToDeath(decedent, examiner, "Diabetes");
+    	// ConditionContributingToDeath
+    	ObservationContributingCauseOfDeathPart2 conditionContrib = new ObservationContributingCauseOfDeathPart2(decedent, examiner, "Diabetes");
     	initResourceForTesting(conditionContrib);
     	causeMannerSection.addEntry(new Reference(conditionContrib));
     	contents.add(conditionContrib);
-    	//    MannerOfDeath
+    	// MannerOfDeath
     	ObservationMannerOfDeath manner = new ObservationMannerOfDeath("Natural", decedent, examiner);
     	initResourceForTesting(manner);
     	causeMannerSection.addEntry(new Reference(manner));
     	contents.add(manner);
-    	//MedicationHistory  Section
+    	//Medication-History Section
     	SectionComponent medicalHistorySection = mainComposition.getMedicalHistorySection();
     	//historicalCondition
     	Condition historicalCondition = new Condition();
@@ -196,7 +181,9 @@ public class BuildMDIToEdrsDocument {
     	historicalCondition.setSubject(decedentReference);
     	medicalHistorySection.addEntry(new Reference(historicalCondition));
     	contents.add(historicalCondition);
-    	
+    	//Exam-Autopsy Section
+		SectionComponent examAutopsySection = mainComposition.getExamAutopsySection();
+		ObservationAutopsyPerformedIndicator autopsyPerformedIndicator = new ObservationAutopsyPerformedIndicator(decedentReference, "yes", "no");
     	for(Resource resource:contents) {
     		bundleDocument.addEntry().setResource(resource).setFullUrl(resource.getResourceType()+"/"+resource.getId());
     	}

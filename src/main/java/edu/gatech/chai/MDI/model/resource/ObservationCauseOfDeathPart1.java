@@ -1,33 +1,37 @@
 package edu.gatech.chai.MDI.model.resource;
 
+import org.hl7.fhir.r4.model.IntegerType;
 import org.hl7.fhir.r4.model.Observation;
 import org.hl7.fhir.r4.model.Patient;
 import org.hl7.fhir.r4.model.Practitioner;
 import org.hl7.fhir.r4.model.Quantity;
 import org.hl7.fhir.r4.model.Reference;
+import org.hl7.fhir.r4.model.StringType;
 
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.chai.MDI.model.resource.util.ObservationConditionCauseOfDeathUtil;
 import edu.gatech.chai.VRDR.model.util.CommonUtil;
 
-@ResourceDef(name = "Observation", profile = "http://hl7.org/fhir/us/mdi/StructureDefinition/Observation-cause-of-death-condition")
-public class ObservationCauseOfDeathCondition extends Observation {
+@ResourceDef(name = "Observation", profile = "http://hl7.org/fhir/us/mdi/StructureDefinition/Observation-cause-of-death-part1")
+public class ObservationCauseOfDeathPart1 extends Observation {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public ObservationCauseOfDeathCondition() {
+	public ObservationCauseOfDeathPart1() {
 		super();
 		CommonUtil.initResource(this);
 		this.setCode(ObservationConditionCauseOfDeathUtil.code);
 	}
 	
-	public ObservationCauseOfDeathCondition(Patient patient, Practitioner practitioner) {
+	public ObservationCauseOfDeathPart1(Patient patient, Practitioner practitioner, String value, int lineNumber, String interval) {
 		this();
 		CommonUtil.initResource(this);
 		setPatient(patient);
 		addPerformer(practitioner);
+		setValue(new StringType(value));
+		setInterval(interval);
 	}
 	
 	public void addPerformer(Practitioner practitioner) {
@@ -47,18 +51,19 @@ public class ObservationCauseOfDeathCondition extends Observation {
 	public Reference getPatient() {
 		return subject;
 	}
-	
-	public ObservationComponentComponent setInterval(float decimal, String ageUnit) {
-		Quantity quantity = new Quantity();
-		quantity.setValue(decimal);
-		quantity.setUnit(ageUnit);
-		return setInterval(quantity);
+
+	public ObservationComponentComponent setLineNumber(int lineNumber) {
+		ObservationComponentComponent occ = new ObservationComponentComponent();
+		occ.setCode(ObservationConditionCauseOfDeathUtil.lineNumberComponentCode);
+		occ.setValue(new IntegerType(lineNumber));
+		this.addComponent(occ);
+		return occ;
 	}
 	
-	public ObservationComponentComponent setInterval(Quantity quantity) {
+	public ObservationComponentComponent setInterval(String value) {
 		ObservationComponentComponent occ = new ObservationComponentComponent();
 		occ.setCode(ObservationConditionCauseOfDeathUtil.intervalComponentCode);
-		occ.setValue(quantity);
+		occ.setValue(new StringType(value));
 		this.addComponent(occ);
 		return occ;
 	}
