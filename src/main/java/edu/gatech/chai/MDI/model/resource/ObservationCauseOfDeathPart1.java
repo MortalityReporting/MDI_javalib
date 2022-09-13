@@ -1,5 +1,6 @@
 package edu.gatech.chai.MDI.model.resource;
 
+import org.hl7.fhir.r4.model.CodeableConcept;
 import org.hl7.fhir.r4.model.IntegerType;
 import org.hl7.fhir.r4.model.Observation;
 import org.hl7.fhir.r4.model.Patient;
@@ -30,7 +31,8 @@ public class ObservationCauseOfDeathPart1 extends Observation {
 		CommonUtil.initResource(this);
 		setPatient(patient);
 		addPerformer(practitioner);
-		setValue(new StringType(value));
+		setValue(new CodeableConcept().setText(value));
+		setLineNumber(lineNumber);
 		setInterval(interval);
 	}
 	

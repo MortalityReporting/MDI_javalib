@@ -33,4 +33,10 @@ public class BundleDocumentMDIToEDRS extends Bundle{
 	public CompositionMDIToEDRS getCompositionMDIToEDRS() {
 		return (CompositionMDIToEDRS) this.getEntryFirstRep().getResource();
 	}
+
+	//Helper function to help init full urls AFTER the id of thecomposition has been set.
+	public BundleDocumentMDIToEDRS setFullUrlOnCompositionMDIToEDRS() {
+		this.getEntryFirstRep().setFullUrl(this.getEntryFirstRep().getResource().getResourceType()+"/"+this.getEntryFirstRep().getResource().getId());
+		return this;
+	}
 }

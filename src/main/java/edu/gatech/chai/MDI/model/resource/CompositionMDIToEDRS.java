@@ -58,6 +58,9 @@ public class CompositionMDIToEDRS extends Composition{
 	public CompositionAttesterComponent addAttester(Reference attestorRef){
 		CompositionAttesterComponent cac = new CompositionAttesterComponent();
 		cac.setParty(attestorRef);
+		//Note: we're assuming a LEGAL attestor for now.
+		cac.setMode(CompositionAttestationMode.LEGAL);
+		this.addAttester(cac);
 		return cac;
 	}
 

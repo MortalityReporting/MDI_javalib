@@ -13,6 +13,7 @@ import org.hl7.fhir.r4.model.Reference;
 import org.hl7.fhir.r4.model.Type;
 
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
+import edu.gatech.chai.MDI.model.resource.util.MDICommonUtil;
 import edu.gatech.chai.MDI.model.resource.util.ObservationAutopsyPerformedIndicatorUtil;
 import edu.gatech.chai.MDI.model.resource.util.ObservationDeathDateUtil;
 import edu.gatech.chai.VRDR.model.util.CommonUtil;
@@ -38,9 +39,9 @@ public class ObservationAutopsyPerformedIndicator extends Observation {
 	public ObservationAutopsyPerformedIndicator(Reference subject, String autopsyPerformed, String resultsAvailable) {
 		this();
 		setSubject(subject);
-		CodeableConcept autopsyPerformedCC = CommonUtil.findConceptFromCollectionUsingSimpleString(autopsyPerformed, CommonUtil.yesNoUnknownSet);
+		CodeableConcept autopsyPerformedCC = CommonUtil.findConceptFromCollectionUsingSimpleString(autopsyPerformed, MDICommonUtil.yesNoUnknownNASKSet);
 		setValue(autopsyPerformedCC);
-		CodeableConcept resultsAvailableCC = CommonUtil.findConceptFromCollectionUsingSimpleString(resultsAvailable, CommonUtil.yesNoUnknownSet);
+		CodeableConcept resultsAvailableCC = CommonUtil.findConceptFromCollectionUsingSimpleString(resultsAvailable, MDICommonUtil.yesNoUnknownNASKSet);
 		addResultsAvailableComponent(resultsAvailableCC);
 	}
 	

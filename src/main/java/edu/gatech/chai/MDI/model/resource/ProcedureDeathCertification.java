@@ -16,10 +16,11 @@ public class ProcedureDeathCertification extends Procedure{
         setCode(ProcedureDeathCertificationUtil.code);
     }
 
-    public ProcedureDeathCertification(Reference performer, String certifierType){
+    public ProcedureDeathCertification(Reference subject, Reference performer, String certifierType){
         super();
         setCategory(ProcedureDeathCertificationUtil.category);
         setCode(ProcedureDeathCertificationUtil.code);
+        setSubject(subject);
         this.addPerformer(performer, certifierType);
     }
 

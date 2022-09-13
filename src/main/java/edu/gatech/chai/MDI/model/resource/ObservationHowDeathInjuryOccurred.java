@@ -1,8 +1,6 @@
 package edu.gatech.chai.MDI.model.resource;
 
 import org.hl7.fhir.r4.model.CodeableConcept;
-import org.hl7.fhir.r4.model.Extension;
-import org.hl7.fhir.r4.model.Location;
 import org.hl7.fhir.r4.model.Observation;
 import org.hl7.fhir.r4.model.Patient;
 import org.hl7.fhir.r4.model.Practitioner;
@@ -10,12 +8,9 @@ import org.hl7.fhir.r4.model.Reference;
 import org.hl7.fhir.r4.model.StringType;
 
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
-import edu.gatech.chai.MDI.model.resource.util.ObservationDeathInjuryAtWorkUtil;
-import edu.gatech.chai.MDI.model.resource.util.ObservationDecedentPregnancyUtil;
+import edu.gatech.chai.MDI.model.resource.util.MDICommonUtil;
 import edu.gatech.chai.MDI.model.resource.util.ObservationHowDeathInjuryOccurredUtil;
 import edu.gatech.chai.VRDR.model.util.CommonUtil;
-import edu.gatech.chai.VRDR.model.util.DeathDateUtil;
-import edu.gatech.chai.VRDR.model.util.InjuryIncidentUtil;
 
 @ResourceDef(name = "Observation", profile = "http://hl7.org/fhir/us/mdi/StructureDefinition/Observation-how-death-injury-occurred")
 public class ObservationHowDeathInjuryOccurred extends Observation {
@@ -29,7 +24,7 @@ public class ObservationHowDeathInjuryOccurred extends Observation {
 		this();
 		Reference ref = new Reference(subject);
 		setSubject(ref);
-		setValue(new StringType(value));
+		setValue(new CodeableConcept().setText(value));
 	}
 	
 	public ObservationHowDeathInjuryOccurred(Patient subject, Practitioner performer, String value) {
@@ -38,7 +33,44 @@ public class ObservationHowDeathInjuryOccurred extends Observation {
 		setSubject(ref);
 		ref = new Reference(subject);
 		addPerformer(ref);
-		setValue(new StringType(value));
+		setValue(new CodeableConcept().setText(value));
+	}
+
+	public ObservationHowDeathInjuryOccurred(Patient subject, Practitioner performer, String value, String placeOfDeath, String workInjuryIndicator, String transportationRole) {
+		this();
+		Reference ref = new Reference(subject);
+		setSubject(ref);
+		ref = new Reference(subject);
+		addPerformer(ref);
+		setValue(new CodeableConcept().setText(value));
+		addPlaceOfDeath(placeOfDeath);
+		addWorkInjuryIndicator(workInjuryIndicator);
+		addTransportationRole(transportationRole);
+	}
+
+	public ObservationComponentComponent addPlaceOfDeath(String placeOfDeath){
+		ObservationComponentComponent occ = new ObservationComponentComponent();
+		occ.setCode(ObservationHowDeathInjuryOccurredUtil.placeOfInjuryComponentCode);
+		occ.setValue(new StringType(placeOfDeath));
+		this.addComponent(occ);
+		return occ;
 	}
 	
+	public ObservationComponentComponent addWorkInjuryIndicator(String yesNoNA){
+		ObservationComponentComponent occ = new ObservationComponentComponent();
+		occ.setCode(ObservationHowDeathInjuryOccurredUtil.workInjuryComponentCode);
+		CodeableConcept valueCodeableConcept = CommonUtil.findConceptFromCollectionUsingSimpleString(yesNoNA, MDICommonUtil.yesNoUnknownNASKSet);
+		occ.setValue(valueCodeableConcept);
+		this.addComponent(occ);
+		return occ;
+	}
+
+	public ObservationComponentComponent addTransportationRole(String transportationRole){
+		ObservationComponentComponent occ = new ObservationComponentComponent();
+		occ.setCode(ObservationHowDeathInjuryOccurredUtil.transportationRoleComponentCode);
+		CodeableConcept valueCodeableConcept = CommonUtil.findConceptFromCollectionUsingSimpleString(transportationRole, ObservationHowDeathInjuryOccurredUtil.transportationRoleValueSet);
+		occ.setValue(valueCodeableConcept);
+		this.addComponent(occ);
+		return occ;
+	}
 }
