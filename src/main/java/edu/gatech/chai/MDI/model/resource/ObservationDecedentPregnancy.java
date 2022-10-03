@@ -12,7 +12,6 @@ import edu.gatech.chai.MDI.model.resource.util.ObservationDeathInjuryAtWorkUtil;
 import edu.gatech.chai.MDI.model.resource.util.ObservationDecedentPregnancyUtil;
 import edu.gatech.chai.VRDR.model.util.CommonUtil;
 import edu.gatech.chai.VRDR.model.util.DeathDateUtil;
-import edu.gatech.chai.VRDR.model.util.DecedentPregnancyUtil;
 import edu.gatech.chai.VRDR.model.util.InjuryIncidentUtil;
 import edu.gatech.chai.VRDR.model.util.TobaccoUseContributedToDeathUtil;
 
@@ -40,7 +39,7 @@ public class ObservationDecedentPregnancy extends Observation {
 	}
 	
 	public void setValue(String code) {
-		CodeableConcept concept = CommonUtil.findConceptFromCollectionUsingSimpleString(code, DecedentPregnancyUtil.valueSet);
+		CodeableConcept concept = CommonUtil.findConceptFromCollectionUsingSimpleString(code, ObservationDecedentPregnancyUtil.valueSet);
 		if(concept != null) {
 			setValue(concept);
 		}

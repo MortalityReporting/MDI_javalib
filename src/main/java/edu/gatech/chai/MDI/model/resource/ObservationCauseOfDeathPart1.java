@@ -61,6 +61,15 @@ public class ObservationCauseOfDeathPart1 extends Observation {
 		this.addComponent(occ);
 		return occ;
 	}
+
+	public Integer getLineNumber() {
+		for(ObservationComponentComponent occ:this.getComponent()){
+			if(occ.getCode().equals(ObservationConditionCauseOfDeathUtil.lineNumberComponentCode)){
+				return ((IntegerType)occ.getValue()).getValue();
+			}
+		}
+		return null;
+	}
 	
 	public ObservationComponentComponent setInterval(String value) {
 		ObservationComponentComponent occ = new ObservationComponentComponent();
@@ -70,4 +79,12 @@ public class ObservationCauseOfDeathPart1 extends Observation {
 		return occ;
 	}
 
+	public String getInterval() {
+		for(ObservationComponentComponent occ:this.getComponent()){
+			if(occ.getCode().equals(ObservationConditionCauseOfDeathUtil.lineNumberComponentCode)){
+				return ((StringType)occ.getValue()).getValue();
+			}
+		}
+		return null;
+	}
 }

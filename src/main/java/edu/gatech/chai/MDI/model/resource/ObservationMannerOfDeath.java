@@ -7,6 +7,7 @@ import org.hl7.fhir.r4.model.Practitioner;
 import org.hl7.fhir.r4.model.Reference;
 
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
+import edu.gatech.chai.VRDR.model.MannerOfDeath;
 import edu.gatech.chai.VRDR.model.util.CommonUtil;
 import edu.gatech.chai.VRDR.model.util.DecedentDispositionMethodUtil;
 import edu.gatech.chai.VRDR.model.util.MannerOfDeathUtil;
@@ -33,6 +34,15 @@ public class ObservationMannerOfDeath extends Observation {
 		setValue(manner);
 		setSubject(new Reference(subject));
 		this.addPerformer(new Reference(performer));
+	}
+
+	public ObservationMannerOfDeath(MannerOfDeath vrdrResource){
+		this();
+		this.setMeta(vrdrResource.getMeta());
+		this.setId(vrdrResource.getId());
+		setValue(vrdrResource.getValue());
+		setSubject(vrdrResource.getSubject());
+		this.setPerformer(vrdrResource.getPerformer());
 	}
 	
 	public void setValue(String code) {
