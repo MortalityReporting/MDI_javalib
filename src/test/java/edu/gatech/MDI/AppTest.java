@@ -6,15 +6,24 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.List;
 
+import org.hl7.fhir.r4.model.CodeableConcept;
+import org.hl7.fhir.r4.model.Coding;
+import org.hl7.fhir.r4.model.Observation;
+import org.hl7.fhir.r4.model.StringType;
+
 import ca.uhn.fhir.context.ConfigurationException;
 import ca.uhn.fhir.parser.DataFormatException;
+import ca.uhn.fhir.parser.IParser;
+import edu.gatech.chai.MDI.context.MDIFhirContext;
 import edu.gatech.chai.MDI.model.resource.BundleDocumentMDIToEDRS;
+import edu.gatech.chai.MDI.model.resource.ObservationCauseOfDeathPart1;
+import edu.gatech.chai.MDI.model.resource.ObservationMannerOfDeath;
 import edu.gatech.chai.VRDR.context.VRDRFhirContext;
-import edu.gatech.chai.VRDR.model.CauseOfDeathPathway;
 import edu.gatech.chai.VRDR.model.DeathCertificateDocument;
 import edu.gatech.chai.VRDR.model.DeathDate;
 import edu.gatech.chai.VRDR.model.Decedent;
 import edu.gatech.chai.VRDR.model.MannerOfDeath;
+import edu.gatech.chai.VRDR.model.util.MannerOfDeathUtil;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -51,6 +60,26 @@ public class AppTest
     	String encoded = context.getCtx().newJsonParser().encodeResourceToString(bundle);
     	System.out.println(encoded);
     	assertTrue( true );
+    }
+
+    public void testMigrationFromVRDRToMDI()
+    {
+        IParser vrdrParser = new VRDRFhirContext().getCtx().newJsonParser();
+        IParser mdiParser = new MDIFhirContext().getCtx().newJsonParser();
+
+        MannerOfDeath vrdrManner = new MannerOfDeath(); //VRDR MannerOfDeath
+        vrdrManner.setValue(MannerOfDeathUtil.VALUE_ACCIDENTAL);
+
+        ObservationMannerOfDeath mdiManner = new ObservationMannerOfDeath(vrdrManner); //Constructor for MDI from VRDR
+
+        String vrdrAsString = vrdrParser.encodeResourceToString(vrdrManner);
+        String mdiAsString = mdiParser.encodeResourceToString(mdiManner);
+        Coding vrdrOriginalConcept = ((CodeableConcept)vrdrManner.getValue()).getCodingFirstRep();
+        System.out.println("Original VRDR Manner code: "+vrdrOriginalConcept.getCode() + "," + vrdrOriginalConcept.getDisplay());
+        Coding mdiConvertedConcept = ((CodeableConcept)mdiManner.getValue()).getCodingFirstRep();
+        System.out.println("Converted MDI Manner code: "+mdiConvertedConcept.getCode() + "," + mdiConvertedConcept.getDisplay());
+        System.out.println("Original VRDR Resource:"+vrdrAsString);
+        System.out.println("Converted MDI Resource:"+mdiAsString);
     }
     
     /*

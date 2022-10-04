@@ -139,7 +139,7 @@ public class BuildMDIToEdrsDocument {
     	circumstancesSection.addEntry(new Reference(tobacco));
     	contents.add(tobacco);
     	// DecedentPregnancy
-    	ObservationDecedentPregnancy pregnancy = new ObservationDecedentPregnancy(decedent, "Not pregnant within past year");
+    	ObservationDecedentPregnancy pregnancy = new ObservationDecedentPregnancy(decedent, "Not Applicable");
 		//Depending on context, the observation may be initial, or if certified, may be final
 		pregnancy.setStatus(ObservationStatus.FINAL);
     	initResourceForTesting(pregnancy);
