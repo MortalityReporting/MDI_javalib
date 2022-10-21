@@ -102,4 +102,12 @@ public class ObservationDeathDate extends Observation {
 		}
 		return this;
 	}
+	
+	public void addPlaceOfDeath(String placeOfDeath) {
+		ObservationComponentComponent component = new ObservationComponentComponent();
+		component.setCode(DeathDateUtil.componentPlaceOfDeathCode);
+		component.setValue(CommonUtil.findConceptFromCollectionUsingSimpleString(placeOfDeath, DeathDateUtil.placeOfDeathTypeSet));
+		addComponent(component);
+	}
+
 }

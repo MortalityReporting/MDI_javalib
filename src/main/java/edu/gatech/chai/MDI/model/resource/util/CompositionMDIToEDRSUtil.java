@@ -24,9 +24,9 @@ public class CompositionMDIToEDRSUtil {
 			new Coding(MDICommonUtil.mdiCodesSystemURL,"narratives",""));
 	public static final String trackingNumberExtensionURL = "http://hl7.org/fhir/us/mdi/StructureDefinition/Extension-tracking-number";
 	public static final CodeableConcept trackingNumberMDIType = new CodeableConcept().addCoding(
-			new Coding(MDICommonUtil.mdiCodesSystemURL,"mdi-case-number",""));
+			new Coding(MDICommonUtil.mdiCodesSystemURL,"mdi-case-number","MDI Case Number"));
 	public static final CodeableConcept trackingNumberEDRSType = new CodeableConcept().addCoding(
-			new Coding(MDICommonUtil.mdiCodesSystemURL,"edrs-file-number",""));
+			new Coding(MDICommonUtil.mdiCodesSystemURL,"edrs-file-number","EDRS File Number"));
 	public static final CodeableConcept trackingNumberTOXType = new CodeableConcept().addCoding(
-			new Coding(MDICommonUtil.mdiCodesSystemURL,"tox-lab-case-number",""));
+			new Coding(MDICommonUtil.mdiCodesSystemURL,"tox-lab-case-number","Toxicology Laboratory Case Number"));
 }
