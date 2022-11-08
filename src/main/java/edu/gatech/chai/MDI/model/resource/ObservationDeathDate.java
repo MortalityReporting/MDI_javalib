@@ -47,6 +47,13 @@ public class ObservationDeathDate extends Observation {
 	public void addEstimatedMethod() {
 		setMethod(DeathDateUtil.method);
 	}
+
+	public void setMethod(String establishmentMethod){
+		setEstablishmentMethod(establishmentMethod);
+	}
+	public void setEstablishmentMethod(String establishmentMethod) {
+		setMethod(CommonUtil.findConceptFromCollectionUsingSimpleString(establishmentMethod, ObservationDeathDateUtil.dateEstablishmentMethods));
+	}
 	
 	public void addDatePronouncedDead(DateTimeType dtType) {
 		ObservationComponentComponent component = new ObservationComponentComponent();
