@@ -12,4 +12,7 @@ public class SpecimenToxicologyLab extends Specimen{
 	 */
 	private static final long serialVersionUID = 1L;
 
+	public SpecimenToxicologyLab() {
+		super();
+	}
 }

@@ -9,6 +9,10 @@ import edu.gatech.chai.MDI.model.resource.util.DocumentReferenceMDICaseNotesSumm
 
 @ResourceDef(name = "DocumentReference", profile = "http://hl7.org/fhir/us/mdi/StructureDefinition/DocumentReference-mdi-case-notes-summary")
 public class DocumentReferenceMDICaseNotesSummary extends DocumentReference{
+	public DocumentReferenceMDICaseNotesSummary() {
+		super();
+	}
+
 	public DocumentReferenceMDICaseNotesSummary(Patient subject) {
 		this.setType(DocumentReferenceMDICaseNotesSummaryUtil.type);
 		this.addCategory(DocumentReferenceMDICaseNotesSummaryUtil.category);

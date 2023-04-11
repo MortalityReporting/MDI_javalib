@@ -9,7 +9,12 @@ import edu.gatech.chai.MDI.model.resource.util.DocumentReferenceMDICaseHistoryUt
 
 @ResourceDef(name = "DocumentReference", profile = "http://hl7.org/fhir/us/mdi/StructureDefinition/DocumentReference-mdi-case-history")
 public class DocumentReferenceMDICaseHistory extends DocumentReference{
+
+	public DocumentReferenceMDICaseHistory() {
+		super();
+	}
 	public DocumentReferenceMDICaseHistory(Patient subject) {
+		super();
 		setType(DocumentReferenceMDICaseHistoryUtil.type);
 		addCategory(DocumentReferenceMDICaseHistoryUtil.category);
 		setSubject(subject);

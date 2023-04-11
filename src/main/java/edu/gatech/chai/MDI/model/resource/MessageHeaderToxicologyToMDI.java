@@ -15,6 +15,7 @@ public class MessageHeaderToxicologyToMDI extends MessageHeader{
 	 */
 	private static final long serialVersionUID = 1L;
 	public MessageHeaderToxicologyToMDI() {
+		super();
 		this.setEvent(new Coding(MDICommonUtil.mdiCodesSystemURL, MessageHeaderToxicologyToMDIUtil.eventCode,""));
 	}
 }
