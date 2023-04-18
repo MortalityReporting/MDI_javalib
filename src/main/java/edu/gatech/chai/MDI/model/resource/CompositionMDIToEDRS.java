@@ -173,9 +173,9 @@ public class CompositionMDIToEDRS extends Composition{
 	
 	public Extension addMDICaseIdExtension(String mdiCaseValue) {
 		Extension returnExtension = new Extension();
-		returnExtension.setUrl(CompositionMDIToEDRSUtil.trackingNumberExtensionURL);
+		returnExtension.setUrl(MDICommonUtil.trackingNumberExtensionURL);
 		Identifier identifier = new Identifier();
-		identifier.setType(CompositionMDIToEDRSUtil.trackingNumberMDIType);
+		identifier.setType(MDICommonUtil.trackingNumberMDIType);
 		identifier.setValue(mdiCaseValue);
 		returnExtension.setValue(identifier);
 		this.addExtension(returnExtension);
@@ -184,9 +184,9 @@ public class CompositionMDIToEDRS extends Composition{
 	
 	public Extension addEDRSCaseIdExtension(String edrsCaseValue) {
 		Extension returnExtension = new Extension();
-		returnExtension.setUrl(CompositionMDIToEDRSUtil.trackingNumberExtensionURL);
+		returnExtension.setUrl(MDICommonUtil.trackingNumberExtensionURL);
 		Identifier identifier = new Identifier();
-		identifier.setType(CompositionMDIToEDRSUtil.trackingNumberEDRSType);
+		identifier.setType(MDICommonUtil.trackingNumberEDRSType);
 		identifier.setValue(edrsCaseValue);
 		returnExtension.setValue(identifier);
 		this.addExtension(returnExtension);
@@ -195,9 +195,9 @@ public class CompositionMDIToEDRS extends Composition{
 	
 	public Extension addTOXCaseIdExtension(String toxCaseValue) {
 		Extension returnExtension = new Extension();
-		returnExtension.setUrl(CompositionMDIToEDRSUtil.trackingNumberExtensionURL);
+		returnExtension.setUrl(MDICommonUtil.trackingNumberExtensionURL);
 		Identifier identifier = new Identifier();
-		identifier.setType(CompositionMDIToEDRSUtil.trackingNumberTOXType);
+		identifier.setType(MDICommonUtil.trackingNumberTOXType);
 		identifier.setValue(toxCaseValue);
 		returnExtension.setValue(identifier);
 		this.addExtension(returnExtension);

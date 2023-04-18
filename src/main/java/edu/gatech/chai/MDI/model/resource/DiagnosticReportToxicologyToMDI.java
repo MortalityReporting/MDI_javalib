@@ -12,6 +12,7 @@ import org.hl7.fhir.r4.model.Reference;
 
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.chai.MDI.model.resource.util.DiagnosticReportToxicologyToMDIUtil;
+import edu.gatech.chai.MDI.model.resource.util.MDICommonUtil;
 import edu.gatech.chai.VRDR.model.Decedent;
 
 @ResourceDef(name = "DiagnosticReport", profile = "https://fhir.org/fhir/us/mdi/StructureDefinition/DiagnosticReport-toxicology-to-mdi")
@@ -36,9 +37,18 @@ public class DiagnosticReportToxicologyToMDI extends DiagnosticReport{
 		this.setIssued(issued);
 	}
 	
-	public void addTrackingNumberExtension(Identifier identifier) {
-		Extension extension = new Extension(DiagnosticReportToxicologyToMDIUtil.trackingNumberExtensionURL);
-		extension.setValue(identifier);
+	public void addTrackingNumberExtension(String identifierString) {
+		Extension extension = new Extension(MDICommonUtil.trackingNumberExtensionURL);
+		Identifier localIdentifier = new Identifier();
+		localIdentifier.setType(MDICommonUtil.trackingNumberTOXType);
+		localIdentifier.setValue(identifierString);
+		extension.setValue(localIdentifier);
+		this.addExtension(extension);
+	}
+
+	public void addTrackingNumberExtension(Identifier localIdentifier) {
+		Extension extension = new Extension(MDICommonUtil.trackingNumberExtensionURL);
+		extension.setValue(localIdentifier);
 		this.addExtension(extension);
 	}
 	
