@@ -51,7 +51,7 @@ public class ObservationHowDeathInjuryOccurred extends Observation {
 	public ObservationComponentComponent addPlaceOfInjury(String placeOfDeath){
 		ObservationComponentComponent occ = new ObservationComponentComponent();
 		occ.setCode(ObservationHowDeathInjuryOccurredUtil.placeOfInjuryComponentCode);
-		occ.setValue(new StringType(placeOfDeath));
+		occ.setValue(new CodeableConcept().setText(placeOfDeath));
 		this.addComponent(occ);
 		return occ;
 	}
