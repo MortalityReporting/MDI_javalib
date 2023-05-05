@@ -206,7 +206,7 @@ public class BuildMDIToEdrsDocument {
 		initResourceForTesting(howDeathInjuryOccurred);
 		//Depending on context, the observation may be initial, or if certified, may be final
 		howDeathInjuryOccurred.setStatus(ObservationStatus.FINAL);
-		howDeathInjuryOccurred.addPlaceOfDeath("Highway 16");
+		howDeathInjuryOccurred.addPlaceOfInjury("Highway 16");
 		howDeathInjuryOccurred.addWorkInjuryIndicator("No");
 		howDeathInjuryOccurred.addTransportationRole("Vehicle driver");
 		causeMannerSection.addEntry(new Reference(howDeathInjuryOccurred));
