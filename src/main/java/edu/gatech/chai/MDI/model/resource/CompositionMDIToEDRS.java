@@ -170,35 +170,42 @@ public class CompositionMDIToEDRS extends Composition{
 		}
 		return null;
 	}
-	
+
 	public Extension addMDICaseIdExtension(String mdiCaseValue) {
-		Extension returnExtension = new Extension();
-		returnExtension.setUrl(MDICommonUtil.trackingNumberExtensionURL);
-		Identifier identifier = new Identifier();
-		identifier.setType(MDICommonUtil.trackingNumberMDIType);
-		identifier.setValue(mdiCaseValue);
-		returnExtension.setValue(identifier);
-		this.addExtension(returnExtension);
-		return returnExtension;
+		return addCaseIdExtension(MDICommonUtil.trackingNumberMDIType, "", mdiCaseValue);
 	}
-	
+
+	public Extension addMDICaseIdExtension(String mdiCaseSystem, String mdiCaseValue) {
+		return addCaseIdExtension(MDICommonUtil.trackingNumberMDIType, mdiCaseSystem, mdiCaseValue);
+	}
+
 	public Extension addEDRSCaseIdExtension(String edrsCaseValue) {
-		Extension returnExtension = new Extension();
-		returnExtension.setUrl(MDICommonUtil.trackingNumberExtensionURL);
-		Identifier identifier = new Identifier();
-		identifier.setType(MDICommonUtil.trackingNumberEDRSType);
-		identifier.setValue(edrsCaseValue);
-		returnExtension.setValue(identifier);
-		this.addExtension(returnExtension);
-		return returnExtension;
+		return addCaseIdExtension(MDICommonUtil.trackingNumberEDRSType, "", edrsCaseValue);
 	}
-	
+
+	public Extension addEDRSCaseIdExtension(String edrsCaseSystem, String edrsCaseValue) {
+		return addCaseIdExtension(MDICommonUtil.trackingNumberEDRSType, edrsCaseSystem, edrsCaseValue);
+	}
+
 	public Extension addTOXCaseIdExtension(String toxCaseValue) {
+		return addCaseIdExtension(MDICommonUtil.trackingNumberTOXType, "", toxCaseValue);
+	}
+
+	public Extension addTOXCaseIdExtension(String toxCaseSystem, String toxCaseValue) {
+		return addCaseIdExtension(MDICommonUtil.trackingNumberTOXType, toxCaseSystem, toxCaseValue);
+	}
+
+	public Extension addCaseIdExtension(CodeableConcept extensionType, String mdiCaseSystem, String mdiCaseValue) {
 		Extension returnExtension = new Extension();
 		returnExtension.setUrl(MDICommonUtil.trackingNumberExtensionURL);
 		Identifier identifier = new Identifier();
-		identifier.setType(MDICommonUtil.trackingNumberTOXType);
-		identifier.setValue(toxCaseValue);
+		identifier.setType(extensionType);
+		if(mdiCaseSystem != null && !mdiCaseSystem.isEmpty()){
+			identifier.setSystem(mdiCaseSystem);
+		}
+		if(mdiCaseValue != null && !mdiCaseValue.isEmpty()){
+			identifier.setValue(mdiCaseValue);
+		}
 		returnExtension.setValue(identifier);
 		this.addExtension(returnExtension);
 		return returnExtension;
