@@ -11,6 +11,7 @@ import org.hl7.fhir.r4.model.Practitioner;
 import org.hl7.fhir.r4.model.Reference;
 
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
+import edu.gatech.chai.MDI.model.resource.util.CommonUtil;
 import edu.gatech.chai.MDI.model.resource.util.CompositionMDIToEDRSUtil;
 
 @ResourceDef(name = "Composition", profile = "http://hl7.org/fhir/us/mdi/StructureDefinition/Composition-mdi-to-edrs")
@@ -163,35 +164,42 @@ public class CompositionMDIToEDRS extends Composition{
 		}
 		return null;
 	}
-	
+
 	public Extension addMDICaseIdExtension(String mdiCaseValue) {
-		Extension returnExtension = new Extension();
-		returnExtension.setUrl(CompositionMDIToEDRSUtil.trackingNumberExtensionURL);
-		Identifier identifier = new Identifier();
-		identifier.setType(CompositionMDIToEDRSUtil.trackingNumberMDIType);
-		identifier.setValue(mdiCaseValue);
-		returnExtension.setValue(identifier);
-		this.addExtension(returnExtension);
-		return returnExtension;
+		return addCaseIdExtension(CommonUtil.trackingNumberMDIType, "", mdiCaseValue);
 	}
-	
+
+	public Extension addMDICaseIdExtension(String mdiCaseSystem, String mdiCaseValue) {
+		return addCaseIdExtension(CommonUtil.trackingNumberMDIType, mdiCaseSystem, mdiCaseValue);
+	}
+
 	public Extension addEDRSCaseIdExtension(String edrsCaseValue) {
-		Extension returnExtension = new Extension();
-		returnExtension.setUrl(CompositionMDIToEDRSUtil.trackingNumberExtensionURL);
-		Identifier identifier = new Identifier();
-		identifier.setType(CompositionMDIToEDRSUtil.trackingNumberEDRSType);
-		identifier.setValue(edrsCaseValue);
-		returnExtension.setValue(identifier);
-		this.addExtension(returnExtension);
-		return returnExtension;
+		return addCaseIdExtension(CommonUtil.trackingNumberEDRSType, "", edrsCaseValue);
 	}
-	
+
+	public Extension addEDRSCaseIdExtension(String edrsCaseSystem, String edrsCaseValue) {
+		return addCaseIdExtension(CommonUtil.trackingNumberEDRSType, edrsCaseSystem, edrsCaseValue);
+	}
+
 	public Extension addTOXCaseIdExtension(String toxCaseValue) {
+		return addCaseIdExtension(CommonUtil.trackingNumberTOXType, "", toxCaseValue);
+	}
+
+	public Extension addTOXCaseIdExtension(String toxCaseSystem, String toxCaseValue) {
+		return addCaseIdExtension(CommonUtil.trackingNumberTOXType, toxCaseSystem, toxCaseValue);
+	}
+
+	public Extension addCaseIdExtension(CodeableConcept extensionType, String mdiCaseSystem, String mdiCaseValue) {
 		Extension returnExtension = new Extension();
-		returnExtension.setUrl(CompositionMDIToEDRSUtil.trackingNumberExtensionURL);
+		returnExtension.setUrl(CommonUtil.trackingNumberExtensionURL);
 		Identifier identifier = new Identifier();
-		identifier.setType(CompositionMDIToEDRSUtil.trackingNumberTOXType);
-		identifier.setValue(toxCaseValue);
+		identifier.setType(extensionType);
+		if(mdiCaseSystem != null && !mdiCaseSystem.isEmpty()){
+			identifier.setSystem(mdiCaseSystem);
+		}
+		if(mdiCaseValue != null && !mdiCaseValue.isEmpty()){
+			identifier.setValue(mdiCaseValue);
+		}
 		returnExtension.setValue(identifier);
 		this.addExtension(returnExtension);
 		return returnExtension;

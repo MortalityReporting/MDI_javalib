@@ -44,5 +44,4 @@ public class DiagnosticReportToxicologyToMDI extends DiagnosticReport{
 		extension.setValue(new Reference(mdiCaseNotesSummary.getId()));
 		this.addExtension(extension);
 	}
-	
 }

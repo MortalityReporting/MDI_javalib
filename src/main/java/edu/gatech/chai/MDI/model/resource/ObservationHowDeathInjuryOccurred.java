@@ -5,7 +5,6 @@ import org.hl7.fhir.r4.model.Observation;
 import org.hl7.fhir.r4.model.Patient;
 import org.hl7.fhir.r4.model.Practitioner;
 import org.hl7.fhir.r4.model.Reference;
-import org.hl7.fhir.r4.model.StringType;
 
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.chai.MDI.model.resource.util.CommonUtil;
@@ -42,15 +41,15 @@ public class ObservationHowDeathInjuryOccurred extends Observation {
 		ref = new Reference(subject);
 		addPerformer(ref);
 		setValue(new CodeableConcept().setText(value));
-		addPlaceOfDeath(placeOfDeath);
+		addPlaceOfInjury(placeOfDeath);
 		addWorkInjuryIndicator(workInjuryIndicator);
 		addTransportationRole(transportationRole);
 	}
 
-	public ObservationComponentComponent addPlaceOfDeath(String placeOfDeath){
+	public ObservationComponentComponent addPlaceOfInjury(String placeOfDeath){
 		ObservationComponentComponent occ = new ObservationComponentComponent();
 		occ.setCode(ObservationHowDeathInjuryOccurredUtil.placeOfInjuryComponentCode);
-		occ.setValue(new StringType(placeOfDeath));
+		occ.setValue(new CodeableConcept().setText(placeOfDeath));
 		this.addComponent(occ);
 		return occ;
 	}
