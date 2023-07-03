@@ -5,8 +5,8 @@ import org.hl7.fhir.r4.model.Procedure;
 import org.hl7.fhir.r4.model.Reference;
 
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
+import edu.gatech.chai.MDI.model.resource.util.CommonUtil;
 import edu.gatech.chai.MDI.model.resource.util.ProcedureDeathCertificationUtil;
-import edu.gatech.chai.VRDR.model.util.CommonUtil;
 
 @ResourceDef(name = "Procedure", profile = "http://hl7.org/fhir/us/mdi/StructureDefinition/Procedure-death-certification")
 public class ProcedureDeathCertification extends Procedure{

@@ -6,8 +6,6 @@ import java.util.HashSet;
 import org.hl7.fhir.r4.model.CodeableConcept;
 import org.hl7.fhir.r4.model.Coding;
 
-import edu.gatech.chai.VRDR.model.util.CommonUtil;
-
 public class ObservationDecedentPregnancyUtil {
 	public static final String preganancySystemUrl = "http://hl7.org/fhir/us/mdi/CodeSystem/CodeSystem-death-pregnancy-status";
 	public static final CodeableConcept code = new CodeableConcept().addCoding(

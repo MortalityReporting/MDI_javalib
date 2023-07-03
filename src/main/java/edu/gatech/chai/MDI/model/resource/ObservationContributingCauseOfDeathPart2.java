@@ -5,14 +5,9 @@ import org.hl7.fhir.r4.model.Observation;
 import org.hl7.fhir.r4.model.Patient;
 import org.hl7.fhir.r4.model.Practitioner;
 import org.hl7.fhir.r4.model.Reference;
-import org.hl7.fhir.r4.model.StringType;
 
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
-import edu.gatech.chai.MDI.model.resource.util.ObservationConditionCauseOfDeathUtil;
 import edu.gatech.chai.MDI.model.resource.util.ObservationConditionContributingToDeathUtil;
-import edu.gatech.chai.VRDR.model.Decedent;
-import edu.gatech.chai.VRDR.model.util.CommonUtil;
-import edu.gatech.chai.VRDR.model.util.ConditionContributingToDeathUtil;
 
 @ResourceDef(name = "Observation", profile = "http://hl7.org/fhir/us/mdi/StructureDefinition/Observation-contributing-cause-of-death-part2")
 public class ObservationContributingCauseOfDeathPart2 extends Observation {

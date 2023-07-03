@@ -4,15 +4,11 @@ package edu.gatech.MDI;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import org.hl7.fhir.r4.model.Address;
 import org.hl7.fhir.r4.model.Address.AddressUse;
-import org.hl7.fhir.r4.model.BooleanType;
-import org.hl7.fhir.r4.model.Bundle.BundleEntryComponent;
-import org.hl7.fhir.r4.model.CodeType;
 import org.hl7.fhir.r4.model.CodeableConcept;
 import org.hl7.fhir.r4.model.Coding;
 import org.hl7.fhir.r4.model.Composition.CompositionStatus;
@@ -20,25 +16,18 @@ import org.hl7.fhir.r4.model.Composition.SectionComponent;
 import org.hl7.fhir.r4.model.Condition;
 import org.hl7.fhir.r4.model.DateTimeType;
 import org.hl7.fhir.r4.model.Enumerations.AdministrativeGender;
-import org.hl7.fhir.r4.model.Enumerations.DocumentReferenceStatus;
 import org.hl7.fhir.r4.model.Extension;
 import org.hl7.fhir.r4.model.HumanName;
 import org.hl7.fhir.r4.model.HumanName.NameUse;
 import org.hl7.fhir.r4.model.Identifier;
-import org.hl7.fhir.r4.model.IntegerType;
-import org.hl7.fhir.r4.model.ListResource.ListEntryComponent;
-import org.hl7.fhir.r4.model.Observation.ObservationStatus;
-import org.hl7.fhir.r4.model.Procedure.ProcedureStatus;
 import org.hl7.fhir.r4.model.Location;
-import org.hl7.fhir.r4.model.MessageHeader;
+import org.hl7.fhir.r4.model.Observation.ObservationStatus;
 import org.hl7.fhir.r4.model.Patient;
-import org.hl7.fhir.r4.model.Period;
 import org.hl7.fhir.r4.model.Practitioner;
-import org.hl7.fhir.r4.model.Quantity;
+import org.hl7.fhir.r4.model.Procedure.ProcedureStatus;
 import org.hl7.fhir.r4.model.Reference;
 import org.hl7.fhir.r4.model.Resource;
 import org.hl7.fhir.r4.model.StringType;
-import org.hl7.fhir.r4.model.UriType;
 
 import edu.gatech.chai.MDI.model.resource.BundleDocumentMDIToEDRS;
 import edu.gatech.chai.MDI.model.resource.CompositionMDIToEDRS;
@@ -51,8 +40,7 @@ import edu.gatech.chai.MDI.model.resource.ObservationHowDeathInjuryOccurred;
 import edu.gatech.chai.MDI.model.resource.ObservationMannerOfDeath;
 import edu.gatech.chai.MDI.model.resource.ObservationTobaccoUseContributedToDeath;
 import edu.gatech.chai.MDI.model.resource.ProcedureDeathCertification;
-import edu.gatech.chai.VRDR.model.TobaccoUseContributedToDeath;
-import edu.gatech.chai.VRDR.model.util.CommonUtil;
+import edu.gatech.chai.MDI.model.resource.util.CommonUtil;
 
 public class BuildMDIToEdrsDocument {
 	public static SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
@@ -96,6 +84,7 @@ public class BuildMDIToEdrsDocument {
     	decedent.setGender(AdministrativeGender.MALE);
     	decedent.addIdentifier(new Identifier().setSystem("http://hl7.org/fhir/sid/us-ssn").setValue("123-45-6789"));
     	decedent.addName(new HumanName().setFamily("Edgarson").addGiven("Edger").setUse(NameUse.OFFICIAL));
+		decedent.addAddress(decedentsHome);
     	Reference decedentReference = new Reference("Patient/"+decedent.getId());
     	contents.add(decedent);
     	//Practitioner
@@ -165,7 +154,6 @@ public class BuildMDIToEdrsDocument {
 	    	jurisdictionSection.addEntry(new Reference(deathDate));
 	    	contents.add(deathDate);
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		// Death Certification

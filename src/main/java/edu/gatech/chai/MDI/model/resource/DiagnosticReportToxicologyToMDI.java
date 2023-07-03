@@ -3,7 +3,6 @@ package edu.gatech.chai.MDI.model.resource;
 import java.util.Date;
 
 import org.hl7.fhir.r4.model.CodeableConcept;
-import org.hl7.fhir.r4.model.DateTimeType;
 import org.hl7.fhir.r4.model.DiagnosticReport;
 import org.hl7.fhir.r4.model.Extension;
 import org.hl7.fhir.r4.model.Identifier;
@@ -12,7 +11,6 @@ import org.hl7.fhir.r4.model.Reference;
 
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.chai.MDI.model.resource.util.DiagnosticReportToxicologyToMDIUtil;
-import edu.gatech.chai.VRDR.model.Decedent;
 
 @ResourceDef(name = "DiagnosticReport", profile = "https://fhir.org/fhir/us/mdi/StructureDefinition/DiagnosticReport-toxicology-to-mdi")
 public class DiagnosticReportToxicologyToMDI extends DiagnosticReport{

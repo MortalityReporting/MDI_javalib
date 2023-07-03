@@ -6,8 +6,6 @@ import java.util.HashSet;
 import org.hl7.fhir.r4.model.CodeableConcept;
 import org.hl7.fhir.r4.model.Coding;
 
-import edu.gatech.chai.VRDR.model.util.CommonUtil;
-
 public class ProcedureDeathCertificationUtil {
 	public static final CodeableConcept category = new CodeableConcept().addCoding(
 			new Coding(CommonUtil.snomedSystemUrl,"103693007","Diagnostic procedure"));

@@ -1,30 +1,18 @@
 package edu.gatech.chai.MDI.model.resource;
 
-import java.util.Date;
-
 import org.hl7.fhir.r4.model.CodeableConcept;
-import org.hl7.fhir.r4.model.DateTimeType;
-import org.hl7.fhir.r4.model.Extension;
-import org.hl7.fhir.r4.model.IntegerType;
-import org.hl7.fhir.r4.model.Location;
 import org.hl7.fhir.r4.model.Observation;
-import org.hl7.fhir.r4.model.Patient;
 import org.hl7.fhir.r4.model.Reference;
-import org.hl7.fhir.r4.model.Type;
 
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
-import edu.gatech.chai.MDI.model.resource.util.MDICommonUtil;
+import edu.gatech.chai.MDI.model.resource.util.CommonUtil;
 import edu.gatech.chai.MDI.model.resource.util.ObservationAutopsyPerformedIndicatorUtil;
-import edu.gatech.chai.MDI.model.resource.util.ObservationDeathDateUtil;
-import edu.gatech.chai.VRDR.model.util.CommonUtil;
-import edu.gatech.chai.VRDR.model.util.DeathDateUtil;
 
 @ResourceDef(name = "Observation", profile = "http://hl7.org/fhir/us/mdi/StructureDefinition/Observation-autopsy-performed-indicator")
 public class ObservationAutopsyPerformedIndicator extends Observation {
 
 	public ObservationAutopsyPerformedIndicator() {
 		super();
-		CommonUtil.initResource(this);
 		setCode(ObservationAutopsyPerformedIndicatorUtil.code);
 		setStatus(ObservationAutopsyPerformedIndicatorUtil.status);
 	}
@@ -39,9 +27,9 @@ public class ObservationAutopsyPerformedIndicator extends Observation {
 	public ObservationAutopsyPerformedIndicator(Reference subject, String autopsyPerformed, String resultsAvailable) {
 		this();
 		setSubject(subject);
-		CodeableConcept autopsyPerformedCC = CommonUtil.findConceptFromCollectionUsingSimpleString(autopsyPerformed, MDICommonUtil.yesNoUnknownNASKSet);
+		CodeableConcept autopsyPerformedCC = CommonUtil.findConceptFromCollectionUsingSimpleString(autopsyPerformed, CommonUtil.yesNoUnknownNASKSet);
 		setValue(autopsyPerformedCC);
-		CodeableConcept resultsAvailableCC = CommonUtil.findConceptFromCollectionUsingSimpleString(resultsAvailable, MDICommonUtil.yesNoUnknownNASKSet);
+		CodeableConcept resultsAvailableCC = CommonUtil.findConceptFromCollectionUsingSimpleString(resultsAvailable, CommonUtil.yesNoUnknownNASKSet);
 		addResultsAvailableComponent(resultsAvailableCC);
 	}
 	

@@ -2,24 +2,16 @@ package edu.gatech.chai.MDI.model.resource;
 
 import java.util.Date;
 
-import org.hl7.fhir.r4.model.CodeType;
 import org.hl7.fhir.r4.model.CodeableConcept;
 import org.hl7.fhir.r4.model.Composition;
-import org.hl7.fhir.r4.model.DateTimeType;
-import org.hl7.fhir.r4.model.Device;
 import org.hl7.fhir.r4.model.Extension;
 import org.hl7.fhir.r4.model.Identifier;
-import org.hl7.fhir.r4.model.Organization;
 import org.hl7.fhir.r4.model.Patient;
 import org.hl7.fhir.r4.model.Practitioner;
-import org.hl7.fhir.r4.model.PractitionerRole;
 import org.hl7.fhir.r4.model.Reference;
-import org.hl7.fhir.r4.model.RelatedPerson;
 
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.chai.MDI.model.resource.util.CompositionMDIToEDRSUtil;
-import edu.gatech.chai.MDI.model.resource.util.MDICommonUtil;
-import edu.gatech.chai.VRDR.model.util.CommonUtil;
 
 @ResourceDef(name = "Composition", profile = "http://hl7.org/fhir/us/mdi/StructureDefinition/Composition-mdi-to-edrs")
 public class CompositionMDIToEDRS extends Composition{
@@ -66,9 +58,10 @@ public class CompositionMDIToEDRS extends Composition{
 
 	public CompositionAttesterComponent addAttester(String dataAbsentReason){
 		CompositionAttesterComponent cac = new CompositionAttesterComponent();
-		CodeType dataAbsentReasonCode = CommonUtil.findCodeFromCollectionUsingSimpleString(dataAbsentReason, CommonUtil.dataAbsentReasonCodeSet);
+		// CodeType dataAbsentReasonCode = CommonUtil.findCodeFromCollectionUsingSimpleString(dataAbsentReason, CommonUtil.dataAbsentReasonCodeSet);
 		//TODO: Add data absent reason block correctly here.
 		//cac.set
+		this.addAttester(cac);
 		return cac;
 	}
 	
