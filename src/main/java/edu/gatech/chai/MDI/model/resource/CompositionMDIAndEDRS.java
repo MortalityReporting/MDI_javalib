@@ -2,19 +2,13 @@ package edu.gatech.chai.MDI.model.resource;
 
 import java.util.Date;
 
-import org.hl7.fhir.r4.model.CodeType;
 import org.hl7.fhir.r4.model.CodeableConcept;
 import org.hl7.fhir.r4.model.Composition;
-import org.hl7.fhir.r4.model.DateTimeType;
-import org.hl7.fhir.r4.model.Device;
 import org.hl7.fhir.r4.model.Extension;
 import org.hl7.fhir.r4.model.Identifier;
-import org.hl7.fhir.r4.model.Organization;
 import org.hl7.fhir.r4.model.Patient;
 import org.hl7.fhir.r4.model.Practitioner;
-import org.hl7.fhir.r4.model.PractitionerRole;
 import org.hl7.fhir.r4.model.Reference;
-import org.hl7.fhir.r4.model.RelatedPerson;
 
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.chai.MDI.model.resource.util.CompositionMDIAndEDRSUtil;
@@ -65,9 +59,10 @@ public class CompositionMDIAndEDRS extends Composition{
 
 	public CompositionAttesterComponent addAttester(String dataAbsentReason){
 		CompositionAttesterComponent cac = new CompositionAttesterComponent();
-		CodeType dataAbsentReasonCode = CommonUtil.findCodeFromCollectionUsingSimpleString(dataAbsentReason, CommonUtil.dataAbsentReasonCodeSet);
+		// CodeType dataAbsentReasonCode = CommonUtil.findCodeFromCollectionUsingSimpleString(dataAbsentReason, CommonUtil.dataAbsentReasonCodeSet);
 		//TODO: Add data absent reason block correctly here.
 		//cac.set
+		this.addAttester(cac);
 		return cac;
 	}
 	
@@ -171,32 +166,32 @@ public class CompositionMDIAndEDRS extends Composition{
 	}
 
 	public Extension addMDICaseIdExtension(String mdiCaseValue) {
-		return addCaseIdExtension(MDICommonUtil.trackingNumberMDIType, "", mdiCaseValue);
+		return addCaseIdExtension(CommonUtil.trackingNumberMDIType, "", mdiCaseValue);
 	}
 
 	public Extension addMDICaseIdExtension(String mdiCaseSystem, String mdiCaseValue) {
-		return addCaseIdExtension(MDICommonUtil.trackingNumberMDIType, mdiCaseSystem, mdiCaseValue);
+		return addCaseIdExtension(CommonUtil.trackingNumberMDIType, mdiCaseSystem, mdiCaseValue);
 	}
 
 	public Extension addEDRSCaseIdExtension(String edrsCaseValue) {
-		return addCaseIdExtension(MDICommonUtil.trackingNumberEDRSType, "", edrsCaseValue);
+		return addCaseIdExtension(CommonUtil.trackingNumberEDRSType, "", edrsCaseValue);
 	}
 
 	public Extension addEDRSCaseIdExtension(String edrsCaseSystem, String edrsCaseValue) {
-		return addCaseIdExtension(MDICommonUtil.trackingNumberEDRSType, edrsCaseSystem, edrsCaseValue);
+		return addCaseIdExtension(CommonUtil.trackingNumberEDRSType, edrsCaseSystem, edrsCaseValue);
 	}
 
 	public Extension addTOXCaseIdExtension(String toxCaseValue) {
-		return addCaseIdExtension(MDICommonUtil.trackingNumberTOXType, "", toxCaseValue);
+		return addCaseIdExtension(CommonUtil.trackingNumberTOXType, "", toxCaseValue);
 	}
 
 	public Extension addTOXCaseIdExtension(String toxCaseSystem, String toxCaseValue) {
-		return addCaseIdExtension(MDICommonUtil.trackingNumberTOXType, toxCaseSystem, toxCaseValue);
+		return addCaseIdExtension(CommonUtil.trackingNumberTOXType, toxCaseSystem, toxCaseValue);
 	}
 
 	public Extension addCaseIdExtension(CodeableConcept extensionType, String mdiCaseSystem, String mdiCaseValue) {
 		Extension returnExtension = new Extension();
-		returnExtension.setUrl(MDICommonUtil.trackingNumberExtensionURL);
+		returnExtension.setUrl(CommonUtil.trackingNumberExtensionURL);
 		Identifier identifier = new Identifier();
 		identifier.setType(extensionType);
 		if(mdiCaseSystem != null && !mdiCaseSystem.isEmpty()){

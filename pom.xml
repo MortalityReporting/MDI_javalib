@@ -37,10 +37,5 @@
         <artifactId>hapi-fhir-validation-resources-r4</artifactId>
         <version>${fhir.version}</version>
     </dependency>
-    <dependency>
-    	<groupId>edu.gatech</groupId>
-    	<artifactId>VRDR</artifactId>
-    	<version>v1.4.0-STU2</version>
-    </dependency>
   </dependencies>
 </project>

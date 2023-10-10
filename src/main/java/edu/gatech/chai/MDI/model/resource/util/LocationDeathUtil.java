@@ -5,5 +5,5 @@ import org.hl7.fhir.r4.model.Coding;
 
 public class LocationDeathUtil {
 	public static final CodeableConcept type = new CodeableConcept().addCoding(
-			new Coding(MDICommonUtil.mdiCodesSystemURL,"death",""));
+			new Coding(CommonUtil.mdiCodesSystemURL,"death",""));
 }

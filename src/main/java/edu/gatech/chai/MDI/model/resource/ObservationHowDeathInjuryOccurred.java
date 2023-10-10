@@ -5,12 +5,10 @@ import org.hl7.fhir.r4.model.Observation;
 import org.hl7.fhir.r4.model.Patient;
 import org.hl7.fhir.r4.model.Practitioner;
 import org.hl7.fhir.r4.model.Reference;
-import org.hl7.fhir.r4.model.StringType;
 
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
-import edu.gatech.chai.MDI.model.resource.util.MDICommonUtil;
+import edu.gatech.chai.MDI.model.resource.util.CommonUtil;
 import edu.gatech.chai.MDI.model.resource.util.ObservationHowDeathInjuryOccurredUtil;
-import edu.gatech.chai.VRDR.model.util.CommonUtil;
 
 @ResourceDef(name = "Observation", profile = "http://hl7.org/fhir/us/mdi/StructureDefinition/Observation-how-death-injury-occurred")
 public class ObservationHowDeathInjuryOccurred extends Observation {
@@ -59,7 +57,7 @@ public class ObservationHowDeathInjuryOccurred extends Observation {
 	public ObservationComponentComponent addWorkInjuryIndicator(String yesNoNA){
 		ObservationComponentComponent occ = new ObservationComponentComponent();
 		occ.setCode(ObservationHowDeathInjuryOccurredUtil.workInjuryComponentCode);
-		CodeableConcept valueCodeableConcept = CommonUtil.findConceptFromCollectionUsingSimpleString(yesNoNA, MDICommonUtil.yesNoUnknownNASKSet);
+		CodeableConcept valueCodeableConcept = CommonUtil.findConceptFromCollectionUsingSimpleString(yesNoNA, CommonUtil.yesNoUnknownNASKSet);
 		occ.setValue(valueCodeableConcept);
 		this.addComponent(occ);
 		return occ;

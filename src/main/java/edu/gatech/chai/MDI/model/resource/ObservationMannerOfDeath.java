@@ -7,19 +7,16 @@ import org.hl7.fhir.r4.model.Practitioner;
 import org.hl7.fhir.r4.model.Reference;
 
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
-import edu.gatech.chai.VRDR.model.MannerOfDeath;
-import edu.gatech.chai.VRDR.model.util.CommonUtil;
-import edu.gatech.chai.VRDR.model.util.DecedentDispositionMethodUtil;
-import edu.gatech.chai.VRDR.model.util.MannerOfDeathUtil;
+import edu.gatech.chai.MDI.model.resource.util.CommonUtil;
+import edu.gatech.chai.MDI.model.resource.util.ObservationMannerOfDeathUtil;
 
 @ResourceDef(name = "Observation", profile = "http://hl7.org/fhir/us/mdi/StructureDefinition/Observation-manner-of-death")
 public class ObservationMannerOfDeath extends Observation {
 
 	public ObservationMannerOfDeath() {
 		super();
-		CommonUtil.initResource(this);
-		setStatus(MannerOfDeathUtil.status);
-		setCode(MannerOfDeathUtil.code);
+		setStatus(ObservationMannerOfDeathUtil.status);
+		setCode(ObservationMannerOfDeathUtil.code);
 	}
 
 	public ObservationMannerOfDeath(CodeableConcept manner, Patient subject, Practitioner performer) {
@@ -35,27 +32,18 @@ public class ObservationMannerOfDeath extends Observation {
 		setSubject(new Reference(subject));
 		this.addPerformer(new Reference(performer));
 	}
-
-	public ObservationMannerOfDeath(MannerOfDeath vrdrResource){
-		this();
-		this.setMeta(vrdrResource.getMeta());
-		this.setId(vrdrResource.getId());
-		setValue(vrdrResource.getValue());
-		setSubject(vrdrResource.getSubject());
-		this.setPerformer(vrdrResource.getPerformer());
-	}
 	
 	public void setValue(String code) {
-		CodeableConcept concept = CommonUtil.findConceptFromCollectionUsingSimpleString(code, MannerOfDeathUtil.valueCodesetList);
+		CodeableConcept concept = CommonUtil.findConceptFromCollectionUsingSimpleString(code, ObservationMannerOfDeathUtil.valueCodesetList);
 		if(concept != null) {
 			setValue(concept);
 		}
 	}
 	
 	public void setValue(String code, String display) {
-		CodeableConcept concept = CommonUtil.findConceptFromCollectionUsingSimpleString(code, MannerOfDeathUtil.valueCodesetList);
+		CodeableConcept concept = CommonUtil.findConceptFromCollectionUsingSimpleString(code, ObservationMannerOfDeathUtil.valueCodesetList);
 		if(concept == null) {
-			concept = CommonUtil.findConceptFromCollectionUsingSimpleString(display, MannerOfDeathUtil.valueCodesetList);
+			concept = CommonUtil.findConceptFromCollectionUsingSimpleString(display, ObservationMannerOfDeathUtil.valueCodesetList);
 		}
 		if(concept != null) {
 			setValue(concept);

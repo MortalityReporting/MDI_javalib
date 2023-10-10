@@ -8,18 +8,12 @@ import org.hl7.fhir.r4.model.Patient;
 import org.hl7.fhir.r4.model.Reference;
 
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
+import edu.gatech.chai.MDI.model.resource.util.CommonUtil;
 import edu.gatech.chai.MDI.model.resource.util.USCoreObservationLabUtil;
-import edu.gatech.chai.VRDR.model.util.CommonUtil;
 
 @ResourceDef(name = "Observation", profile = "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab")
 public class USCoreObservationLab extends Observation{
-	public USCoreObservationLab() {
-		super();
-		addCategory(USCoreObservationLabUtil.category);
-	}
-
 	public USCoreObservationLab(CodeableConcept resultCode, Patient subject) {
-		super();
 		addCategory(USCoreObservationLabUtil.category);
 		setCode(resultCode);
 		setSubject(new Reference(subject));

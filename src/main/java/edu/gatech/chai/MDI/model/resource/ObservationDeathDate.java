@@ -9,21 +9,18 @@ import org.hl7.fhir.r4.model.Location;
 import org.hl7.fhir.r4.model.Observation;
 import org.hl7.fhir.r4.model.Patient;
 import org.hl7.fhir.r4.model.Reference;
-import org.hl7.fhir.r4.model.Type;
 
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
+import edu.gatech.chai.MDI.model.resource.util.CommonUtil;
 import edu.gatech.chai.MDI.model.resource.util.ObservationDeathDateUtil;
-import edu.gatech.chai.VRDR.model.util.CommonUtil;
-import edu.gatech.chai.VRDR.model.util.DeathDateUtil;
 
 @ResourceDef(name = "Observation", profile = "http://hl7.org/fhir/us/mdi/StructureDefinition/Observation-death-date")
 public class ObservationDeathDate extends Observation {
 
 	public ObservationDeathDate() {
 		super();
-		CommonUtil.initResource(this);
-		setCode(DeathDateUtil.code);
-		setStatus(DeathDateUtil.status);
+		setCode(ObservationDeathDateUtil.code);
+		setStatus(ObservationDeathDateUtil.status);
 	}
 
 	public ObservationDeathDate(Patient patient, Date effectiveDateTime,Date datePronouncedDead) {
@@ -45,7 +42,7 @@ public class ObservationDeathDate extends Observation {
 	}
 
 	public void addEstimatedMethod() {
-		setMethod(DeathDateUtil.method);
+		setMethod(ObservationDeathDateUtil.method);
 	}
 
 	public void setMethod(String establishmentMethod){
@@ -57,7 +54,7 @@ public class ObservationDeathDate extends Observation {
 	
 	public void addDatePronouncedDead(DateTimeType dtType) {
 		ObservationComponentComponent component = new ObservationComponentComponent();
-		component.setCode(DeathDateUtil.componentDatePronouncedDeadCode);
+		component.setCode(ObservationDeathDateUtil.componentDatePronouncedDeadCode);
 		component.setValue(dtType);
 		addComponent(component);
 	}
@@ -101,7 +98,7 @@ public class ObservationDeathDate extends Observation {
 	}
 	
 	private ObservationDeathDate addPartialDateDay(Extension baseExtension, IntegerType day,String dataAbsentReason) {
-		if(dataAbsentReason != null || !dataAbsentReason.isEmpty()) {
+		if(dataAbsentReason != null && !dataAbsentReason.isEmpty()) {
 			baseExtension.addExtension(new Extension(CommonUtil.partialDateDateDayAbsentReasonURL,CommonUtil.findCodeFromCollectionUsingSimpleString(dataAbsentReason, CommonUtil.dataAbsentReasonCodeSet)));
 		}
 		else if(day != null && !day.isEmpty()){
@@ -112,8 +109,8 @@ public class ObservationDeathDate extends Observation {
 	
 	public void addPlaceOfDeath(String placeOfDeath) {
 		ObservationComponentComponent component = new ObservationComponentComponent();
-		component.setCode(DeathDateUtil.componentPlaceOfDeathCode);
-		component.setValue(CommonUtil.findConceptFromCollectionUsingSimpleString(placeOfDeath, DeathDateUtil.placeOfDeathTypeSet));
+		component.setCode(ObservationDeathDateUtil.componentPlaceOfDeathCode);
+		component.setValue(CommonUtil.findConceptFromCollectionUsingSimpleString(placeOfDeath, ObservationDeathDateUtil.placeOfDeathTypeSet));
 		addComponent(component);
 	}
 

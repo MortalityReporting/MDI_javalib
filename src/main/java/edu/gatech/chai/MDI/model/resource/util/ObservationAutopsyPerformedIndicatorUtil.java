@@ -4,8 +4,6 @@ import org.hl7.fhir.r4.model.CodeableConcept;
 import org.hl7.fhir.r4.model.Coding;
 import org.hl7.fhir.r4.model.Observation.ObservationStatus;
 
-import edu.gatech.chai.VRDR.model.util.CommonUtil;
-
 public class ObservationAutopsyPerformedIndicatorUtil {
 	public static final ObservationStatus status = ObservationStatus.FINAL;
 	public static final CodeableConcept code = new CodeableConcept().addCoding(

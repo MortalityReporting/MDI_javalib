@@ -16,6 +16,7 @@ public class BundleMessageToxToMDI extends Bundle{
 		super();
 		this.setType(BundleType.MESSAGE);
 		BundleEntryComponent bec = new BundleEntryComponent();
+		this.addEntry(bec);
 	}
 	public BundleMessageToxToMDI(Identifier identifier,MessageHeaderToxicologyToMDI messageHeaderEntry) {
 		super();
