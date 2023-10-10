@@ -12,8 +12,7 @@ import org.hl7.fhir.r4.model.Reference;
 
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.chai.MDI.model.resource.util.CompositionMDIAndEDRSUtil;
-import edu.gatech.chai.MDI.model.resource.util.MDICommonUtil;
-import edu.gatech.chai.VRDR.model.util.CommonUtil;
+import edu.gatech.chai.MDI.model.resource.util.CompositionMDIAndEDRSUtil;
 
 @ResourceDef(name = "Composition", profile = "http://hl7.org/fhir/us/mdi/StructureDefinition/Composition-mdi-and-edrs")
 public class CompositionMDIAndEDRS extends Composition{
@@ -59,7 +58,7 @@ public class CompositionMDIAndEDRS extends Composition{
 
 	public CompositionAttesterComponent addAttester(String dataAbsentReason){
 		CompositionAttesterComponent cac = new CompositionAttesterComponent();
-		// CodeType dataAbsentReasonCode = CommonUtil.findCodeFromCollectionUsingSimpleString(dataAbsentReason, CommonUtil.dataAbsentReasonCodeSet);
+		// CodeType dataAbsentReasonCode = CompositionMDIAndEDRSUtil.findCodeFromCollectionUsingSimpleString(dataAbsentReason, CompositionMDIAndEDRSUtil.dataAbsentReasonCodeSet);
 		//TODO: Add data absent reason block correctly here.
 		//cac.set
 		this.addAttester(cac);
@@ -166,32 +165,32 @@ public class CompositionMDIAndEDRS extends Composition{
 	}
 
 	public Extension addMDICaseIdExtension(String mdiCaseValue) {
-		return addCaseIdExtension(CommonUtil.trackingNumberMDIType, "", mdiCaseValue);
+		return addCaseIdExtension(CompositionMDIAndEDRSUtil.trackingNumberMDIType, "", mdiCaseValue);
 	}
 
 	public Extension addMDICaseIdExtension(String mdiCaseSystem, String mdiCaseValue) {
-		return addCaseIdExtension(CommonUtil.trackingNumberMDIType, mdiCaseSystem, mdiCaseValue);
+		return addCaseIdExtension(CompositionMDIAndEDRSUtil.trackingNumberMDIType, mdiCaseSystem, mdiCaseValue);
 	}
 
 	public Extension addEDRSCaseIdExtension(String edrsCaseValue) {
-		return addCaseIdExtension(CommonUtil.trackingNumberEDRSType, "", edrsCaseValue);
+		return addCaseIdExtension(CompositionMDIAndEDRSUtil.trackingNumberEDRSType, "", edrsCaseValue);
 	}
 
 	public Extension addEDRSCaseIdExtension(String edrsCaseSystem, String edrsCaseValue) {
-		return addCaseIdExtension(CommonUtil.trackingNumberEDRSType, edrsCaseSystem, edrsCaseValue);
+		return addCaseIdExtension(CompositionMDIAndEDRSUtil.trackingNumberEDRSType, edrsCaseSystem, edrsCaseValue);
 	}
 
 	public Extension addTOXCaseIdExtension(String toxCaseValue) {
-		return addCaseIdExtension(CommonUtil.trackingNumberTOXType, "", toxCaseValue);
+		return addCaseIdExtension(CompositionMDIAndEDRSUtil.trackingNumberTOXType, "", toxCaseValue);
 	}
 
 	public Extension addTOXCaseIdExtension(String toxCaseSystem, String toxCaseValue) {
-		return addCaseIdExtension(CommonUtil.trackingNumberTOXType, toxCaseSystem, toxCaseValue);
+		return addCaseIdExtension(CompositionMDIAndEDRSUtil.trackingNumberTOXType, toxCaseSystem, toxCaseValue);
 	}
 
 	public Extension addCaseIdExtension(CodeableConcept extensionType, String mdiCaseSystem, String mdiCaseValue) {
 		Extension returnExtension = new Extension();
-		returnExtension.setUrl(CommonUtil.trackingNumberExtensionURL);
+		returnExtension.setUrl(CompositionMDIAndEDRSUtil.trackingNumberExtensionURL);
 		Identifier identifier = new Identifier();
 		identifier.setType(extensionType);
 		if(mdiCaseSystem != null && !mdiCaseSystem.isEmpty()){
