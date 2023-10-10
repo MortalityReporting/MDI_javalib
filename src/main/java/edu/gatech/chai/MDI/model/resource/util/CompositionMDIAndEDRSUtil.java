@@ -5,7 +5,7 @@ import org.hl7.fhir.r4.model.Coding;
 
 import edu.gatech.chai.VRDR.model.util.CommonUtil;
 
-public class CompositionMDIToEDRSUtil {
+public class CompositionMDIAndEDRSUtil {
 	public static final CodeableConcept type = new CodeableConcept().addCoding(
 			new Coding(CommonUtil.loincSystemUrl,"86807-5","Death administrative information Document"));
 	public static final CodeableConcept demographicsSectionCode = new CodeableConcept().addCoding(

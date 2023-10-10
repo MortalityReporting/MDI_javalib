@@ -1,8 +1,8 @@
 package edu.gatech.chai.MDI.context;
 
 import ca.uhn.fhir.context.FhirContext;
-import edu.gatech.chai.MDI.model.resource.BundleDocumentMDIToEDRS;
-import edu.gatech.chai.MDI.model.resource.CompositionMDIToEDRS;
+import edu.gatech.chai.MDI.model.resource.BundleDocumentMDIAndEDRS;
+import edu.gatech.chai.MDI.model.resource.CompositionMDIAndEDRS;
 import edu.gatech.chai.MDI.model.resource.ObservationCauseOfDeathPart1;
 import edu.gatech.chai.MDI.model.resource.ObservationContributingCauseOfDeathPart2;
 import edu.gatech.chai.MDI.model.resource.DiagnosticReportToxicologyToMDI;
@@ -23,10 +23,10 @@ public class MDIFhirContext {
 	FhirContext ctx;
 	public MDIFhirContext() {
 		ctx = FhirContext.forR4();
-		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/mdi/StructureDefinition/Bundle-document-mdi-to-edrs",
-				BundleDocumentMDIToEDRS.class);
-		ctx.setDefaultTypeForProfile("https://fhir.org/fhir/us/mdi/StructureDefinition/Composition-mdi-to-edrs",
-				CompositionMDIToEDRS.class);
+		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/mdi/StructureDefinition/Bundle-document-mdi-and-edrs",
+				BundleDocumentMDIAndEDRS.class);
+		ctx.setDefaultTypeForProfile("https://fhir.org/fhir/us/mdi/StructureDefinition/Composition-mdi-and-edrs",
+				CompositionMDIAndEDRS.class);
 		ctx.setDefaultTypeForProfile("https://fhir.org/fhir/us/mdi/StructureDefinition/DiagnosticReport-toxicology-to-mdi",
 				DiagnosticReportToxicologyToMDI.class);
 		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/mdi/StructureDefinition/DocumentReference-mdi-case-history",

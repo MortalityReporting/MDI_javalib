@@ -17,24 +17,23 @@ import org.hl7.fhir.r4.model.Reference;
 import org.hl7.fhir.r4.model.RelatedPerson;
 
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
-import edu.gatech.chai.MDI.model.resource.util.CompositionMDIToEDRSUtil;
+import edu.gatech.chai.MDI.model.resource.util.CompositionMDIAndEDRSUtil;
 import edu.gatech.chai.MDI.model.resource.util.MDICommonUtil;
 import edu.gatech.chai.VRDR.model.util.CommonUtil;
 
-@ResourceDef(name = "Composition", profile = "http://hl7.org/fhir/us/mdi/StructureDefinition/Composition-mdi-to-edrs")
-public class CompositionMDIToEDRS extends Composition{
-	
+@ResourceDef(name = "Composition", profile = "http://hl7.org/fhir/us/mdi/StructureDefinition/Composition-mdi-and-edrs")
+public class CompositionMDIAndEDRS extends Composition{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 5634970999252166773L;
 
-	public CompositionMDIToEDRS() {
+	public CompositionMDIAndEDRS() {
 		super();
-		this.setType(CompositionMDIToEDRSUtil.type);
+		this.setType(CompositionMDIAndEDRSUtil.type);
 	}
 	
-	public CompositionMDIToEDRS(Identifier identifier, CompositionStatus status, Date date, Patient subject,Practitioner author) {
+	public CompositionMDIAndEDRS(Identifier identifier, CompositionStatus status, Date date, Patient subject,Practitioner author) {
 		super();
 		Reference authorRef = new Reference(author);
 		commonInit(identifier,status,date,subject,authorRef);
@@ -52,7 +51,7 @@ public class CompositionMDIToEDRS extends Composition{
 		this.setSubject(subjectRef);
 		this.addAuthor(authorRef);
 		//Generic Title
-		this.setTitle("MDI-To-EDRS Record:"+identifier.getValue());
+		this.setTitle("MDI-And-EDRS Record:"+identifier.getValue());
 	}
 
 	public CompositionAttesterComponent addAttester(Reference attestorRef){
@@ -73,31 +72,31 @@ public class CompositionMDIToEDRS extends Composition{
 	}
 	
 	public SectionComponent createDemographicsSection() {
-		return createSection(CompositionMDIToEDRSUtil.demographicsSectionCode);
+		return createSection(CompositionMDIAndEDRSUtil.demographicsSectionCode);
 	}
 	
 	public SectionComponent createCircumstancesSection() {
-		return createSection(CompositionMDIToEDRSUtil.circumstancesSectionCode);
+		return createSection(CompositionMDIAndEDRSUtil.circumstancesSectionCode);
 	}
 	
 	public SectionComponent createJurisdictionSection() {
-		return createSection(CompositionMDIToEDRSUtil.jurisdictionSectionCode);
+		return createSection(CompositionMDIAndEDRSUtil.jurisdictionSectionCode);
 	}
 	
 	public SectionComponent createCauseMannerSection() {
-		return createSection(CompositionMDIToEDRSUtil.causeMannerSectionCode);
+		return createSection(CompositionMDIAndEDRSUtil.causeMannerSectionCode);
 	}
 	
 	public SectionComponent createMedicalHistorySection() {
-		return createSection(CompositionMDIToEDRSUtil.medicalHistorySectionCode);
+		return createSection(CompositionMDIAndEDRSUtil.medicalHistorySectionCode);
 	}
 	
 	public SectionComponent createExamAutopsySection() {
-		return createSection(CompositionMDIToEDRSUtil.examAutopsySectionCode);
+		return createSection(CompositionMDIAndEDRSUtil.examAutopsySectionCode);
 	}
 	
 	public SectionComponent createNarrativeSection() {
-		return createSection(CompositionMDIToEDRSUtil.narrativeSectionCode);
+		return createSection(CompositionMDIAndEDRSUtil.narrativeSectionCode);
 	}
 	
 	protected SectionComponent createSection(CodeableConcept codeableConcept) {
@@ -108,7 +107,7 @@ public class CompositionMDIToEDRS extends Composition{
 	}
 	
 	public SectionComponent getDemographicsSection() {
-		SectionComponent returnValue = getSection(CompositionMDIToEDRSUtil.demographicsSectionCode);
+		SectionComponent returnValue = getSection(CompositionMDIAndEDRSUtil.demographicsSectionCode);
 		if(returnValue == null) {
 			returnValue = createDemographicsSection();
 		}
@@ -116,7 +115,7 @@ public class CompositionMDIToEDRS extends Composition{
 	}
 	
 	public SectionComponent getCircumstancesSection() {
-		SectionComponent returnValue = getSection(CompositionMDIToEDRSUtil.circumstancesSectionCode);
+		SectionComponent returnValue = getSection(CompositionMDIAndEDRSUtil.circumstancesSectionCode);
 		if(returnValue == null) {
 			returnValue = createCircumstancesSection();
 		}
@@ -124,7 +123,7 @@ public class CompositionMDIToEDRS extends Composition{
 	}
 	
 	public SectionComponent getJurisdictionSection() {
-		SectionComponent returnValue = getSection(CompositionMDIToEDRSUtil.jurisdictionSectionCode);
+		SectionComponent returnValue = getSection(CompositionMDIAndEDRSUtil.jurisdictionSectionCode);
 		if(returnValue == null) {
 			returnValue = createJurisdictionSection();
 		}
@@ -132,7 +131,7 @@ public class CompositionMDIToEDRS extends Composition{
 	}
 	
 	public SectionComponent getCauseMannerSection() {
-		SectionComponent returnValue = getSection(CompositionMDIToEDRSUtil.causeMannerSectionCode);
+		SectionComponent returnValue = getSection(CompositionMDIAndEDRSUtil.causeMannerSectionCode);
 		if(returnValue == null) {
 			returnValue = createCauseMannerSection();
 		}
@@ -140,7 +139,7 @@ public class CompositionMDIToEDRS extends Composition{
 	}
 	
 	public SectionComponent getMedicalHistorySection() {
-		SectionComponent returnValue = getSection(CompositionMDIToEDRSUtil.medicalHistorySectionCode);
+		SectionComponent returnValue = getSection(CompositionMDIAndEDRSUtil.medicalHistorySectionCode);
 		if(returnValue == null) {
 			returnValue = createMedicalHistorySection();
 		}
@@ -148,7 +147,7 @@ public class CompositionMDIToEDRS extends Composition{
 	}
 	
 	public SectionComponent getExamAutopsySection() {
-		SectionComponent returnValue = getSection(CompositionMDIToEDRSUtil.examAutopsySectionCode);
+		SectionComponent returnValue = getSection(CompositionMDIAndEDRSUtil.examAutopsySectionCode);
 		if(returnValue == null) {
 			returnValue = createExamAutopsySection();
 		}
@@ -156,7 +155,7 @@ public class CompositionMDIToEDRS extends Composition{
 	}
 	
 	public SectionComponent getNarrativeSection() {
-		return getSection(CompositionMDIToEDRSUtil.narrativeSectionCode);
+		return getSection(CompositionMDIAndEDRSUtil.narrativeSectionCode);
 	}
 	
 	protected SectionComponent getSection(CodeableConcept codeableConcept) {
