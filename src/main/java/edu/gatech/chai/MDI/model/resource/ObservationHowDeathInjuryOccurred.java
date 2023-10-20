@@ -21,6 +21,7 @@ public class ObservationHowDeathInjuryOccurred extends Observation {
 	public ObservationHowDeathInjuryOccurred(Patient subject, String value) {
 		this();
 		Reference ref = new Reference(subject);
+		setStatus(ObservationStatus.FINAL);
 		setSubject(ref);
 		setValue(new CodeableConcept().setText(value));
 	}

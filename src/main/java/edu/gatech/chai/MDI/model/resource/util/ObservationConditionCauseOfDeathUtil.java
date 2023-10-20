@@ -1,8 +1,5 @@
 package edu.gatech.chai.MDI.model.resource.util;
 
-import java.util.Arrays;
-import java.util.HashSet;
-
 import org.hl7.fhir.r4.model.CodeableConcept;
 import org.hl7.fhir.r4.model.Coding;
 

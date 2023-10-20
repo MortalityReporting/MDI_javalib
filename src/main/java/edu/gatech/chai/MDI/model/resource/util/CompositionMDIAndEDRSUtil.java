@@ -3,7 +3,7 @@ package edu.gatech.chai.MDI.model.resource.util;
 import org.hl7.fhir.r4.model.CodeableConcept;
 import org.hl7.fhir.r4.model.Coding;
 
-public class CompositionMDIToEDRSUtil {
+public class CompositionMDIAndEDRSUtil {
 	public static final CodeableConcept type = new CodeableConcept().addCoding(
 			new Coding(CommonUtil.loincSystemUrl,"86807-5","Death administrative information Document"));
 	public static final CodeableConcept demographicsSectionCode = new CodeableConcept().addCoding(

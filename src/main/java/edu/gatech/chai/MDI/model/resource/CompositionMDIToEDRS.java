@@ -11,8 +11,7 @@ import org.hl7.fhir.r4.model.Practitioner;
 import org.hl7.fhir.r4.model.Reference;
 
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
-import edu.gatech.chai.MDI.model.resource.util.CommonUtil;
-import edu.gatech.chai.MDI.model.resource.util.CompositionMDIToEDRSUtil;
+import edu.gatech.chai.MDI.model.resource.util.CompositionMDIAndEDRSUtil;
 
 @ResourceDef(name = "Composition", profile = "http://hl7.org/fhir/us/mdi/StructureDefinition/Composition-mdi-to-edrs")
 public class CompositionMDIToEDRS extends Composition{
@@ -24,7 +23,7 @@ public class CompositionMDIToEDRS extends Composition{
 
 	public CompositionMDIToEDRS() {
 		super();
-		this.setType(CompositionMDIToEDRSUtil.type);
+		this.setType(CompositionMDIAndEDRSUtil.type);
 	}
 	
 	public CompositionMDIToEDRS(Identifier identifier, CompositionStatus status, Date date, Patient subject,Practitioner author) {
@@ -67,31 +66,31 @@ public class CompositionMDIToEDRS extends Composition{
 	}
 	
 	public SectionComponent createDemographicsSection() {
-		return createSection(CompositionMDIToEDRSUtil.demographicsSectionCode);
+		return createSection(CompositionMDIAndEDRSUtil.demographicsSectionCode);
 	}
 	
 	public SectionComponent createCircumstancesSection() {
-		return createSection(CompositionMDIToEDRSUtil.circumstancesSectionCode);
+		return createSection(CompositionMDIAndEDRSUtil.circumstancesSectionCode);
 	}
 	
 	public SectionComponent createJurisdictionSection() {
-		return createSection(CompositionMDIToEDRSUtil.jurisdictionSectionCode);
+		return createSection(CompositionMDIAndEDRSUtil.jurisdictionSectionCode);
 	}
 	
 	public SectionComponent createCauseMannerSection() {
-		return createSection(CompositionMDIToEDRSUtil.causeMannerSectionCode);
+		return createSection(CompositionMDIAndEDRSUtil.causeMannerSectionCode);
 	}
 	
 	public SectionComponent createMedicalHistorySection() {
-		return createSection(CompositionMDIToEDRSUtil.medicalHistorySectionCode);
+		return createSection(CompositionMDIAndEDRSUtil.medicalHistorySectionCode);
 	}
 	
 	public SectionComponent createExamAutopsySection() {
-		return createSection(CompositionMDIToEDRSUtil.examAutopsySectionCode);
+		return createSection(CompositionMDIAndEDRSUtil.examAutopsySectionCode);
 	}
 	
 	public SectionComponent createNarrativeSection() {
-		return createSection(CompositionMDIToEDRSUtil.narrativeSectionCode);
+		return createSection(CompositionMDIAndEDRSUtil.narrativeSectionCode);
 	}
 	
 	protected SectionComponent createSection(CodeableConcept codeableConcept) {
@@ -102,7 +101,7 @@ public class CompositionMDIToEDRS extends Composition{
 	}
 	
 	public SectionComponent getDemographicsSection() {
-		SectionComponent returnValue = getSection(CompositionMDIToEDRSUtil.demographicsSectionCode);
+		SectionComponent returnValue = getSection(CompositionMDIAndEDRSUtil.demographicsSectionCode);
 		if(returnValue == null) {
 			returnValue = createDemographicsSection();
 		}
@@ -110,7 +109,7 @@ public class CompositionMDIToEDRS extends Composition{
 	}
 	
 	public SectionComponent getCircumstancesSection() {
-		SectionComponent returnValue = getSection(CompositionMDIToEDRSUtil.circumstancesSectionCode);
+		SectionComponent returnValue = getSection(CompositionMDIAndEDRSUtil.circumstancesSectionCode);
 		if(returnValue == null) {
 			returnValue = createCircumstancesSection();
 		}
@@ -118,7 +117,7 @@ public class CompositionMDIToEDRS extends Composition{
 	}
 	
 	public SectionComponent getJurisdictionSection() {
-		SectionComponent returnValue = getSection(CompositionMDIToEDRSUtil.jurisdictionSectionCode);
+		SectionComponent returnValue = getSection(CompositionMDIAndEDRSUtil.jurisdictionSectionCode);
 		if(returnValue == null) {
 			returnValue = createJurisdictionSection();
 		}
@@ -126,7 +125,7 @@ public class CompositionMDIToEDRS extends Composition{
 	}
 	
 	public SectionComponent getCauseMannerSection() {
-		SectionComponent returnValue = getSection(CompositionMDIToEDRSUtil.causeMannerSectionCode);
+		SectionComponent returnValue = getSection(CompositionMDIAndEDRSUtil.causeMannerSectionCode);
 		if(returnValue == null) {
 			returnValue = createCauseMannerSection();
 		}
@@ -134,7 +133,7 @@ public class CompositionMDIToEDRS extends Composition{
 	}
 	
 	public SectionComponent getMedicalHistorySection() {
-		SectionComponent returnValue = getSection(CompositionMDIToEDRSUtil.medicalHistorySectionCode);
+		SectionComponent returnValue = getSection(CompositionMDIAndEDRSUtil.medicalHistorySectionCode);
 		if(returnValue == null) {
 			returnValue = createMedicalHistorySection();
 		}
@@ -142,7 +141,7 @@ public class CompositionMDIToEDRS extends Composition{
 	}
 	
 	public SectionComponent getExamAutopsySection() {
-		SectionComponent returnValue = getSection(CompositionMDIToEDRSUtil.examAutopsySectionCode);
+		SectionComponent returnValue = getSection(CompositionMDIAndEDRSUtil.examAutopsySectionCode);
 		if(returnValue == null) {
 			returnValue = createExamAutopsySection();
 		}
@@ -150,7 +149,7 @@ public class CompositionMDIToEDRS extends Composition{
 	}
 	
 	public SectionComponent getNarrativeSection() {
-		return getSection(CompositionMDIToEDRSUtil.narrativeSectionCode);
+		return getSection(CompositionMDIAndEDRSUtil.narrativeSectionCode);
 	}
 	
 	protected SectionComponent getSection(CodeableConcept codeableConcept) {
@@ -166,32 +165,32 @@ public class CompositionMDIToEDRS extends Composition{
 	}
 
 	public Extension addMDICaseIdExtension(String mdiCaseValue) {
-		return addCaseIdExtension(CommonUtil.trackingNumberMDIType, "", mdiCaseValue);
+		return addCaseIdExtension(CompositionMDIAndEDRSUtil.trackingNumberMDIType, "", mdiCaseValue);
 	}
 
 	public Extension addMDICaseIdExtension(String mdiCaseSystem, String mdiCaseValue) {
-		return addCaseIdExtension(CommonUtil.trackingNumberMDIType, mdiCaseSystem, mdiCaseValue);
+		return addCaseIdExtension(CompositionMDIAndEDRSUtil.trackingNumberMDIType, mdiCaseSystem, mdiCaseValue);
 	}
 
 	public Extension addEDRSCaseIdExtension(String edrsCaseValue) {
-		return addCaseIdExtension(CommonUtil.trackingNumberEDRSType, "", edrsCaseValue);
+		return addCaseIdExtension(CompositionMDIAndEDRSUtil.trackingNumberEDRSType, "", edrsCaseValue);
 	}
 
 	public Extension addEDRSCaseIdExtension(String edrsCaseSystem, String edrsCaseValue) {
-		return addCaseIdExtension(CommonUtil.trackingNumberEDRSType, edrsCaseSystem, edrsCaseValue);
+		return addCaseIdExtension(CompositionMDIAndEDRSUtil.trackingNumberEDRSType, edrsCaseSystem, edrsCaseValue);
 	}
 
 	public Extension addTOXCaseIdExtension(String toxCaseValue) {
-		return addCaseIdExtension(CommonUtil.trackingNumberTOXType, "", toxCaseValue);
+		return addCaseIdExtension(CompositionMDIAndEDRSUtil.trackingNumberTOXType, "", toxCaseValue);
 	}
 
 	public Extension addTOXCaseIdExtension(String toxCaseSystem, String toxCaseValue) {
-		return addCaseIdExtension(CommonUtil.trackingNumberTOXType, toxCaseSystem, toxCaseValue);
+		return addCaseIdExtension(CompositionMDIAndEDRSUtil.trackingNumberTOXType, toxCaseSystem, toxCaseValue);
 	}
 
 	public Extension addCaseIdExtension(CodeableConcept extensionType, String mdiCaseSystem, String mdiCaseValue) {
 		Extension returnExtension = new Extension();
-		returnExtension.setUrl(CommonUtil.trackingNumberExtensionURL);
+		returnExtension.setUrl(CompositionMDIAndEDRSUtil.trackingNumberExtensionURL);
 		Identifier identifier = new Identifier();
 		identifier.setType(extensionType);
 		if(mdiCaseSystem != null && !mdiCaseSystem.isEmpty()){
