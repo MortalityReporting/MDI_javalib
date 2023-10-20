@@ -13,7 +13,12 @@ import edu.gatech.chai.MDI.model.resource.util.USCoreObservationLabUtil;
 
 @ResourceDef(name = "Observation", profile = "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab")
 public class USCoreObservationLab extends Observation{
+	public USCoreObservationLab() {
+		super();
+	}
+	
 	public USCoreObservationLab(CodeableConcept resultCode, Patient subject) {
+		super();
 		addCategory(USCoreObservationLabUtil.category);
 		setCode(resultCode);
 		setSubject(new Reference(subject));

@@ -19,8 +19,13 @@ public class DiagnosticReportToxicologyToMDI extends DiagnosticReport{
 	 * 
 	 */
 	private static final long serialVersionUID = -4006245721303024706L;
+
+	public DiagnosticReportToxicologyToMDI() {
+		super();
+	}
 	
 	public DiagnosticReportToxicologyToMDI(DiagnosticReportStatus status, Patient subject, CodeableConcept code, Date effective, Date issued) {
+		super();
 		this.setStatus(status);
 		this.setCode(code);
 		this.setSubject(new Reference(subject));
