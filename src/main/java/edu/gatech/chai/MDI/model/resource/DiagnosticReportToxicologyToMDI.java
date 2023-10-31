@@ -29,6 +29,8 @@ public class DiagnosticReportToxicologyToMDI extends DiagnosticReport{
 		this.setStatus(status);
 		this.setCode(code);
 		this.setSubject(new Reference(subject));
+		this.setEffective(new DateTimeType(effective));
+		this.setIssued(issued);
 		this.addCategory(DiagnosticReportToxicologyToMDIUtil.category);
 	}
 	
