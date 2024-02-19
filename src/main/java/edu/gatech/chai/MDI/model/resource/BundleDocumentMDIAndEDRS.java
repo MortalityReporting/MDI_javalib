@@ -5,22 +5,22 @@ import org.hl7.fhir.r4.model.Identifier;
 
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
 
-@ResourceDef(name = "Bundle", profile = "http://hl7.org/fhir/us/mdi/StructureDefinition/Bundle-document-mdi-to-edrs")
-public class BundleDocumentMDIToEDRS extends Bundle{
+@ResourceDef(name = "Bundle", profile = "http://hl7.org/fhir/us/mdi/StructureDefinition/Bundle-document-mdi-and-edrs")
+public class BundleDocumentMDIAndEDRS extends Bundle{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 7622309533132493325L;
 
-	public BundleDocumentMDIToEDRS() {
+	public BundleDocumentMDIAndEDRS() {
 		super();
 		this.setType(BundleType.DOCUMENT);
 		BundleEntryComponent bec = new BundleEntryComponent();
-		CompositionMDIToEDRS compositionEntry = new CompositionMDIToEDRS();
+		CompositionMDIAndEDRS compositionEntry = new CompositionMDIAndEDRS();
 		bec.setResource(compositionEntry);
 		this.addEntry(bec);
 	}
-	public BundleDocumentMDIToEDRS(Identifier identifier,CompositionMDIToEDRS compositionEntry) {
+	public BundleDocumentMDIAndEDRS(Identifier identifier,CompositionMDIAndEDRS compositionEntry) {
 		super();
 		this.setIdentifier(identifier);
 		this.setType(BundleType.DOCUMENT);
@@ -30,12 +30,12 @@ public class BundleDocumentMDIToEDRS extends Bundle{
 	}
 	
 	//This Composition must always be the correct case here.
-	public CompositionMDIToEDRS getCompositionMDIToEDRS() {
-		return (CompositionMDIToEDRS) this.getEntryFirstRep().getResource();
+	public CompositionMDIAndEDRS getCompositionMDIAndEDRS() {
+		return (CompositionMDIAndEDRS) this.getEntryFirstRep().getResource();
 	}
 
 	//Helper function to help init full urls AFTER the id of thecomposition has been set.
-	public BundleDocumentMDIToEDRS setFullUrlOnCompositionMDIToEDRS() {
+	public BundleDocumentMDIAndEDRS setFullUrlOnCompositionMDIAndEDRS() {
 		this.getEntryFirstRep().setFullUrl(this.getEntryFirstRep().getResource().getResourceType()+"/"+this.getEntryFirstRep().getResource().getId());
 		return this;
 	}

@@ -10,8 +10,10 @@ import org.hl7.fhir.r4.model.StringType;
 
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.chai.MDI.model.resource.util.ObservationConditionCauseOfDeathUtil;
+import edu.gatech.chai.VRCL.model.PractitionerVitalRecords;
+import edu.gatech.chai.VRDR.model.Certifier;
 
-@ResourceDef(name = "Observation", profile = "http://hl7.org/fhir/us/mdi/StructureDefinition/Observation-cause-of-death-part1")
+@ResourceDef(name = "Observation", profile = "http://hl7.org/fhir/us/mdi/StructureDefinition/Observation-mdi-cause-of-death-part1")
 public class ObservationCauseOfDeathPart1 extends Observation {
 	/**
 	 * 
@@ -23,7 +25,16 @@ public class ObservationCauseOfDeathPart1 extends Observation {
 		this.setCode(ObservationConditionCauseOfDeathUtil.code);
 	}
 	
-	public ObservationCauseOfDeathPart1(Patient patient, Practitioner practitioner, String value, int lineNumber, String interval) {
+	public ObservationCauseOfDeathPart1(Patient patient, PractitionerVitalRecords practitioner, String value, int lineNumber, String interval) {
+		this();
+		setPatient(patient);
+		addPerformer(practitioner);
+		setValue(new CodeableConcept().setText(value));
+		setLineNumber(lineNumber);
+		setInterval(interval);
+	}
+
+	public ObservationCauseOfDeathPart1(Patient patient, Certifier practitioner, String value, int lineNumber, String interval) {
 		this();
 		setPatient(patient);
 		addPerformer(practitioner);

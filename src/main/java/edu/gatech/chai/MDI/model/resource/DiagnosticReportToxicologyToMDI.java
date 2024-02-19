@@ -3,6 +3,7 @@ package edu.gatech.chai.MDI.model.resource;
 import java.util.Date;
 
 import org.hl7.fhir.r4.model.CodeableConcept;
+import org.hl7.fhir.r4.model.DateTimeType;
 import org.hl7.fhir.r4.model.DiagnosticReport;
 import org.hl7.fhir.r4.model.Extension;
 import org.hl7.fhir.r4.model.Identifier;
@@ -24,6 +25,8 @@ public class DiagnosticReportToxicologyToMDI extends DiagnosticReport{
 		this.setStatus(status);
 		this.setCode(code);
 		this.setSubject(new Reference(subject));
+		this.setEffective(new DateTimeType(effective));
+		this.setIssued(issued);
 		this.addCategory(DiagnosticReportToxicologyToMDIUtil.category);
 	}
 	

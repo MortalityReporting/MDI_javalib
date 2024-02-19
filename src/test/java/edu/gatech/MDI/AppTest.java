@@ -2,7 +2,9 @@ package edu.gatech.MDI;
 
 
 import edu.gatech.chai.MDI.context.MDIFhirContext;
-import edu.gatech.chai.MDI.model.resource.BundleDocumentMDIToEDRS;
+import edu.gatech.chai.MDI.model.resource.BundleDocumentMDIAndEDRS;
+import edu.gatech.chai.MDI.model.resource.ObservationCauseOfDeathPart1;
+import edu.gatech.chai.MDI.model.resource.ObservationMannerOfDeath;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -35,7 +37,7 @@ public class AppTest
 
     public void testProducingDeathCertificateDocument()
     {
-    	BundleDocumentMDIToEDRS bundle = BuildMDIToEdrsDocument.buildExampleBundleDocumentMDIToEDRS();
+    	BundleDocumentMDIAndEDRS bundle = BuildMDIAndEdrsDocument.buildExampleBundleDocumentMDIAndEDRS();
     	String encoded = context.getCtx().newJsonParser().encodeResourceToString(bundle);
     	System.out.println(encoded);
     	assertTrue( true );

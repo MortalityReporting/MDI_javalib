@@ -29,8 +29,8 @@ import org.hl7.fhir.r4.model.Reference;
 import org.hl7.fhir.r4.model.Resource;
 import org.hl7.fhir.r4.model.StringType;
 
-import edu.gatech.chai.MDI.model.resource.BundleDocumentMDIToEDRS;
-import edu.gatech.chai.MDI.model.resource.CompositionMDIToEDRS;
+import edu.gatech.chai.MDI.model.resource.BundleDocumentMDIAndEDRS;
+import edu.gatech.chai.MDI.model.resource.CompositionMDIAndEDRS;
 import edu.gatech.chai.MDI.model.resource.ObservationAutopsyPerformedIndicator;
 import edu.gatech.chai.MDI.model.resource.ObservationCauseOfDeathPart1;
 import edu.gatech.chai.MDI.model.resource.ObservationContributingCauseOfDeathPart2;
@@ -42,22 +42,22 @@ import edu.gatech.chai.MDI.model.resource.ObservationTobaccoUseContributedToDeat
 import edu.gatech.chai.MDI.model.resource.ProcedureDeathCertification;
 import edu.gatech.chai.MDI.model.resource.util.CommonUtil;
 
-public class BuildMDIToEdrsDocument {
+public class BuildMDIAndEdrsDocument {
 	public static SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-	public static BundleDocumentMDIToEDRS buildExampleBundleDocumentMDIToEDRS() {
+	public static BundleDocumentMDIAndEDRS buildExampleBundleDocumentMDIAndEDRS() {
 		List<Resource> contents = new ArrayList<Resource>();
 		//MDIToEDRSDocument contains the top-level item that represents the entire bundle
-    	BundleDocumentMDIToEDRS bundleDocument = new BundleDocumentMDIToEDRS();
+    	BundleDocumentMDIAndEDRS bundleDocument = new BundleDocumentMDIAndEDRS();
 		initResourceForTesting(bundleDocument);
 		//DeathCertificate is the main fhir resource that contains sectional references to everything else
-    	CompositionMDIToEDRS mainComposition = bundleDocument.getCompositionMDIToEDRS();
+    	CompositionMDIAndEDRS mainComposition = bundleDocument.getCompositionMDIAndEDRS();
 		mainComposition.addMDICaseIdExtension("12345");
 		mainComposition.addEDRSCaseIdExtension("67890");
 		mainComposition.setStatus(CompositionStatus.FINAL);
 		mainComposition.setTitle("Example MDI-To-EDRS Record. TEST ONLY");
     	initResourceForTesting(mainComposition);
 		//Every resource must have a fullUrl, and thefullurl may depend on the id, so set the id THEN set the full url
-		bundleDocument.setFullUrlOnCompositionMDIToEDRS();
+		bundleDocument.setFullUrlOnCompositionMDIAndEDRS();
 		//Documents must have a date. This must be when the bundle was assembled
 		bundleDocument.setTimestamp(new Date());
     	bundleDocument.setIdentifier(new Identifier().setValue("123").setSystem("urn:test"));

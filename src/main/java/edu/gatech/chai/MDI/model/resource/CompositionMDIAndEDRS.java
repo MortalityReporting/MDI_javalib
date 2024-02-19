@@ -12,28 +12,31 @@ import org.hl7.fhir.r4.model.Reference;
 
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.chai.MDI.model.resource.util.CompositionMDIAndEDRSUtil;
+import edu.gatech.chai.USCore.model.util.CommonUtil;
+import edu.gatech.chai.VRCL.model.PatientVitalRecords;
+import edu.gatech.chai.VRCL.model.PractitionerVitalRecords;
+import edu.gatech.chai.MDI.model.resource.util.CompositionMDIAndEDRSUtil;
 
-@ResourceDef(name = "Composition", profile = "http://hl7.org/fhir/us/mdi/StructureDefinition/Composition-mdi-to-edrs")
-public class CompositionMDIToEDRS extends Composition{
-	
+@ResourceDef(name = "Composition", profile = "http://hl7.org/fhir/us/mdi/StructureDefinition/Composition-mdi-and-edrs")
+public class CompositionMDIAndEDRS extends Composition{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 5634970999252166773L;
 
-	public CompositionMDIToEDRS() {
+	public CompositionMDIAndEDRS() {
 		super();
 		this.setType(CompositionMDIAndEDRSUtil.type);
 	}
 	
-	public CompositionMDIToEDRS(Identifier identifier, CompositionStatus status, Date date, Patient subject,Practitioner author) {
+	public CompositionMDIAndEDRS(Identifier identifier, CompositionStatus status, Date date, PatientVitalRecords subject,PractitionerVitalRecords author) {
 		super();
 		Reference authorRef = new Reference(author);
 		commonInit(identifier,status,date,subject,authorRef);
 	}
 	
 	
-	public void commonInit(Identifier identifier, CompositionStatus status, Date date, Patient subject,Reference authorRef) {
+	public void commonInit(Identifier identifier, CompositionStatus status, Date date, PatientVitalRecords subject,Reference authorRef) {
 		this.setIdentifier(identifier);
 		this.setStatus(status);
 		if(date == null) {
@@ -44,7 +47,7 @@ public class CompositionMDIToEDRS extends Composition{
 		this.setSubject(subjectRef);
 		this.addAuthor(authorRef);
 		//Generic Title
-		this.setTitle("MDI-To-EDRS Record:"+identifier.getValue());
+		this.setTitle("MDI-And-EDRS Record:"+identifier.getValue());
 	}
 
 	public CompositionAttesterComponent addAttester(Reference attestorRef){
@@ -58,9 +61,8 @@ public class CompositionMDIToEDRS extends Composition{
 
 	public CompositionAttesterComponent addAttester(String dataAbsentReason){
 		CompositionAttesterComponent cac = new CompositionAttesterComponent();
-		// CodeType dataAbsentReasonCode = CommonUtil.findCodeFromCollectionUsingSimpleString(dataAbsentReason, CommonUtil.dataAbsentReasonCodeSet);
-		//TODO: Add data absent reason block correctly here.
-		//cac.set
+		// CodeType dataAbsentReasonCode = CompositionMDIAndEDRSUtil.findCodeFromCollectionUsingSimpleString(dataAbsentReason, CompositionMDIAndEDRSUtil.dataAbsentReasonCodeSet);
+		CommonUtil.setDataAbsentReason(cac.getParty(), CommonUtil.findCodeFromCollectionUsingSimpleString(dataAbsentReason, CommonUtil.dataAbsentReasonCodeSet));
 		this.addAttester(cac);
 		return cac;
 	}
