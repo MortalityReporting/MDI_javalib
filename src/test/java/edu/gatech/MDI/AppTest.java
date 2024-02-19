@@ -3,8 +3,6 @@ package edu.gatech.MDI;
 
 import edu.gatech.chai.MDI.context.MDIFhirContext;
 import edu.gatech.chai.MDI.model.resource.BundleDocumentMDIAndEDRS;
-import edu.gatech.chai.MDI.model.resource.ObservationCauseOfDeathPart1;
-import edu.gatech.chai.MDI.model.resource.ObservationMannerOfDeath;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
