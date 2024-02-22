@@ -2,3 +2,5 @@ target/*
 .classpath
 .project
 .settings/*
+MDI_javalib/target/*
+VRDR_javalib/target/*
