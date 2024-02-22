@@ -1,0 +1,4 @@
+[submodule "VRDR_javalib"]
+	path = VRDR_javalib
+	url = https://github.com/nightingaleproject/VRDR_javalib.git
+	branch = VRCL_alignment

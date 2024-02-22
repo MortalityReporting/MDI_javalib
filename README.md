@@ -13,6 +13,10 @@ This java library implements the FHIR MDI standard ```http://hl7.org/fhir/us/mdi
 
 * MDI IG: ```http://hl7.org/fhir/us/mdi/STU1/```
 
+# Instllation
+
+This project is submodule based project 
+
 # Info
 
 This project uses the hapi-fhir java libraries extensively to create its representation.
@@ -22,7 +26,7 @@ It is recommended to have a strong understanding of the resource extension secti
 This project is made up of several major components:
 
 * ```edu.gatech.MDI.model``` Contains all the custom resources needed for the MDI IG.
-* ```edu.gatech.v.model.util``` Contains utility methods like custom codes and static definitions for data structure resources.
+* ```edu.gatech.MDI.model.util``` Contains utility methods like custom codes and static definitions for data structure resources.
 
 You can refer to the ```src/test``` directory for an in-depth unit test example on how to construct a full MDI-to-EDRS record, or a full TOX-to-MDI, and serialize it to JSON
 

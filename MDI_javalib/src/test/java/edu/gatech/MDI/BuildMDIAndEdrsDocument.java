@@ -24,6 +24,7 @@ import org.hl7.fhir.r4.model.Location;
 import org.hl7.fhir.r4.model.Observation.ObservationStatus;
 import org.hl7.fhir.r4.model.Patient;
 import org.hl7.fhir.r4.model.Practitioner;
+import org.hl7.fhir.r4.model.Procedure;
 import org.hl7.fhir.r4.model.Procedure.ProcedureStatus;
 import org.hl7.fhir.r4.model.Reference;
 import org.hl7.fhir.r4.model.Resource;
@@ -168,7 +169,9 @@ public class BuildMDIAndEdrsDocument {
         try{
             DeathCertificationProcedure deathCertification = new DeathCertificationProcedure(formatter.parse("03-12-2022"));
             deathCertification.setSubject(decedentReference);
-            deathCertification.addPerformer(certifier, "Medical Examiner/Coroner");
+            Procedure.ProcedurePerformerComponent procedurePerformerComponent = new Procedure.ProcedurePerformerComponent();
+            procedurePerformerComponent.setActor(new Reference(certifier.getId()));
+            procedurePerformerComponent.setFunction(CommonUtil.findConceptFromCollectionUsingSimpleString("Medical Examiner/Coroner", edu.gatech.chai.VRDR.model.util.CommonUtil.certifierTypeSet));
             initResourceForTesting(deathCertification);
             //Will probably always be completed if the deathCertification exists, but my be stopped, or in-progress, or entered-in-error given the context.
             deathCertification.setStatus(ProcedureStatus.COMPLETED);
@@ -197,7 +200,10 @@ public class BuildMDIAndEdrsDocument {
         causeMannerSection.addEntry(new Reference(conditionContrib));
         contents.add(conditionContrib);
         // MannerOfDeath
-        MannerOfDeath manner = new MannerOfDeath("Natural death", decedent, certifier);
+        MannerOfDeath manner = new MannerOfDeath();
+        manner.setValue("Natural death");
+        manner.setSubject(decedentReference);
+        manner.addPerformer(practitionerReference);
         //Depending on context, the observation may be initial, or if certified, may be final
         manner.setStatus(ObservationStatus.FINAL);
         initResourceForTesting(manner);

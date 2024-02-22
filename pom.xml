@@ -1,46 +1,32 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>edu.gatech.chai</groupId>
-  <artifactId>MDI</artifactId>
-  <version>1.2.0-STU-2.0.0-US</version>
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
-    <fhir.version>5.6.0</fhir.version>
-  </properties>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-        <groupId>ca.uhn.hapi.fhir</groupId>
-        <artifactId>hapi-fhir-base</artifactId>
-        <version>${fhir.version}</version>
-    </dependency>
-    <dependency>
-        <groupId>ca.uhn.hapi.fhir</groupId>
-        <artifactId>hapi-fhir-structures-r4</artifactId>
-        <version>${fhir.version}</version>
-    </dependency>
-    <dependency>
-        <groupId>ca.uhn.hapi.fhir</groupId>
-        <artifactId>hapi-fhir-validation</artifactId>
-        <version>${fhir.version}</version>
-    </dependency>
-    <dependency>
-        <groupId>ca.uhn.hapi.fhir</groupId>
-        <artifactId>hapi-fhir-validation-resources-r4</artifactId>
-        <version>${fhir.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>edu.gatech</groupId>
-      <artifactId>vrdr</artifactId>
-      <version>4.0.4</version>
-  </dependency>
-  </dependencies>
+    <groupId>edu.gatech</groupId>
+    <artifactId>mdi_packaging</artifactId>
+    <version>1.2.0-STU-2.0.0-US</version>
+    <packaging>pom</packaging>
+
+    <name>MDI_packaging</name>
+    <url>https://github.com/MortalityReporting/MDI_javalib.git</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <fhir.version>4.1.0</fhir.version>
+    </properties>
+
+    <modules>
+        <module>MDI_javalib</module>
+        <module>VRDR_javalib</module>
+    </modules>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/nightingaleproject/MDI_javalib</url>
+        </repository>
+    </distributionManagement>
 </project>
