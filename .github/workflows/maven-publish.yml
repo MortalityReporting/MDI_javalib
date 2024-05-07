@@ -34,5 +34,6 @@ jobs:
 
     - name: Publish to GitHub Packages Apache Maven
       run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml
+      working-directory: ./MDI_javalib
       env:
         GITHUB_TOKEN: ${{ github.token }}
