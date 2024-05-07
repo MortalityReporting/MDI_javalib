@@ -8,6 +8,7 @@
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
     <fhir.version>5.6.0</fhir.version>
+    <maven.deploy.skip>false</maven.deploy.skip>
   </properties>
 
   <dependencies>

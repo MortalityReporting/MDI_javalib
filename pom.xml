@@ -14,6 +14,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <fhir.version>4.1.0</fhir.version>
+        <maven.deploy.skip>true</maven.deploy.skip>
     </properties>
 
     <modules>
