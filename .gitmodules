@@ -1,0 +1,3 @@
+[submodule "vital-records-java"]
+	path = vital-records-java
+	url = https://github.com/nightingaleproject/vital-records-java
