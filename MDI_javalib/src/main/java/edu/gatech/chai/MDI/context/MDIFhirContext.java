@@ -11,7 +11,7 @@ import edu.gatech.chai.MDI.model.resource.MessageHeaderToxicologyToMDI;
 import edu.gatech.chai.MDI.model.resource.ObservationHowDeathInjuryOccurred;
 import edu.gatech.chai.MDI.model.resource.SpecimenToxicologyLab;
 import edu.gatech.chai.MDI.model.resource.USCoreObservationLab;
-import edu.gatech.chai.VRDR.context.VRDRFhirContextDataStructuresOnly;
+import edu.gatech.chai.context.VRDRFhirContextDataStructuresOnly;
 
 public class MDIFhirContext extends VRDRFhirContextDataStructuresOnly{
 	public MDIFhirContext() {

@@ -6,8 +6,6 @@ import org.hl7.fhir.r4.model.CodeableConcept;
 import org.hl7.fhir.r4.model.Composition;
 import org.hl7.fhir.r4.model.Extension;
 import org.hl7.fhir.r4.model.Identifier;
-import org.hl7.fhir.r4.model.Patient;
-import org.hl7.fhir.r4.model.Practitioner;
 import org.hl7.fhir.r4.model.Reference;
 
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
@@ -15,7 +13,6 @@ import edu.gatech.chai.MDI.model.resource.util.CompositionMDIAndEDRSUtil;
 import edu.gatech.chai.USCore.model.util.CommonUtil;
 import edu.gatech.chai.VRCL.model.PatientVitalRecords;
 import edu.gatech.chai.VRCL.model.PractitionerVitalRecords;
-import edu.gatech.chai.MDI.model.resource.util.CompositionMDIAndEDRSUtil;
 
 @ResourceDef(name = "Composition", profile = "http://hl7.org/fhir/us/mdi/StructureDefinition/Composition-mdi-and-edrs")
 public class CompositionMDIAndEDRS extends Composition{

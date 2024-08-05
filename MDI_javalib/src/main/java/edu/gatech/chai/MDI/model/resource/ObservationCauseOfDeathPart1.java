@@ -11,7 +11,7 @@ import org.hl7.fhir.r4.model.StringType;
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.chai.MDI.model.resource.util.ObservationConditionCauseOfDeathUtil;
 import edu.gatech.chai.VRCL.model.PractitionerVitalRecords;
-import edu.gatech.chai.VRDR.model.Certifier;
+import edu.gatech.chai.model.Certifier;
 
 @ResourceDef(name = "Observation", profile = "http://hl7.org/fhir/us/mdi/StructureDefinition/Observation-mdi-cause-of-death-part1")
 public class ObservationCauseOfDeathPart1 extends Observation {
