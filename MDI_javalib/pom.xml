@@ -39,7 +39,7 @@
         <version>${fhir.version}</version>
     </dependency>
     <dependency>
-      <groupId>edu.gatech</groupId>
+      <groupId>edu.gatech.chai</groupId>
       <artifactId>vrdr</artifactId>
       <version>4.0.5</version>
   </dependency>
