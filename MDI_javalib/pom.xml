@@ -41,7 +41,7 @@
     <dependency>
       <groupId>edu.gatech.chai</groupId>
       <artifactId>vrdr</artifactId>
-      <version>5.0.0-preview1</version>
+      <version>5.2.0</version>
   </dependency>
   </dependencies>
 
