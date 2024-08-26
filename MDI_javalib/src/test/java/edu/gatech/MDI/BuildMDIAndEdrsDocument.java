@@ -38,13 +38,13 @@ import edu.gatech.chai.MDI.model.resource.ObservationHowDeathInjuryOccurred;
 import edu.gatech.chai.MDI.model.resource.util.CommonUtil;
 import edu.gatech.chai.VRCL.model.AutopsyPerformedIndicator;
 import edu.gatech.chai.VRCL.model.PatientVitalRecords;
-import edu.gatech.chai.model.Certifier;
-import edu.gatech.chai.model.DeathCertificationProcedure;
-import edu.gatech.chai.model.DeathDate;
-import edu.gatech.chai.model.Decedent;
-import edu.gatech.chai.model.DecedentPregnancyStatus;
-import edu.gatech.chai.model.MannerOfDeath;
-import edu.gatech.chai.model.TobaccoUseContributedToDeath;
+import edu.gatech.chai.VRDR.model.Certifier;
+import edu.gatech.chai.VRDR.model.DeathCertificationProcedure;
+import edu.gatech.chai.VRDR.model.DeathDate;
+import edu.gatech.chai.VRDR.model.Decedent;
+import edu.gatech.chai.VRDR.model.DecedentPregnancyStatus;
+import edu.gatech.chai.VRDR.model.MannerOfDeath;
+import edu.gatech.chai.VRDR.model.TobaccoUseContributedToDeath;
 
 public class BuildMDIAndEdrsDocument {
     public static SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
@@ -171,7 +171,7 @@ public class BuildMDIAndEdrsDocument {
             deathCertification.setSubject(decedentReference);
             Procedure.ProcedurePerformerComponent procedurePerformerComponent = new Procedure.ProcedurePerformerComponent();
             procedurePerformerComponent.setActor(new Reference(certifier.getId()));
-            procedurePerformerComponent.setFunction(CommonUtil.findConceptFromCollectionUsingSimpleString("Medical Examiner/Coroner", edu.gatech.chai.model.util.CommonUtil.certifierTypeSet));
+            procedurePerformerComponent.setFunction(CommonUtil.findConceptFromCollectionUsingSimpleString("Medical Examiner/Coroner", edu.gatech.chai.VRDR.model.util.CommonUtil.certifierTypeSet));
             initResourceForTesting(deathCertification);
             //Will probably always be completed if the deathCertification exists, but my be stopped, or in-progress, or entered-in-error given the context.
             deathCertification.setStatus(ProcedureStatus.COMPLETED);
