@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>edu.gatech.chai</groupId>
   <artifactId>MDI</artifactId>
-  <version>1.2.3-STU-2.0.0-US</version>
+  <version>1.2.4-STU-2.0.0-US</version>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
@@ -41,7 +41,7 @@
     <dependency>
       <groupId>edu.gatech.chai</groupId>
       <artifactId>vrdr</artifactId>
-      <version>5.2.1</version>
+      <version>5.2.2</version>
   </dependency>
   </dependencies>
 
