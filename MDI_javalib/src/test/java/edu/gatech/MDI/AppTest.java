@@ -1,8 +1,13 @@
 package edu.gatech.MDI;
 
 
+import java.util.List;
+
+import org.hl7.fhir.r4.model.Bundle.BundleEntryComponent;
+
 import edu.gatech.chai.MDI.context.MDIFhirContext;
 import edu.gatech.chai.MDI.model.resource.BundleDocumentMDIAndEDRS;
+import edu.gatech.chai.MDI.model.resource.CompositionMDIAndEDRS;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -39,5 +44,15 @@ public class AppTest
     	String encoded = context.getCtx().newJsonParser().encodeResourceToString(bundle);
     	System.out.println(encoded);
     	assertTrue( true );
+    }
+
+    public void testNameMDIAndEDRSBundleDoesNotCreateDuplicateComposition()
+    {
+        BundleDocumentMDIAndEDRS bundle = BuildMDIAndEdrsDocument.buildExampleBundleDocumentMDIAndEDRS();
+    	String encoded = context.getCtx().newJsonParser().encodeResourceToString(bundle);
+        BundleDocumentMDIAndEDRS roundTripBundle = context.getCtx().newJsonParser().parseResource(BundleDocumentMDIAndEDRS.class,encoded);
+        assertFalse("Second Resource of MDI-And-EDRS Bundle after parsing was a Composition. Incorrect parsing issue.", roundTripBundle.getEntry().get(1).getResource() instanceof CompositionMDIAndEDRS);
+        String roundTripEncoded = context.getCtx().newJsonParser().encodeResourceToString(roundTripBundle);
+        System.out.println(roundTripEncoded);
     }
 }

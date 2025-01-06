@@ -15,8 +15,6 @@ public class BundleMessageToxToMDI extends Bundle{
 	public BundleMessageToxToMDI() {
 		super();
 		this.setType(BundleType.MESSAGE);
-		BundleEntryComponent bec = new BundleEntryComponent();
-		this.addEntry(bec);
 	}
 	public BundleMessageToxToMDI(Identifier identifier,MessageHeaderToxicologyToMDI messageHeaderEntry) {
 		super();
@@ -29,12 +27,24 @@ public class BundleMessageToxToMDI extends Bundle{
 	
 	//This MessageHeader must always be the correct case here.
 	public MessageHeaderToxicologyToMDI getMessageHeaderToxicologyToMDI() {
+		checkMessageHeaderToxicologyToMDI();
 		return (MessageHeaderToxicologyToMDI) this.getEntryFirstRep().getResource();
 	}
 
 	//Helper function to help init full urls AFTER the id of thecomposition has been set.
 	public BundleMessageToxToMDI setFullUrlOnMessageHeaderToxicologyToMDI() {
+		checkMessageHeaderToxicologyToMDI();
 		this.getEntryFirstRep().setFullUrl(this.getEntryFirstRep().getResource().getResourceType()+"/"+this.getEntryFirstRep().getResource().getId());
 		return this;
+	}
+
+	public boolean checkMessageHeaderToxicologyToMDI(){
+		if(this.getEntry().isEmpty()){
+			BundleEntryComponent bec = new BundleEntryComponent();
+			bec.setResource(new MessageHeaderToxicologyToMDI());
+			this.addEntry(bec);
+			return true;
+		}
+		return false;
 	}
 }

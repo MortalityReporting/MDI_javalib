@@ -18,6 +18,7 @@ public class CommonUtil {
 	public static final String snomedSystemUrl = "http://snomed.info/sct";
 	public static final String mdiCodesSystemURL = "http://hl7.org/fhir/us/mdi/CodeSystem/CodeSystem-vr-codes";
 	public static final String mdiLocalComponentCodesURL = "http://hl7.org/fhir/us/mdi/CodeSystem/CodeSystem-local-component-codes";
+	public static final String vrdrLocalComponentCodeSystem = "http://hl7.org/fhir/us/vrdr/CodeSystem/vrdr-component-cs";
 	public static final CodeableConcept yesCode = new CodeableConcept()
 			.addCoding(new Coding("http://terminology.hl7.org/CodeSystem/v2-0136", "Y", "Yes"));
 	public static final CodeableConcept noCode = new CodeableConcept()

@@ -15,10 +15,6 @@ public class BundleDocumentMDIAndEDRS extends Bundle{
 	public BundleDocumentMDIAndEDRS() {
 		super();
 		this.setType(BundleType.DOCUMENT);
-		BundleEntryComponent bec = new BundleEntryComponent();
-		CompositionMDIAndEDRS compositionEntry = new CompositionMDIAndEDRS();
-		bec.setResource(compositionEntry);
-		this.addEntry(bec);
 	}
 	public BundleDocumentMDIAndEDRS(Identifier identifier,CompositionMDIAndEDRS compositionEntry) {
 		super();
@@ -31,12 +27,25 @@ public class BundleDocumentMDIAndEDRS extends Bundle{
 	
 	//This Composition must always be the correct case here.
 	public CompositionMDIAndEDRS getCompositionMDIAndEDRS() {
+		checkCompositionMDIAndEDRS();
 		return (CompositionMDIAndEDRS) this.getEntryFirstRep().getResource();
 	}
 
 	//Helper function to help init full urls AFTER the id of thecomposition has been set.
 	public BundleDocumentMDIAndEDRS setFullUrlOnCompositionMDIAndEDRS() {
+		checkCompositionMDIAndEDRS();
 		this.getEntryFirstRep().setFullUrl(this.getEntryFirstRep().getResource().getResourceType()+"/"+this.getEntryFirstRep().getResource().getId());
 		return this;
+	}
+
+	public boolean checkCompositionMDIAndEDRS(){
+		if(this.getEntry().isEmpty()){
+			BundleEntryComponent bec = new BundleEntryComponent();
+			CompositionMDIAndEDRS compositionEntry = new CompositionMDIAndEDRS();
+			bec.setResource(compositionEntry);
+			this.addEntry(bec);
+			return true;
+		}
+		return false;
 	}
 }
