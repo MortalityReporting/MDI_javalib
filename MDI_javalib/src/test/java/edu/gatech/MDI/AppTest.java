@@ -41,8 +41,6 @@ public class AppTest
     public void testProducingDeathCertificateDocument()
     {
     	BundleDocumentMDIAndEDRS bundle = BuildMDIAndEdrsDocument.buildExampleBundleDocumentMDIAndEDRS();
-    	String encoded = context.getCtx().newJsonParser().encodeResourceToString(bundle);
-    	System.out.println(encoded);
     	assertTrue( true );
     }
 
@@ -54,5 +52,15 @@ public class AppTest
         assertFalse("Second Resource of MDI-And-EDRS Bundle after parsing was a Composition. Incorrect parsing issue.", roundTripBundle.getEntry().get(1).getResource() instanceof CompositionMDIAndEDRS);
         String roundTripEncoded = context.getCtx().newJsonParser().encodeResourceToString(roundTripBundle);
         System.out.println(roundTripEncoded);
+    }
+
+    public void testTypesFromSerializedBundle()
+    {
+        BundleDocumentMDIAndEDRS bundle = BuildMDIAndEdrsDocument.buildExampleBundleDocumentMDIAndEDRS();
+    	String encoded = context.getCtx().newJsonParser().encodeResourceToString(bundle);
+        BundleDocumentMDIAndEDRS roundTripBundle = context.getCtx().newJsonParser().parseResource(BundleDocumentMDIAndEDRS.class,encoded);
+        for(BundleEntryComponent bec:roundTripBundle.getEntry()){
+            System.out.println(bec.getResource().getClass().getName());
+        }
     }
 }

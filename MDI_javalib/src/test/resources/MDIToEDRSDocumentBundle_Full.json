@@ -1,6 +1,6 @@
 {
     "resourceType": "Bundle",
-    "id": "93eace5a-65be-4c22-a134-0e28337f8059",
+    "id": "0a945d86-444a-4755-9c20-8a67a97b8b0f",
     "meta": {
         "profile": [
             "http://hl7.org/fhir/us/mdi/StructureDefinition/Bundle-document-mdi-and-edrs"
@@ -11,13 +11,13 @@
         "value": "123"
     },
     "type": "document",
-    "timestamp": "2025-01-06T10:14:41.322-05:00",
+    "timestamp": "2025-01-07T13:09:55.931-05:00",
     "entry": [
         {
-            "fullUrl": "Composition/dc2212d0-f343-4bc5-8998-21370572ebc5",
+            "fullUrl": "Composition/e9e9878b-1f30-4e38-8ebe-5f8d3f9b7502",
             "resource": {
                 "resourceType": "Composition",
-                "id": "dc2212d0-f343-4bc5-8998-21370572ebc5",
+                "id": "e9e9878b-1f30-4e38-8ebe-5f8d3f9b7502",
                 "meta": {
                     "profile": [
                         "http://hl7.org/fhir/us/mdi/StructureDefinition/Composition-mdi-and-edrs"
@@ -70,12 +70,12 @@
                     ]
                 },
                 "subject": {
-                    "reference": "Patient/613f5a00-f794-4831-839d-9dc6c7067b4c"
+                    "reference": "Patient/60a6956a-afbf-449b-b1f5-43e3951dc4c6"
                 },
-                "date": "2025-01-06T10:14:41-05:00",
+                "date": "2025-01-07T13:09:55-05:00",
                 "author": [
                     {
-                        "reference": "Practitioner/74bce416-6c7b-4e31-84f1-9c891c564a08"
+                        "reference": "Practitioner/7d668c5d-573d-40cd-8efa-c4af904a88ce"
                     }
                 ],
                 "title": "Example MDI-To-EDRS Record. TEST ONLY",
@@ -83,7 +83,7 @@
                     {
                         "mode": "legal",
                         "party": {
-                            "reference": "Practitioner/74bce416-6c7b-4e31-84f1-9c891c564a08"
+                            "reference": "Practitioner/7d668c5d-573d-40cd-8efa-c4af904a88ce"
                         }
                     }
                 ],
@@ -99,16 +99,16 @@
                         },
                         "entry": [
                             {
-                                "reference": "Location/470fc5bf-0e16-4fa7-aa39-3c104679e11b"
+                                "reference": "Location/598a0958-2932-4c5e-aedd-f20bc72aada3"
                             },
                             {
-                                "reference": "Observation/53dce85f-1560-4723-8ec7-95e0638d1ab2"
+                                "reference": "Observation/b0d6efeb-8450-4a1d-b2da-ef70d22d94ad"
                             },
                             {
-                                "reference": "Observation/794e3727-12d2-4044-af01-653347d1ced2"
+                                "reference": "Observation/edea5c8c-4870-4903-ba16-660bc9b3f943"
                             },
                             {
-                                "reference": "Location/26d23677-03a8-4251-b9e6-fa0b455b8ec7"
+                                "reference": "Location/a833e257-1dfd-40f5-b902-7acb4cac6fa6"
                             }
                         ]
                     },
@@ -123,10 +123,10 @@
                         },
                         "entry": [
                             {
-                                "reference": "Observation/6b9e3135-433f-417e-a94e-a41a1dfff0ad"
+                                "reference": "Observation/6f270620-9707-4551-8335-dce1b1282265"
                             },
                             {
-                                "reference": "Procedure/4612a454-d990-4808-aa95-bea7da6e84e8"
+                                "reference": "Procedure/369d5aab-916f-4cc9-8c95-e319b60bae23"
                             }
                         ]
                     },
@@ -141,13 +141,13 @@
                         },
                         "entry": [
                             {
-                                "reference": "Observation/5ecf272d-40df-4fda-af89-922e0472e678"
+                                "reference": "Observation/4d21f9d3-dd0d-487c-9b0d-ecf2dc085b30"
                             },
                             {
-                                "reference": "Observation/e5efa963-6794-4f96-a557-4ac5d563f413"
+                                "reference": "Observation/c889fd3e-7cdf-435d-b5fb-51f4ab9c143b"
                             },
                             {
-                                "reference": "Observation/479555bd-fe21-4429-8e1b-e09076a381c9"
+                                "reference": "Observation/7111db45-5f01-41b5-aa4b-a8031981bff4"
                             }
                         ]
                     },
@@ -162,7 +162,7 @@
                         },
                         "entry": [
                             {
-                                "reference": "Condition/c6f358c8-9f92-43b0-a85b-62daee005fd7"
+                                "reference": "Condition/cfee9c2d-6529-4eae-8dcd-d1fbc3890bf0"
                             }
                         ]
                     },
@@ -177,7 +177,7 @@
                         },
                         "entry": [
                             {
-                                "reference": "Observation/699e2723-ddd4-4c4b-8c03-94d5da3151ac"
+                                "reference": "Observation/5eeb6c15-828c-436f-89f5-e4e8d0796d11"
                             }
                         ]
                     }
@@ -185,16 +185,15 @@
             }
         },
         {
-            "fullUrl": "Patient/613f5a00-f794-4831-839d-9dc6c7067b4c",
+            "fullUrl": "Patient/60a6956a-afbf-449b-b1f5-43e3951dc4c6",
             "resource": {
-    "resourceType": "Patient",
-    "id": "613f5a00-f794-4831-839d-9dc6c7067b4c",
-    "meta": {
-        "profile": [
-            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient",
-            "http://hl7.org/fhir/us/vr-common-library/StructureDefinition/Patient-vr"
-        ]
-    },
+                "resourceType": "Patient",
+                "id": "60a6956a-afbf-449b-b1f5-43e3951dc4c6",
+                "meta": {
+                    "profile": [
+                        "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-decedent"
+                    ]
+                },
                 "extension": [
                     {
                         "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race",
@@ -270,10 +269,10 @@
             }
         },
         {
-            "fullUrl": "Practitioner/74bce416-6c7b-4e31-84f1-9c891c564a08",
+            "fullUrl": "Practitioner/7d668c5d-573d-40cd-8efa-c4af904a88ce",
             "resource": {
                 "resourceType": "Practitioner",
-                "id": "74bce416-6c7b-4e31-84f1-9c891c564a08",
+                "id": "7d668c5d-573d-40cd-8efa-c4af904a88ce",
                 "meta": {
                     "profile": [
                         "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner",
@@ -298,10 +297,10 @@
             }
         },
         {
-            "fullUrl": "Location/470fc5bf-0e16-4fa7-aa39-3c104679e11b",
+            "fullUrl": "Location/598a0958-2932-4c5e-aedd-f20bc72aada3",
             "resource": {
                 "resourceType": "Location",
-                "id": "470fc5bf-0e16-4fa7-aa39-3c104679e11b",
+                "id": "598a0958-2932-4c5e-aedd-f20bc72aada3",
                 "meta": {
                     "profile": [
                         "http://hl7.org/fhir/us/core/StructureDefinition/us-core-location"
@@ -314,10 +313,10 @@
             }
         },
         {
-            "fullUrl": "Observation/53dce85f-1560-4723-8ec7-95e0638d1ab2",
+            "fullUrl": "Observation/b0d6efeb-8450-4a1d-b2da-ef70d22d94ad",
             "resource": {
                 "resourceType": "Observation",
-                "id": "53dce85f-1560-4723-8ec7-95e0638d1ab2",
+                "id": "b0d6efeb-8450-4a1d-b2da-ef70d22d94ad",
                 "meta": {
                     "profile": [
                         "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-tobacco-use-contributed-to-death"
@@ -334,7 +333,7 @@
                     ]
                 },
                 "subject": {
-                    "reference": "Patient/613f5a00-f794-4831-839d-9dc6c7067b4c"
+                    "reference": "Patient/60a6956a-afbf-449b-b1f5-43e3951dc4c6"
                 },
                 "valueCodeableConcept": {
                     "coding": [
@@ -348,10 +347,10 @@
             }
         },
         {
-            "fullUrl": "Observation/794e3727-12d2-4044-af01-653347d1ced2",
+            "fullUrl": "Observation/edea5c8c-4870-4903-ba16-660bc9b3f943",
             "resource": {
                 "resourceType": "Observation",
-                "id": "794e3727-12d2-4044-af01-653347d1ced2",
+                "id": "edea5c8c-4870-4903-ba16-660bc9b3f943",
                 "meta": {
                     "profile": [
                         "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-decedent-pregnancy-status"
@@ -368,7 +367,7 @@
                     ]
                 },
                 "subject": {
-                    "reference": "Patient/613f5a00-f794-4831-839d-9dc6c7067b4c"
+                    "reference": "Patient/60a6956a-afbf-449b-b1f5-43e3951dc4c6"
                 },
                 "valueCodeableConcept": {
                     "coding": [
@@ -382,10 +381,10 @@
             }
         },
         {
-            "fullUrl": "Location/26d23677-03a8-4251-b9e6-fa0b455b8ec7",
+            "fullUrl": "Location/a833e257-1dfd-40f5-b902-7acb4cac6fa6",
             "resource": {
                 "resourceType": "Location",
-                "id": "26d23677-03a8-4251-b9e6-fa0b455b8ec7",
+                "id": "a833e257-1dfd-40f5-b902-7acb4cac6fa6",
                 "meta": {
                     "profile": [
                         "http://hl7.org/fhir/us/core/StructureDefinition/us-core-location"
@@ -398,10 +397,10 @@
             }
         },
         {
-            "fullUrl": "Observation/6b9e3135-433f-417e-a94e-a41a1dfff0ad",
+            "fullUrl": "Observation/6f270620-9707-4551-8335-dce1b1282265",
             "resource": {
                 "resourceType": "Observation",
-                "id": "6b9e3135-433f-417e-a94e-a41a1dfff0ad",
+                "id": "6f270620-9707-4551-8335-dce1b1282265",
                 "meta": {
                     "profile": [
                         "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-death-date"
@@ -418,7 +417,7 @@
                     ]
                 },
                 "subject": {
-                    "reference": "Patient/613f5a00-f794-4831-839d-9dc6c7067b4c"
+                    "reference": "Patient/60a6956a-afbf-449b-b1f5-43e3951dc4c6"
                 },
                 "effectiveDateTime": "2022-10-03T00:00:00-04:00",
                 "component": [
@@ -449,10 +448,10 @@
             }
         },
         {
-            "fullUrl": "Procedure/4612a454-d990-4808-aa95-bea7da6e84e8",
+            "fullUrl": "Procedure/369d5aab-916f-4cc9-8c95-e319b60bae23",
             "resource": {
                 "resourceType": "Procedure",
-                "id": "4612a454-d990-4808-aa95-bea7da6e84e8",
+                "id": "369d5aab-916f-4cc9-8c95-e319b60bae23",
                 "meta": {
                     "profile": [
                         "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-death-certification"
@@ -478,16 +477,16 @@
                     ]
                 },
                 "subject": {
-                    "reference": "Patient/613f5a00-f794-4831-839d-9dc6c7067b4c"
+                    "reference": "Patient/60a6956a-afbf-449b-b1f5-43e3951dc4c6"
                 },
-                "performedDateTime": "2025-01-06T10:14:41-05:00"
+                "performedDateTime": "2025-01-07T13:09:55-05:00"
             }
         },
         {
-            "fullUrl": "Observation/c556bb78-50c0-43df-9e8c-22d6c8c3fd14",
+            "fullUrl": "Observation/beec0168-e576-4fb7-9985-c13319904823",
             "resource": {
                 "resourceType": "Observation",
-                "id": "c556bb78-50c0-43df-9e8c-22d6c8c3fd14",
+                "id": "beec0168-e576-4fb7-9985-c13319904823",
                 "meta": {
                     "profile": [
                         "http://hl7.org/fhir/us/mdi/StructureDefinition/Observation-mdi-cause-of-death-part1"
@@ -503,11 +502,11 @@
                     ]
                 },
                 "subject": {
-                    "reference": "Patient/613f5a00-f794-4831-839d-9dc6c7067b4c"
+                    "reference": "Patient/60a6956a-afbf-449b-b1f5-43e3951dc4c6"
                 },
                 "performer": [
                     {
-                        "reference": "Practitioner/74bce416-6c7b-4e31-84f1-9c891c564a08"
+                        "reference": "Practitioner/7d668c5d-573d-40cd-8efa-c4af904a88ce"
                     }
                 ],
                 "valueCodeableConcept": {
@@ -540,10 +539,10 @@
             }
         },
         {
-            "fullUrl": "Observation/5ecf272d-40df-4fda-af89-922e0472e678",
+            "fullUrl": "Observation/4d21f9d3-dd0d-487c-9b0d-ecf2dc085b30",
             "resource": {
                 "resourceType": "Observation",
-                "id": "5ecf272d-40df-4fda-af89-922e0472e678",
+                "id": "4d21f9d3-dd0d-487c-9b0d-ecf2dc085b30",
                 "meta": {
                     "profile": [
                         "http://hl7.org/fhir/us/mdi/StructureDefinition/Observation-contributing-cause-of-death-part2"
@@ -560,11 +559,11 @@
                     ]
                 },
                 "subject": {
-                    "reference": "Patient/613f5a00-f794-4831-839d-9dc6c7067b4c"
+                    "reference": "Patient/60a6956a-afbf-449b-b1f5-43e3951dc4c6"
                 },
                 "performer": [
                     {
-                        "reference": "Practitioner/74bce416-6c7b-4e31-84f1-9c891c564a08"
+                        "reference": "Practitioner/7d668c5d-573d-40cd-8efa-c4af904a88ce"
                     }
                 ],
                 "valueCodeableConcept": {
@@ -573,10 +572,10 @@
             }
         },
         {
-            "fullUrl": "Observation/e5efa963-6794-4f96-a557-4ac5d563f413",
+            "fullUrl": "Observation/c889fd3e-7cdf-435d-b5fb-51f4ab9c143b",
             "resource": {
                 "resourceType": "Observation",
-                "id": "e5efa963-6794-4f96-a557-4ac5d563f413",
+                "id": "c889fd3e-7cdf-435d-b5fb-51f4ab9c143b",
                 "meta": {
                     "profile": [
                         "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-manner-of-death"
@@ -593,11 +592,11 @@
                     ]
                 },
                 "subject": {
-                    "reference": "Patient/613f5a00-f794-4831-839d-9dc6c7067b4c"
+                    "reference": "Patient/60a6956a-afbf-449b-b1f5-43e3951dc4c6"
                 },
                 "performer": [
                     {
-                        "reference": "Practitioner/74bce416-6c7b-4e31-84f1-9c891c564a08"
+                        "reference": "Practitioner/7d668c5d-573d-40cd-8efa-c4af904a88ce"
                     }
                 ],
                 "valueCodeableConcept": {
@@ -612,10 +611,10 @@
             }
         },
         {
-            "fullUrl": "Observation/479555bd-fe21-4429-8e1b-e09076a381c9",
+            "fullUrl": "Observation/7111db45-5f01-41b5-aa4b-a8031981bff4",
             "resource": {
                 "resourceType": "Observation",
-                "id": "479555bd-fe21-4429-8e1b-e09076a381c9",
+                "id": "7111db45-5f01-41b5-aa4b-a8031981bff4",
                 "meta": {
                     "profile": [
                         "http://hl7.org/fhir/us/mdi/StructureDefinition/Observation-how-death-injury-occurred"
@@ -632,11 +631,11 @@
                     ]
                 },
                 "subject": {
-                    "reference": "Patient/613f5a00-f794-4831-839d-9dc6c7067b4c"
+                    "reference": "Patient/60a6956a-afbf-449b-b1f5-43e3951dc4c6"
                 },
                 "performer": [
                     {
-                        "reference": "Patient/613f5a00-f794-4831-839d-9dc6c7067b4c"
+                        "reference": "Patient/60a6956a-afbf-449b-b1f5-43e3951dc4c6"
                     }
                 ],
                 "valueCodeableConcept": {
@@ -701,10 +700,10 @@
             }
         },
         {
-            "fullUrl": "Condition/c6f358c8-9f92-43b0-a85b-62daee005fd7",
+            "fullUrl": "Condition/cfee9c2d-6529-4eae-8dcd-d1fbc3890bf0",
             "resource": {
                 "resourceType": "Condition",
-                "id": "c6f358c8-9f92-43b0-a85b-62daee005fd7",
+                "id": "cfee9c2d-6529-4eae-8dcd-d1fbc3890bf0",
                 "meta": {
                     "profile": [
                         "http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition"
@@ -749,15 +748,15 @@
                     ]
                 },
                 "subject": {
-                    "reference": "Patient/613f5a00-f794-4831-839d-9dc6c7067b4c"
+                    "reference": "Patient/60a6956a-afbf-449b-b1f5-43e3951dc4c6"
                 }
             }
         },
         {
-            "fullUrl": "Observation/699e2723-ddd4-4c4b-8c03-94d5da3151ac",
+            "fullUrl": "Observation/5eeb6c15-828c-436f-89f5-e4e8d0796d11",
             "resource": {
                 "resourceType": "Observation",
-                "id": "699e2723-ddd4-4c4b-8c03-94d5da3151ac",
+                "id": "5eeb6c15-828c-436f-89f5-e4e8d0796d11",
                 "meta": {
                     "profile": [
                         "http://hl7.org/fhir/us/vr-common-library/StructureDefinition/Observation-autopsy-performed-indicator-vr"
@@ -774,7 +773,7 @@
                     ]
                 },
                 "subject": {
-                    "reference": "Patient/613f5a00-f794-4831-839d-9dc6c7067b4c"
+                    "reference": "Patient/60a6956a-afbf-449b-b1f5-43e3951dc4c6"
                 },
                 "valueCodeableConcept": {
                     "coding": [

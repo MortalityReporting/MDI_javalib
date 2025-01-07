@@ -13,7 +13,7 @@ import org.hl7.fhir.r4.model.Reference;
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.chai.MDI.model.resource.util.DiagnosticReportToxicologyToMDIUtil;
 
-@ResourceDef(name = "DiagnosticReport", profile = "https://fhir.org/fhir/us/mdi/StructureDefinition/DiagnosticReport-toxicology-to-mdi")
+@ResourceDef(name = "DiagnosticReport", profile = "http://hl7.org/fhir/us/mdi/StructureDefinition/DiagnosticReport-toxicology-to-mdi")
 public class DiagnosticReportToxicologyToMDI extends DiagnosticReport{
 
 	/**

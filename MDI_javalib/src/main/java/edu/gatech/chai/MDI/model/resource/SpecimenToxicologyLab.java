@@ -4,7 +4,7 @@ import org.hl7.fhir.r4.model.Specimen;
 
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
 
-@ResourceDef(name = "Specimen", profile = "https://fhir.org/fhir/us/mdi/StructureDefinition/Specimen-toxicology-lab")
+@ResourceDef(name = "Specimen", profile = "http://hl7.org/fhir/us/mdi/StructureDefinition/Specimen-toxicology-lab")
 public class SpecimenToxicologyLab extends Specimen{
 
 	/**

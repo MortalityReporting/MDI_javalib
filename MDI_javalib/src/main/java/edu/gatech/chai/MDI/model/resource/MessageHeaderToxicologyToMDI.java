@@ -7,7 +7,7 @@ import ca.uhn.fhir.model.api.annotation.ResourceDef;
 import edu.gatech.chai.MDI.model.resource.util.CommonUtil;
 import edu.gatech.chai.MDI.model.resource.util.MessageHeaderToxicologyToMDIUtil;
 
-@ResourceDef(name = "MessageHeader", profile = "https://fhir.org/fhir/us/mdi/StructureDefinition/MessageHeader-toxicology-to-mdi")
+@ResourceDef(name = "MessageHeader", profile = "http://hl7.org/fhir/us/mdi/StructureDefinition/MessageHeader-toxicology-to-mdi")
 public class MessageHeaderToxicologyToMDI extends MessageHeader{
 
 	/**
