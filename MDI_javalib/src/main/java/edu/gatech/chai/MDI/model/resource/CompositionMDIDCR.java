@@ -182,7 +182,7 @@ public class CompositionMDIDCR extends Composition{
 	}
 
 	public Extension addDCCertificationStatus(String dCertificationValue){
-		Extension deathCertificateStatusExtension = CommonUtil.getExtension(this, CompositionMDIDCRUtil.dCCertificationExtensionURL);
+		Extension deathCertificateStatusExtension = CommonUtil.getExtension(this, CompositionMDIDCRUtil.deathCertificateStatusExtensionURL);
 		if(deathCertificateStatusExtension == null){
 			deathCertificateStatusExtension = this.addDeathCertificateStatusExtension();
 		}
@@ -192,21 +192,23 @@ public class CompositionMDIDCR extends Composition{
 			dCCertificationStatusExtension.setUrl(CompositionMDIDCRUtil.dCCertificationExtensionURL);
 			CodeableConcept value = CommonUtil.findConceptFromCollectionUsingSimpleString(dCertificationValue, CompositionMDIDCRUtil.dCCertificationSet);
 			dCCertificationStatusExtension.setValue(value);
+			deathCertificateStatusExtension.addExtension(dCCertificationStatusExtension);
 		}
 		return dCCertificationStatusExtension;
 	}
 
 	public Extension addDCRegistrationStatus(String dRegistrationValue){
-		Extension deathCertificateStatusExtension = CommonUtil.getExtension(this, CompositionMDIDCRUtil.dCCertificationExtensionURL);
+		Extension deathCertificateStatusExtension = CommonUtil.getExtension(this, CompositionMDIDCRUtil.deathCertificateStatusExtensionURL);
 		if(deathCertificateStatusExtension == null){
 			deathCertificateStatusExtension = this.addDeathCertificateStatusExtension();
 		}
 		Extension dCRegistrationStatusExtension = CommonUtil.getExtension(deathCertificateStatusExtension, CompositionMDIDCRUtil.dCRegistrationExtensionURL);
 		if(dCRegistrationStatusExtension == null){
 			dCRegistrationStatusExtension = new Extension();
-			dCRegistrationStatusExtension.setUrl(CompositionMDIDCRUtil.dCCertificationExtensionURL);
+			dCRegistrationStatusExtension.setUrl(CompositionMDIDCRUtil.dCRegistrationExtensionURL);
 			CodeableConcept value = CommonUtil.findConceptFromCollectionUsingSimpleString(dRegistrationValue, CompositionMDIDCRUtil.dCRRegistrationSet);
 			dCRegistrationStatusExtension.setValue(value);
+			deathCertificateStatusExtension.addExtension(dCRegistrationStatusExtension);
 		}
 		return dCRegistrationStatusExtension;
 	}
