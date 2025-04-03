@@ -26,7 +26,7 @@ public class BundleDocumentMDIDCR extends Bundle{
 	}
 	
 	//This Composition must always be the correct case here.
-	public CompositionMDIDCR getCompositionMDIAndEDRS() {
+	public CompositionMDIDCR getCompositionMDIDCR() {
 		checkCompositionMDIDCR();
 		return (CompositionMDIDCR) this.getEntryFirstRep().getResource();
 	}
