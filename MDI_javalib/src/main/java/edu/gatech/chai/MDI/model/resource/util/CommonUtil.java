@@ -12,10 +12,12 @@ import org.hl7.fhir.r4.model.DomainResource;
 import org.hl7.fhir.r4.model.Extension;
 import org.hl7.fhir.r4.model.IdType;
 import org.hl7.fhir.r4.model.Resource;
+import org.hl7.fhir.r4.model.Type;
 
 public class CommonUtil {
 	public static final String loincSystemUrl = "http://loinc.org";
 	public static final String snomedSystemUrl = "http://snomed.info/sct";
+	public static final String dataAbsentReasonUrl = "http://terminology.hl7.org/CodeSystem/data-absent-reason";
 	public static final String mdiCodesSystemURL = "http://hl7.org/fhir/us/mdi/CodeSystem/cs-mdi-codes";
 	public static final String mdiLocalComponentCodesURL = "http://hl7.org/fhir/us/mdi/CodeSystem/CodeSystem-local-component-codes";
 	public static final String vrdrLocalComponentCS = "http://hl7.org/fhir/us/vrdr/CodeSystem/vrdr-component-cs";
@@ -95,6 +97,22 @@ public class CommonUtil {
 			}
 		}
 		return null;
+	}
+
+	public static Extension getExtension(Extension resource, String url) {
+		for (Extension extension : resource.getExtension()) {
+			if (extension.getUrl().equals(url)) {
+				return extension;
+			}
+		}
+		return null;
+	}
+
+	public static Type setDataAbsentReason(Type element, CodeType dataAbsentReason){
+		Extension dabExtension = new Extension(CommonUtil.dataAbsentReasonUrl);
+		dabExtension.setValue(dataAbsentReason);
+		element.addExtension(dabExtension);
+		return element;
 	}
 	
 	public static void setUUID(Resource resource) {

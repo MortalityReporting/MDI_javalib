@@ -1,6 +1,5 @@
 package edu.gatech.chai.MDI.model.resource;
 
-import java.lang.reflect.Method;
 import java.util.Date;
 import java.util.HashSet;
 
@@ -11,9 +10,8 @@ import org.hl7.fhir.r4.model.Identifier;
 import org.hl7.fhir.r4.model.Reference;
 
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
+import edu.gatech.chai.MDI.model.resource.util.CommonUtil;
 import edu.gatech.chai.MDI.model.resource.util.CompositionMDIDCRUtil;
-import edu.gatech.chai.MDI.model.resource.util.CompositionMDIDCRUtil;
-import edu.gatech.chai.USCore.model.util.CommonUtil;
 import edu.gatech.chai.VRCL.model.PractitionerVitalRecords;
 import edu.gatech.chai.VRDR.model.Decedent;
 
@@ -234,7 +232,7 @@ public class CompositionMDIDCR extends Composition{
 	}
 
 	public Extension addCremationClearanceCoronerExtension(String cremationClearanceCoronerValue){
-		return genericAddExtensionWithUrlAndValue(CompositionMDIDCRUtil.cremationClearanceCoronerExtensionURL, cremationClearanceCoronerValue, CommonUtil.yesNoUnknownSet);
+		return genericAddExtensionWithUrlAndValue(CompositionMDIDCRUtil.cremationClearanceCoronerExtensionURL, cremationClearanceCoronerValue, edu.gatech.chai.USCore.model.util.CommonUtil.yesNoUnknownSet);
 	}
 
 	protected Extension genericAddExtensionWithUrlAndValue(String URL, String value, HashSet<CodeableConcept> valueset){
