@@ -172,6 +172,14 @@ public class CompositionMDIDCR extends Composition{
 		return addCaseIdExtension(CompositionMDIDCRUtil.trackingNumberTOXType, toxCaseSystem, toxCaseValue);
 	}
 
+	public Extension addFHCaseIdExtension(String toxCaseValue) {
+		return addCaseIdExtension(CompositionMDIDCRUtil.trackingNumberFHType, "", toxCaseValue);
+	}
+
+	public Extension addFHCaseIdExtension(String toxCaseSystem, String toxCaseValue) {
+		return addCaseIdExtension(CompositionMDIDCRUtil.trackingNumberFHType, toxCaseSystem, toxCaseValue);
+	}
+
 	public Extension addDeathCertificateStatusExtension(){
 		Extension returnExtension = new Extension();
 		returnExtension.setUrl(CompositionMDIDCRUtil.deathCertificateStatusExtensionURL);

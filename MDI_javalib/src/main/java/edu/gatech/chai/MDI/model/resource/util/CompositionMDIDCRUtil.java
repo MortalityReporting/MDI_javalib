@@ -58,4 +58,6 @@ public class CompositionMDIDCRUtil {
 			new Coding(CommonUtil.mdiCodesSystemURL,"edrs-file-number","EDRS File Number"));
 	public static final CodeableConcept trackingNumberTOXType = new CodeableConcept().addCoding(
 			new Coding(CommonUtil.mdiCodesSystemURL,"tox-lab-case-number","Toxicology Laboratory Case Number"));
+	public static final CodeableConcept trackingNumberFHType = new CodeableConcept().addCoding(
+			new Coding(CommonUtil.mdiCodesSystemURL,"funeral-home-case-number","Funeral Home Case Number"));
 }
