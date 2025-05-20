@@ -19,23 +19,14 @@ public class BundleMessageDeathCertificateReview extends Bundle{
 		super();
 	}
 
-	public BundleMessageDeathCertificateReview(BundleType bundleType, MessageHeaderDCR messageHeaderEntry, BundleDocumentMDIDCR bundleDocumentEntry) {
+	public BundleMessageDeathCertificateReview(BundleType bundleType, MessageHeaderDCR messageHeaderEntry) {
 		super();
+
 		this.setType(bundleType);
 		this.setIdentifier(identifier);
-		BundleEntryComponent mhEntry = new BundleEntryComponent();
-		String mhRefUrl = "urn:uuid:" + UUID.randomUUID().toString();
-		mhEntry.setFullUrl(mhRefUrl);
-		mhEntry.setResource(messageHeaderEntry);
-		this.addEntry(mhEntry);
-
-		BundleEntryComponent bDcrEntry = new BundleEntryComponent();
-		String bDcrRefUrl = "urn:uuid:" + UUID.randomUUID().toString();
-		bDcrEntry.setFullUrl(bDcrRefUrl);
-		bDcrEntry.setResource(bundleDocumentEntry);
-		this.addEntry(bDcrEntry);
-
-		messageHeaderEntry.addFocus(new Reference(bDcrRefUrl));
+		BundleEntryComponent bec = new BundleEntryComponent();
+		bec.setResource(messageHeaderEntry);
+		this.addEntry(bec);
 	}
 	
 	//This MessageHeader must always be the correct case here.
