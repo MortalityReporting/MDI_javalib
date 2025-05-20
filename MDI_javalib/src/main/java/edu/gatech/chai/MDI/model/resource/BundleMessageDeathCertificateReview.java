@@ -1,7 +1,10 @@
 package edu.gatech.chai.MDI.model.resource;
 
+import java.util.UUID;
+
 import org.hl7.fhir.r4.model.Bundle;
 import org.hl7.fhir.r4.model.Identifier;
+import org.hl7.fhir.r4.model.Reference;
 
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
 
@@ -20,9 +23,19 @@ public class BundleMessageDeathCertificateReview extends Bundle{
 		super();
 		this.setType(bundleType);
 		this.setIdentifier(identifier);
-		BundleEntryComponent bec = new BundleEntryComponent();
-		bec.setResource(messageHeaderEntry);
-		this.addEntry(bec);
+		BundleEntryComponent mhEntry = new BundleEntryComponent();
+		String mhRefUrl = "urn:uuid:" + UUID.randomUUID().toString();
+		mhEntry.setFullUrl(mhRefUrl);
+		mhEntry.setResource(messageHeaderEntry);
+		this.addEntry(mhEntry);
+
+		BundleEntryComponent bDcrEntry = new BundleEntryComponent();
+		String bDcrRefUrl = "urn:uuid:" + UUID.randomUUID().toString();
+		bDcrEntry.setFullUrl(bDcrRefUrl);
+		bDcrEntry.setResource(bundleDocumentEntry);
+		this.addEntry(bDcrEntry);
+
+		messageHeaderEntry.addFocus(new Reference(bDcrRefUrl));
 	}
 	
 	//This MessageHeader must always be the correct case here.
