@@ -1,7 +1,6 @@
 package edu.gatech.chai.MDI.model.resource;
 
 import org.hl7.fhir.r4.model.Bundle;
-import org.hl7.fhir.r4.model.Identifier;
 
 import ca.uhn.fhir.model.api.annotation.ResourceDef;
 
@@ -16,7 +15,7 @@ public class BundleMessageDeathCertificateReview extends Bundle{
 		super();
 	}
 
-	public BundleMessageDeathCertificateReview(BundleType bundleType, MessageHeaderDCR messageHeaderEntry, BundleDocumentMDIDCR bundleDocumentEntry) {
+	public BundleMessageDeathCertificateReview(BundleType bundleType, MessageHeaderDCR messageHeaderEntry) {
 		super();
 		this.setType(bundleType);
 		this.setIdentifier(identifier);
