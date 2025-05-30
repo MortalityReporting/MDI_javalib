@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>edu.gatech</groupId>
 	<artifactId>mdi_packaging</artifactId>
-	<version>1.2.13-STU-2.0.0-US</version>
+	<version>1.2.14-STU-2.0.0-US</version>
 	<packaging>pom</packaging>
 	<name>MDI_packaging</name>
 	<url>https://github.com/MortalityReporting/MDI_javalib.git</url>
