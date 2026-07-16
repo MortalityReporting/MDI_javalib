@@ -24,6 +24,9 @@ public class CommonUtil {
 	public static final String vrdrDocumentSectionCS = "http://hl7.org/fhir/us/vrdr/CodeSystem/vrdr-document-section-cs";
 	public static final String dcrReviewExampleURL = "http://hl7.org/fhir/us/mdi/CodeSystem/cs-death-cert-review-example";
 	public static final String deathCertificateReviewValuesetURL = "";
+	public static final String usCoreDocumentreferenceCategory = "http://hl7.org/fhir/us/core/ValueSet/us-core-documentreference-category";
+	// public static final String vsPerDqReview = "http://hl7.org/fhir/us/mdi/ValueSet/vs-per-dq-review";
+	public static final String csDeathCertReviewExample = "http://hl7.org/fhir/us/mdi/CodeSystem/cs-death-cert-review-example";
 	public static final CodeableConcept yesCode = new CodeableConcept()
 			.addCoding(new Coding("http://terminology.hl7.org/CodeSystem/v2-0136", "Y", "Yes"));
 	public static final CodeableConcept noCode = new CodeableConcept()

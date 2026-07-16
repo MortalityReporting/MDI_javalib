@@ -1,18 +1,16 @@
 package edu.gatech.chai.MDI.context;
 
-import ca.uhn.fhir.context.FhirContext;
 import edu.gatech.chai.MDI.model.resource.BundleDocumentMDIAndEDRS;
 import edu.gatech.chai.MDI.model.resource.CompositionMDIAndEDRS;
-import edu.gatech.chai.MDI.model.resource.ObservationCauseOfDeathPart1;
-import edu.gatech.chai.MDI.model.resource.ObservationContributingCauseOfDeathPart2;
 import edu.gatech.chai.MDI.model.resource.DiagnosticReportToxicologyToMDI;
 import edu.gatech.chai.MDI.model.resource.DocumentReferenceMDICaseHistory;
 import edu.gatech.chai.MDI.model.resource.DocumentReferenceMDICaseNotesSummary;
 import edu.gatech.chai.MDI.model.resource.MessageHeaderToxicologyToMDI;
+import edu.gatech.chai.MDI.model.resource.ObservationCauseOfDeathPart1;
+import edu.gatech.chai.MDI.model.resource.ObservationContributingCauseOfDeathPart2;
 import edu.gatech.chai.MDI.model.resource.ObservationHowDeathInjuryOccurred;
 import edu.gatech.chai.MDI.model.resource.SpecimenToxicologyLab;
 import edu.gatech.chai.MDI.model.resource.USCoreObservationLab;
-import edu.gatech.chai.MDI.model.resource.util.ObservationConditionContributingToDeathUtil;
 import edu.gatech.chai.VRDR.context.VRDRFhirContextDataStructuresOnly;
 
 public class MDIFhirContext extends VRDRFhirContextDataStructuresOnly{
@@ -40,13 +38,4 @@ public class MDIFhirContext extends VRDRFhirContextDataStructuresOnly{
 		ctx.setDefaultTypeForProfile("http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab",
 				USCoreObservationLab.class);
 	}
-
-	public FhirContext getCtx() {
-		return ctx;
-	}
-
-	public void setCtx(FhirContext ctx) {
-		this.ctx = ctx;
-	}
-
 }

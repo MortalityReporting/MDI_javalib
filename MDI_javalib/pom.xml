@@ -5,9 +5,10 @@
   <version>1.2.15-STU-2.0.0-US</version>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
-    <fhir.version>5.6.0</fhir.version>
+    <maven.compiler.release>25</maven.compiler.release>
+    <maven.compiler.source>25</maven.compiler.source>
+    <maven.compiler.target>25</maven.compiler.target>
+    <fhir.version>8.10.0</fhir.version>
     <maven.deploy.skip>false</maven.deploy.skip>
   </properties>
 
@@ -41,7 +42,7 @@
     <dependency>
       <groupId>edu.gatech.chai</groupId>
       <artifactId>vrdr</artifactId>
-      <version>5.2.2</version>
+      <version>5.3.0</version>
   </dependency>
   </dependencies>
 
