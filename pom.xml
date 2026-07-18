@@ -11,9 +11,9 @@
 	<url>https://github.com/MortalityReporting/MDI_javalib.git</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.release>25</maven.compiler.release>
-		<maven.compiler.source>25</maven.compiler.source>
-		<maven.compiler.target>25</maven.compiler.target>
+		<maven.compiler.release>21</maven.compiler.release>
+		<maven.compiler.source>21</maven.compiler.source>
+		<maven.compiler.target>21</maven.compiler.target>
 		<fhir.version>8.10.0</fhir.version>
 		<maven.deploy.skip>true</maven.deploy.skip>
 	</properties>
