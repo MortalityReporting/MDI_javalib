@@ -36,7 +36,7 @@ import edu.gatech.chai.MDI.model.resource.ObservationCauseOfDeathPart1;
 import edu.gatech.chai.MDI.model.resource.ObservationContributingCauseOfDeathPart2;
 import edu.gatech.chai.MDI.model.resource.ObservationHowDeathInjuryOccurred;
 import edu.gatech.chai.MDI.model.resource.util.CommonUtil;
-import edu.gatech.chai.VRCL.model.AutopsyPerformedIndicator;
+import edu.gatech.chai.VRDR.model.AutopsyPerformedIndicator;
 import edu.gatech.chai.VRCL.model.PatientVitalRecords;
 import edu.gatech.chai.VRDR.model.Certifier;
 import edu.gatech.chai.VRDR.model.DeathCertificationProcedure;
